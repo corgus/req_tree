@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title ReqTree
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,600,700&subset=latin,latin-ext'
+
+    = csrf_meta_tags
+
+  - body_class = [params[:controller].split('/'), params[:action]].flatten.join(' ')
+  body class= body_class
+    #main-wrapper
+      = render 'layouts/header'
+      #main-content
+        .container-fluid
+          #page-content
+            - if notice
+              p class="notice" = notice
+            - if alert
+              p class="alert" = alert
+            = yield
+        = render 'layouts/footer'
+    = debug(params) if Rails.env.development?
+
+  = javascript_include_tag 'application', 'data-turbolinks-track' => true
+  = yield :javascripts

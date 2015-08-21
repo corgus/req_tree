@@ -1,0 +1,43 @@
+
+/* COLOR VARIABLES */
+$yellow-highlight: #FDFDDD;
+$gray-highlight: #F3F3F3;
+$green-highlight: #DDFFE5;
+$col-hover-light-blue: #DEF;
+
+$gray-medium-light: #eaeaea;
+
+// BOOTSTRAP
+.text-muted {
+  color: #777;
+}
+.text-primary {
+  color: #337ab7;
+}
+a.text-primary:hover {
+  color: #286090;
+}
+.text-success {
+  color: #3c763d;
+}
+a.text-success:hover {
+  color: #2b542c;
+}
+.text-info {
+  color: #31708f;
+}
+a.text-info:hover {
+  color: #245269;
+}
+.text-warning {
+  color: #8a6d3b;
+}
+a.text-warning:hover {
+  color: #66512c;
+}
+.text-danger {
+  color: #a94442;
+}
+a.text-danger:hover {
+  color: #843534;
+}

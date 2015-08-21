@@ -1,0 +1,84 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_self
+ */
+
+
+@import "utilities/reset";
+@import "utilities/variables";
+@import "utilities/colors";
+
+@import "vendor/bootstrap";
+@import "vendor/quill.base";
+@import "vendor/quill.snow";
+@import "vendor/compass/stylesheets/compass";
+
+@import "partials/base";
+@import "utilities/buttons";
+@import "utilities/fonts";
+@import "utilities/select";
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../assets/glyphicons-halflings-regular.eot');
+  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+       url('../assets/glyphicons-halflings-regular.woff') format('woff'),
+       url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
+       url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+
+body {
+  @include box-sizing('border-box');
+  padding-top: 50px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+}
+
+body, .modal {
+  min-width: 270px;
+}
+
+#main-wrapper {
+  min-height:100%;
+  position: relative;
+}
+
+#main-content {
+  padding-bottom:100px; /* Height of the footer element */
+}
+
+#page-content {
+  padding: 20px 0;
+}
+
+.container-fluid {
+  max-width: 1200px;
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  background: rgba(black, 0.8);
+  color: #AEA;
+  margin: 0;
+  border: 1px solid #222;
+  @include border-radius(0px);
+  @include box-sizing(border-box);
+}
+

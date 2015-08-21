@@ -1,0 +1,22 @@
+.btn {
+  @include border-radius(4px);
+}
+
+.btn.btn-default {
+  &:hover {
+    background: #F5F5F5;
+  }
+}
+
+.btn.btn-primary {
+
+}
+
+.btn.btn-white {
+  background: none;
+  border: 1px solid white;
+  &:hover {
+    border: 1px solid #CCC;
+    background: #f5f5f5;
+  }
+}

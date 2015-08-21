@@ -1,0 +1,13 @@
+development:
+  username: corg
+  password: postgresadmin
+  adapter: postgresql
+  database: qail_dev
+  host: localhost
+test:
+  username: corg
+  password: postgresadmin
+  adapter: postgresql
+  database: qail_test
+  host: localhost
+

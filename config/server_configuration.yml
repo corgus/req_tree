@@ -1,0 +1,8 @@
+environment: development
+force_ssl: false
+asset_host: localhost:3000
+action_mailer_host: localhost:3000
+fog_directory: meetyl-development-sandbox
+perform_basic_auth: false
+redis_endpoint: localhost:6379
+elastic_search_endpoint: localhost:9200

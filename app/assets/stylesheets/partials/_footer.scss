@@ -1,0 +1,40 @@
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding: 10px 0;
+  border-top: 1px solid $gray-medium-light;
+  border-top: 1px solid rgba(black, 0.9);
+  background: rgba(black,0.7);
+  color: #CCC;
+  font-size: 13px;
+  font-weight: lighter;
+  position: absolute;
+  width:100%;
+  // height:100px;
+  position:absolute;
+  bottom:0;
+  left:0;
+  p {
+    float: left;
+    margin: 0;
+  }
+  a {
+    color: #AAA;
+    &:hover {
+      color: #CCC;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 15px;
+    }
+  }
+}

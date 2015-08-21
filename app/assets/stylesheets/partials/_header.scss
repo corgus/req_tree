@@ -1,0 +1,58 @@
+/* header */
+
+header.navbar {
+  height: 50px;
+  background: rgba(white, 0.98);
+  outline: 1px solid rgba(#99C, 0.05);
+  .navbar-brand {
+    a {
+      color: #999;
+      font-weight: lighter;
+      &:hover {
+        text-decoration: none;
+        color: #666;
+      }
+    }
+  }
+  .navbar-search-container {
+    padding-right: 15px;
+    position: relative;
+    input {
+      margin: 12px 0 0;
+      background: rgba(245,245,255,.1);
+      border: 1px solid #DDD;
+      padding: 3px 20px 3px 10px;
+      color: #AAA;
+    }
+    .glyphicon-search {
+      position: absolute;
+      right: 20px;
+      top: 19px;
+      color: #AAA;
+      &:hover {
+        text-decoration:none;
+      }
+    }
+  }
+  ul.dropdown-menu {
+    a:hover {
+      background: #eee;
+    }
+    li.with_new {
+      a {
+        display: inline-block;
+        padding: 5px 10px;
+        &:first-child { width: 70% }
+        &:last-child  { width: 30% }
+      }
+    }
+  }
+  i.caret {
+    margin-left: 5px;
+  }
+  .navbar-collapse.in {
+    background: rgba(white, 0.98);
+    border-bottom: 1px solid #DDD;
+    padding-bottom: 20px;
+  }
+}

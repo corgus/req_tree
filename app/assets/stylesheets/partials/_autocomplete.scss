@@ -1,0 +1,39 @@
+.autocomplete-container {
+  .results {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    background: rgba(#fff, 0.98);
+    width: 100%;
+    ul {
+      list-style-type: none;
+      @include border-radius(4px);
+      @include box-shadow(1px 1px 5px #666);
+      li {
+        @include border-radius(4px);
+        padding: 5px 10px;
+        &.hovering {
+          background: rgba($col-hover-light-blue, 0.6);
+          cursor: pointer;
+        }
+        span:first-of-type {
+          font-weight: bold;
+        }
+        &.new {
+          margin-top: 5px;
+          padding: 10px;
+          border-top: 1px solid #DDD;
+          color: #666;
+          @include border-top-radius(0px);
+          span {
+            font-weight: normal;
+          }
+        }
+      }
+    }
+    &.open {
+      display: block;
+    }
+  }
+}
+

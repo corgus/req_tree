@@ -1,0 +1,54 @@
+@import 'mixins/font_size';
+@import 'mixins/breakpoint';
+@import 'mixins/keyframes';
+@import 'mixins/animation';
+@import 'mixins/transition';
+@import 'mixins/opacity';
+@import 'mixins/box_sizing';
+@import 'mixins/box_shadow';
+
+@mixin border-radius($rad){
+  -moz-border-radius: $rad;
+  -webkit-border-radius: $rad;
+  border-radius: $rad;
+}
+
+@mixin border-radius-corners($topleft, $topright, $botright, $botleft) {
+  -webkit-border-top-left-radius: $topleft;
+  -webkit-border-top-right-radius: $topright;
+  -webkit-border-bottom-right-radius: $botright;
+  -webkit-border-bottom-left-radius: $botleft;
+
+  -moz-border-radius-topleft: $topleft;
+  -moz-border-radius-topright: $topright;
+  -moz-border-radius-bottomright: $botright;
+  -moz-border-radius-bottomleft: $botleft;
+
+  border-top-left-radius: $topleft;
+  border-top-right-radius: $topright;
+  border-bottom-right-radius: $botright;
+  border-bottom-left-radius: $botleft;
+}
+
+/* One-sided gradient */
+@mixin background-gradient($color1, $color2) {
+  $color1str: "'" + $color1 + "'";
+  $color2str: "'" + $color2 + "'";
+  background: $color1; /* Old browsers */
+  background: -moz-linear-gradient(top,  $color1 0%, $color2 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$color1), color-stop(100%,$color2)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  $color1 0%,$color2 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  $color1 0%,$color2 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  $color1 0%,$color2 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  $color1 0%,$color2 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$color1str, endColorstr=$color2str,GradientType=0 ); /* IE6-9 */
+}
+
+@mixin truncate($width) {
+  max-width: $width;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0px 2px 2px 2px;
+}
+
