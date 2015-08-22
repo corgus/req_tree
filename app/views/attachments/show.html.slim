@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Url:
+  = @attachment.url
+p
+  strong Resource:
+  = @attachment.resource_id
+p
+  strong Resource type:
+  = @attachment.resource_type
+
+= link_to 'Edit', edit_attachment_path(@attachment)
+'|
+= link_to 'Back', attachments_path

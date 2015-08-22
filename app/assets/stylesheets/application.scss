@@ -25,8 +25,9 @@
 
 @import "partials/base";
 @import "utilities/buttons";
-@import "utilities/fonts";
+@import "utilities/typography";
 @import "utilities/select";
+@import "utilities/input-placeholder";
 
 @font-face {
   font-family: 'Glyphicons Halflings';
@@ -40,7 +41,6 @@
 
 body {
   @include box-sizing('border-box');
-  padding-top: 50px;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -60,8 +60,29 @@ body, .modal {
   padding-bottom:100px; /* Height of the footer element */
 }
 
-#page-content {
+body, #sidebar {
+  background: #FCF8F4;
+}
+
+#main-table {
+  display: table;
+  width: 100%;
+}
+
+#sidebar, #page-content {
+  display: table-cell;
+  vertical-align: top;
+}
+
+#sidebar {
   padding: 20px 0;
+}
+
+#page-content {
+  padding: 20px;
+  margin-top: 10px;
+  background: white;
+  @include box-shadow( 1px 1px 3px rgba(0,0,0,0.5));
 }
 
 .container-fluid {
@@ -69,6 +90,13 @@ body, .modal {
 }
 
 /* miscellaneous */
+
+p.notice, p.alert {
+  margin-bottom: 20px;
+  padding: 10px;
+  &.notice { background: rgba(200, 250, 220, 0.8); }
+  &.alert { background: rgba(255, 120, 100, 0.7); }
+}
 
 .debug_dump {
   clear: both;

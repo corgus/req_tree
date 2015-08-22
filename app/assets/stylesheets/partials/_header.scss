@@ -20,9 +20,13 @@ header.navbar {
     input {
       margin: 12px 0 0;
       background: rgba(245,245,255,.1);
-      border: 1px solid #DDD;
+      border: 1px solid #CCC;
       padding: 3px 20px 3px 10px;
-      color: #AAA;
+      width: 300px;
+      @include input-placeholder {
+        font-weight: lighter;
+        color: #CCC;
+      }
     }
     .glyphicon-search {
       position: absolute;

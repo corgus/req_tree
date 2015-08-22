@@ -1,0 +1,25 @@
+h1 Listing test_records
+
+table
+  thead
+    tr
+      th Status
+      th Timestamp
+      th Server
+      th
+      th
+      th
+
+  tbody
+    - @test_records.each do |test_record|
+      tr
+        td = test_record.status
+        td = test_record.timestamp
+        td = test_record.server
+        td = link_to 'Show', test_record
+        td = link_to 'Edit', edit_test_record_path(test_record)
+        td = link_to 'Destroy', test_record, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Test record', new_test_record_path

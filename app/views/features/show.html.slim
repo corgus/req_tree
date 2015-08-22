@@ -1,5 +1,16 @@
-p#notice = notice
+h4 Feature
 
+h2 = @feature.title
+
+table
+  tr
+    td
+      b Summary
+    td = @feature.summary
+  tr
+    td
+      b Status
+    td = @feature.status
 
 = link_to 'Edit', edit_feature_path(@feature)
 '|

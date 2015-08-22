@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Github:
+  = @github_issue.github_id
+p
+  strong Path:
+  = @github_issue.path
+
+= link_to 'Edit', edit_github_issue_path(@github_issue)
+'|
+= link_to 'Back', github_issues_path

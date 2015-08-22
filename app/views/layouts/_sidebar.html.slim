@@ -1,0 +1,5 @@
+ul
+  - root_features.each do |feature|
+    li
+      a href=feature_path(feature)
+        = feature.title

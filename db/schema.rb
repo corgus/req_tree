@@ -11,12 +11,76 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820224701) do
+ActiveRecord::Schema.define(version: 20150821232554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "attachments", force: :cascade do |t|
+    t.string   "url"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "type"
+  end
+
+  add_index "attachments", ["resource_id"], name: "index_attachments_on_resource_id", using: :btree
+
+  create_table "feature_hierarchies", id: false, force: :cascade do |t|
+    t.integer "ancestor_id",   null: false
+    t.integer "descendant_id", null: false
+    t.integer "generations",   null: false
+  end
+
+  add_index "feature_hierarchies", ["ancestor_id", "descendant_id", "generations"], name: "feature_anc_desc_idx", unique: true, using: :btree
+  add_index "feature_hierarchies", ["descendant_id"], name: "feature_desc_idx", using: :btree
+
   create_table "features", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "parent_id"
+    t.string   "title"
+    t.text     "summary"
+    t.string   "status"
+  end
+
+  create_table "github_issues", force: :cascade do |t|
+    t.integer  "github_id"
+    t.string   "path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "requirements", force: :cascade do |t|
+    t.string   "title"
+    t.string   "summary"
+    t.text     "acceptance_criteria"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "status"
+  end
+
+  create_table "test_cases", force: :cascade do |t|
+    t.string   "title"
+    t.string   "summary"
+    t.text     "manual_process"
+    t.string   "automated_test_path"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  create_table "test_records", force: :cascade do |t|
+    t.datetime "timestamp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "status"
+    t.string   "server"
+  end
+
+  create_table "trello_cards", force: :cascade do |t|
+    t.integer  "card_id"
+    t.string   "shortlink"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

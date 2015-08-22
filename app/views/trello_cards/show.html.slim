@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Card:
+  = @trello_card.card_id
+p
+  strong Shortlink:
+  = @trello_card.shortlink
+
+= link_to 'Edit', edit_trello_card_path(@trello_card)
+'|
+= link_to 'Back', trello_cards_path

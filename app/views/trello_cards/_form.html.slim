@@ -1,0 +1,15 @@
+= form_for @trello_card do |f|
+  - if @trello_card.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@trello_card.errors.count, "error")} prohibited this trello_card from being saved:"
+      ul
+        - @trello_card.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :card_id
+    = f.number_field :card_id
+  .field
+    = f.label :shortlink
+    = f.text_field :shortlink
+  .actions = f.submit

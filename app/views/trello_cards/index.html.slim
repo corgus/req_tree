@@ -1,0 +1,23 @@
+h1 Listing trello_cards
+
+table
+  thead
+    tr
+      th Card
+      th Shortlink
+      th
+      th
+      th
+
+  tbody
+    - @trello_cards.each do |trello_card|
+      tr
+        td = trello_card.card_id
+        td = trello_card.shortlink
+        td = link_to 'Show', trello_card
+        td = link_to 'Edit', edit_trello_card_path(trello_card)
+        td = link_to 'Destroy', trello_card, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Trello card', new_trello_card_path

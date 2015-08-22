@@ -13,6 +13,7 @@ gem 'compass-rails', '~> 2.0.4'
 gem 'will_paginate',    '3.0.7'
 gem 'will_paginate-bootstrap'
 gem 'simple_form'
+gem 'enumerize'
 
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'

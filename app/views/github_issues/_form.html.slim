@@ -1,0 +1,15 @@
+= form_for @github_issue do |f|
+  - if @github_issue.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@github_issue.errors.count, "error")} prohibited this github_issue from being saved:"
+      ul
+        - @github_issue.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :github_id
+    = f.number_field :github_id
+  .field
+    = f.label :path
+    = f.text_field :path
+  .actions = f.submit

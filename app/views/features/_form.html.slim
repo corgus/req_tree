@@ -1,9 +1,8 @@
-= form_for @feature do |f|
-  - if @feature.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@feature.errors.count, "error")} prohibited this feature from being saved:"
-      ul
-        - @feature.errors.full_messages.each do |message|
-          li = message
+= simple_form_for @feature do |f|
+  = render partial: 'shared/form_errors', locals: { resource: @feature }
+
+  = f.input :title
+  = f.input :summary
+  = f.input :status
 
   .actions = f.submit

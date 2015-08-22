@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Status:
+  = @test_record.status
+p
+  strong Timestamp:
+  = @test_record.timestamp
+p
+  strong Server:
+  = @test_record.server
+
+= link_to 'Edit', edit_test_record_path(@test_record)
+'|
+= link_to 'Back', test_records_path

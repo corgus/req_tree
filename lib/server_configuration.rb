@@ -4,7 +4,9 @@ module ServerConfiguration
     @@config_yaml ||= YAML.load_file("#{Rails.root}/config/server_configuration.yml")
   end
 
-  puts config_yaml
+  # debugger
+
+  # puts @@config_yaml
 
   # def self.elastic_search_endpoint
   #   @@elastic_search_endpoint ||= config_yaml["elastic_search_endpoint"]

@@ -1,0 +1,23 @@
+h1 Listing github_issues
+
+table
+  thead
+    tr
+      th Github
+      th Path
+      th
+      th
+      th
+
+  tbody
+    - @github_issues.each do |github_issue|
+      tr
+        td = github_issue.github_id
+        td = github_issue.path
+        td = link_to 'Show', github_issue
+        td = link_to 'Edit', edit_github_issue_path(github_issue)
+        td = link_to 'Destroy', github_issue, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Github issue', new_github_issue_path

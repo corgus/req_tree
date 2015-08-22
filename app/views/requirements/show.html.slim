@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Summary:
+  = @requirement.summary
+p
+  strong Acceptance criteria:
+  = @requirement.acceptance_criteria
+p
+  strong Status:
+  = @requirement.status
+
+= link_to 'Edit', edit_requirement_path(@requirement)
+'|
+= link_to 'Back', requirements_path

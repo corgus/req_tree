@@ -4,8 +4,16 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :features
   resources :users
+  resources :features
+  resources :requirements
+
+  resources :attachments
+  resources :trello_cards
+  resources :github_issues
+
+  resources :test_cases
+  resources :test_records
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

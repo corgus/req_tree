@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  summary: MyString
+  manual_process: MyText
+  automated_test_path: MyString
+
+two:
+  title: MyString
+  summary: MyString
+  manual_process: MyText
+  automated_test_path: MyString
