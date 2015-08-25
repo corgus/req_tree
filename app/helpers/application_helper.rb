@@ -15,4 +15,8 @@ module ApplicationHelper
     puts "////////////////////////////////\n\n"
   end
 
+  def body_class
+    [params[:controller].split('/'), params[:action]].flatten.join(' ')
+  end
+
 end

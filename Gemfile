@@ -9,7 +9,7 @@ gem 'pg', '~> 0.18.2'
 gem 'puma', '~> 2.13.4'
 
 gem 'sass-rails', '~> 5.0'
-gem 'compass-rails', '~> 2.0.4'
+# gem 'compass-rails', '~> 2.0.4'
 gem 'will_paginate',    '3.0.7'
 gem 'will_paginate-bootstrap'
 gem 'simple_form'

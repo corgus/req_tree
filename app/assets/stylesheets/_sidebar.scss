@@ -1,0 +1,19 @@
+#main-table > #sidebar {
+
+  // background: #FCF8F4;
+
+  a {
+    color: #333;
+  }
+  .selected > a {
+    color: blue;
+    margin-bottom: 10px;
+  }
+  li {
+    margin-top: 10px;
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+  }
+}

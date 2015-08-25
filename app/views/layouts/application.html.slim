@@ -7,7 +7,6 @@ html
 
     = csrf_meta_tags
 
-  - body_class = [params[:controller].split('/'), params[:action]].flatten.join(' ')
   body class= body_class
     #main-wrapper
       = render 'layouts/header'

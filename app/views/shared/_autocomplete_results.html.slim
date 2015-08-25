@@ -1,0 +1,25 @@
+// locals:
+// items
+// display_properties
+// type
+// new_item_path
+// select_path
+
+- select_path ||= 'display_path'
+ul
+  - items.each_with_index do |item, index|
+    li (
+      data-id= item["_source"]["id"]
+      data-title= item["_source"]["title"]
+      data-select-path= item["_source"][select_path]
+      class = (index == 0 ? 'hovering' : '')
+    )
+      - display_properties.each do |property|
+        span = item['_source'][property.to_s]
+  li.new (
+    data-id = 0
+    data-name = ''
+    data-select-path = new_item_path
+    class = (items.length == 0 ? 'hovering' : '')
+  )
+    span = "New #{type.to_s.capitalize}"

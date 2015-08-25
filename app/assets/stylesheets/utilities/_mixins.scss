@@ -1,33 +1,24 @@
-@import 'mixins/font_size';
-@import 'mixins/breakpoint';
-@import 'mixins/keyframes';
 @import 'mixins/animation';
-@import 'mixins/transition';
-@import 'mixins/opacity';
-@import 'mixins/box_sizing';
 @import 'mixins/box_shadow';
+@import 'mixins/box_sizing';
+@import 'mixins/breakpoint';
+@import 'mixins/font_size';
+@import 'mixins/input-placeholder';
+@import 'mixins/keyframes';
+@import 'mixins/opacity';
+@import 'mixins/transition';
 
-@mixin border-radius($rad){
-  -moz-border-radius: $rad;
-  -webkit-border-radius: $rad;
-  border-radius: $rad;
+
+@mixin vendor-prefixes($property, $value) {
+  -webkit-#{$property}: $value;
+  -moz-#{$property}: $value;
+  -ms-#{$property}: $value;
+  -o-#{$property}: $value;
 }
 
-@mixin border-radius-corners($topleft, $topright, $botright, $botleft) {
-  -webkit-border-top-left-radius: $topleft;
-  -webkit-border-top-right-radius: $topright;
-  -webkit-border-bottom-right-radius: $botright;
-  -webkit-border-bottom-left-radius: $botleft;
-
-  -moz-border-radius-topleft: $topleft;
-  -moz-border-radius-topright: $topright;
-  -moz-border-radius-bottomright: $botright;
-  -moz-border-radius-bottomleft: $botleft;
-
-  border-top-left-radius: $topleft;
-  border-top-right-radius: $topright;
-  border-bottom-right-radius: $botright;
-  border-bottom-left-radius: $botleft;
+@mixin border-radius($radius){
+  border-radius: $radius;
+  @include vendor-prefixes(border-radius, $radius);
 }
 
 /* One-sided gradient */

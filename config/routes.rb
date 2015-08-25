@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get 'autocomplete_features', to: 'autocomplete#features'
+
   resources :users
   resources :features
   resources :requirements
@@ -13,7 +15,7 @@ Rails.application.routes.draw do
   resources :github_issues
 
   resources :test_cases
-  resources :test_records
+  # resources :test_records
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

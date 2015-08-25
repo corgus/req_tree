@@ -1,5 +1,1 @@
-ul
-  - root_features.each do |feature|
-    li
-      a href=feature_path(feature)
-        = feature.title
+= render partial: 'shared/menu_item', locals: { features: root_features }

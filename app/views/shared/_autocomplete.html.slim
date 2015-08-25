@@ -1,0 +1,16 @@
+/ locals:
+/ * autocomplete_path
+/ * name
+/ placeholder
+
+.autocomplete-container name=name
+  input(
+    name = 'query'
+    id = 'query'
+    type = 'text'
+    autocomplete = 'off'
+    placeholder = (placeholder ||= 'Search')
+    data-source-path = autocomplete_path
+    value = (default_value ||= nil)
+  )
+  .results.close-on-blur

@@ -61,12 +61,16 @@ input[type="submit"] {
   margin-left: 0;
 }
 
-.form-group {
-  overflow: auto;
-}
-
 .form-group.indicate-required {
   label::before {
     content: "* "
+  }
+}
+
+form .actions {
+  margin-top: 20px;
+  a, input, button {
+    float: right;
+    margin-left: 10px;
   }
 }

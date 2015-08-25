@@ -17,17 +17,17 @@
 @import "utilities/reset";
 @import "utilities/variables";
 @import "utilities/colors";
+@import "utilities/mixins";
 
 @import "vendor/bootstrap";
 @import "vendor/quill.base";
 @import "vendor/quill.snow";
-@import "vendor/compass/stylesheets/compass";
+// @import "vendor/compass/stylesheets/compass";
 
 @import "partials/base";
 @import "utilities/buttons";
 @import "utilities/typography";
 @import "utilities/select";
-@import "utilities/input-placeholder";
 
 @font-face {
   font-family: 'Glyphicons Halflings';
@@ -60,7 +60,7 @@ body, .modal {
   padding-bottom:100px; /* Height of the footer element */
 }
 
-body, #sidebar {
+body {
   background: #FCF8F4;
 }
 
@@ -72,10 +72,6 @@ body, #sidebar {
 #sidebar, #page-content {
   display: table-cell;
   vertical-align: top;
-}
-
-#sidebar {
-  padding: 20px 0;
 }
 
 #page-content {
@@ -96,6 +92,10 @@ p.notice, p.alert {
   padding: 10px;
   &.notice { background: rgba(200, 250, 220, 0.8); }
   &.alert { background: rgba(255, 120, 100, 0.7); }
+}
+
+.error {
+  color: red;
 }
 
 .debug_dump {

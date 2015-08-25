@@ -14,4 +14,6 @@ table
 
 = link_to 'Edit', edit_feature_path(@feature)
 '|
-= link_to 'Back', features_path
+= link_to 'New Child Feature', new_feature_path(@feature, 'parent_id': @feature.id)
+'|
+= link_to 'New Sibling Feature', new_feature_path(@feature, 'parent_id': @feature.parent_id)

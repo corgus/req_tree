@@ -14,7 +14,7 @@ class FeaturesController < ApplicationController
 
   # GET /features/new
   def new
-    @feature = Feature.new
+    @feature = Feature.new(parent_id: params[:parent_id])
   end
 
   # GET /features/1/edit
@@ -69,6 +69,6 @@ class FeaturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def feature_params
-      params.require(:feature).permit(:title, :summary, :status)
+      params.require(:feature).permit(:title, :summary, :status, :parent_id)
     end
 end

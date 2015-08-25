@@ -1,0 +1,11 @@
+/ locals:
+/ features
+
+ul
+  - features.each do |feature|
+    - selected = sidebar_selected_features.include?(feature) ? 'selected' : nil
+    li class=selected
+      a href=feature_path(feature)
+        = feature.title
+      - if selected && (children = feature.children).present?
+        = render partial: 'shared/menu_item', locals: { features: children }
