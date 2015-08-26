@@ -5,10 +5,13 @@ module FeaturesHelper
       if @feature.id
         [@feature, @feature.ancestors].flatten
       elsif (params[:controller].downcase == 'features') && (parent_id = params[:parent_id])
-        [Feature.find(parent_id)]
+        parent_feature = Feature.find(parent_id)
+        [parent_feature, parent_feature.ancestors].flatten
       end
     elsif @requirement
       @requirement.features
+    else
+      []
     end
   end
 

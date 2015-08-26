@@ -1,10 +1,13 @@
 .btn {
   @include border-radius(4px);
+  margin-right: 10px;
+  margin-bottom: 5px;
 }
 
 .btn.btn-default {
+  background: #F9F9f9;
   &:hover {
-    background: #F5F5F5;
+    background: #F3F3F3;
   }
 }
 

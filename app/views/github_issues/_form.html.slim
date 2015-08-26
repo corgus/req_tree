@@ -1,15 +1,9 @@
-= form_for @github_issue do |f|
-  - if @github_issue.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@github_issue.errors.count, "error")} prohibited this github_issue from being saved:"
-      ul
-        - @github_issue.errors.full_messages.each do |message|
-          li = message
+= simple_form_for @github_issue, :html => { :class => 'form-horizontal' } do |f|
+  = render partial: 'shared/form_errors', locals: { resource: @github_issue }
 
-  .field
-    = f.label :github_id
-    = f.number_field :github_id
-  .field
-    = f.label :path
-    = f.text_field :path
-  .actions = f.submit
+  = f.input :github_id
+  = f.input :path
+
+  .actions
+    = f.submit class:'btn btn-primary'
+    = link_to "Cancel", :back, class: 'btn btn-default'

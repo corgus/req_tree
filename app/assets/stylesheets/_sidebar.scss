@@ -3,14 +3,16 @@
   // background: #FCF8F4;
 
   a {
-    color: #333;
+    color: #666;
+    display: block;
   }
   .selected > a {
-    color: blue;
+    color: $link-color;
     margin-bottom: 10px;
   }
   li {
     margin-top: 10px;
+    margin-right: 5px;
     ul {
       padding-left: 20px;
       margin-top: 10px;

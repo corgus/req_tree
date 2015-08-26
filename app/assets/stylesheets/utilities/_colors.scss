@@ -4,6 +4,9 @@ $yellow-highlight: #FDFDDD;
 $gray-highlight: #F3F3F3;
 $green-highlight: #DDFFE5;
 $col-hover-light-blue: #DEF;
+$link-color: #3366EE; // #337ab7;
+$background-color: #F3F6FB; //#FCF8F4;
+$green-text: #00AA33;
 
 $gray-medium-light: #eaeaea;
 
@@ -12,7 +15,7 @@ $gray-medium-light: #eaeaea;
   color: #777;
 }
 .text-primary {
-  color: #337ab7;
+  color: $link-color;
 }
 a.text-primary:hover {
   color: #286090;

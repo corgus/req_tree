@@ -1,0 +1,15 @@
+/ locals:
+/ * input_name
+/ default_value
+
+- default_value ||= Time.now.strftime("%m/%d/%Y %-l:%M %p")
+.datetime-picker.input-group.date
+  input.form-control (
+    type = "text"
+    name = input_name
+    value = default_value
+    placeholder = default_value
+  )
+  span.input-group-addon
+    span.glyphicon.glyphicon-calendar
+

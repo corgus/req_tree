@@ -1,18 +1,10 @@
-= form_for @requirement do |f|
-  - if @requirement.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@requirement.errors.count, "error")} prohibited this requirement from being saved:"
-      ul
-        - @requirement.errors.full_messages.each do |message|
-          li = message
+= simple_form_for @requirement, :html => { :class => 'form-horizontal' } do |f|
+  = render partial: 'shared/form_errors', locals: { resource: @requirement }
 
-  .field
-    = f.label :summary
-    = f.text_field :summary
-  .field
-    = f.label :acceptance_criteria
-    = f.text_area :acceptance_criteria
-  .field
-    = f.label :status
-    = f.number_field :status
-  .actions = f.submit
+  = f.input :summary
+  = f.input :acceptance_criteria
+  = f.input :status
+
+  .actions
+    = f.submit class:'btn btn-primary'
+    = link_to "Cancel", :back, class: 'btn btn-default'

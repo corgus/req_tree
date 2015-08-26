@@ -1,18 +1,16 @@
-= form_for @test_record do |f|
-  - if @test_record.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@test_record.errors.count, "error")} prohibited this test_record from being saved:"
-      ul
-        - @test_record.errors.full_messages.each do |message|
-          li = message
+= simple_form_for @test_record, :html => { :class => 'form-horizontal' } do |f|
+  = render partial: 'shared/form_errors', locals: { resource: @test_record }
 
-  .field
-    = f.label :status
-    = f.text_field :status
-  .field
-    = f.label :timestamp
-    = f.text_field :timestamp
-  .field
-    = f.label :server
-    = f.number_field :server
-  .actions = f.submit
+  .form-group
+    label.control-label.col-sm-3 Timestamp
+    .col-sm-9
+      = render partial: 'shared/datetime_picker',
+               locals: {  input_name: 'test_record[timestamp]' }
+
+  = f.input :status
+  = f.input :server
+  = f.input :summary
+
+  .actions
+    = f.submit class:'btn btn-primary'
+    = link_to "Cancel", :back, class: 'btn btn-default'

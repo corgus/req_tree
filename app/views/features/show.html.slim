@@ -1,19 +1,50 @@
-h4 Feature
+.row
+  .main-details.col-sm-9
+    h2
+      = @feature.title
+      span.type Feature
+    table
+      - if @feature.depth > 0
+        tr
+          td.heading Ancestry
+          td = render partial: 'breadcrumbs'
+      tr
+        td.heading Summary
+        td = @feature.summary
+      tr
+        td.heading Status
+        td.status class=@feature.status
+          = @feature.status
+  .main-actions.col-sm-3
+    a.btn.btn-default href=edit_feature_path(@feature)
+      | Edit
 
-h2 = @feature.title
+hr
 
-table
-  tr
-    td
-      b Summary
-    td = @feature.summary
-  tr
-    td
-      b Status
-    td = @feature.status
+.row
+  .col-sm-6
+    h3 Requirements
+    - @feature.requirements.each do |req|
+      table.list.requirements
+        tr
+          td= req.title
+          td.status class=req.status
+            = req.status
+    .actions
+      a.btn.btn-default href=new_requirement_path('feature_id': @feature.id)
+        | New Requirement
 
-= link_to 'Edit', edit_feature_path(@feature)
-'|
-= link_to 'New Child Feature', new_feature_path(@feature, 'parent_id': @feature.id)
-'|
-= link_to 'New Sibling Feature', new_feature_path(@feature, 'parent_id': @feature.parent_id)
+  .col-sm-6
+    h3 Child Features
+    - @feature.children.each do |feature|
+      a href=feature_path(feature)
+        table.list.features
+          tr
+            td= feature.title
+            td.status class=feature.status
+              = feature.status
+    .actions
+      a.btn.btn-default href=new_feature_path('parent_id': @feature.id)
+        | New Child Feature
+      a.btn.btn-default href=new_feature_path('parent_id': @feature.parent_id)
+        | New Sibling Feature

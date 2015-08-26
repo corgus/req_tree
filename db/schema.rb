@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821232554) do
+ActiveRecord::Schema.define(version: 20150826000230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,11 @@ ActiveRecord::Schema.define(version: 20150821232554) do
   add_index "feature_hierarchies", ["ancestor_id", "descendant_id", "generations"], name: "feature_anc_desc_idx", unique: true, using: :btree
   add_index "feature_hierarchies", ["descendant_id"], name: "feature_desc_idx", using: :btree
 
+  create_table "feature_requirements", force: :cascade do |t|
+    t.integer "feature_id",     null: false
+    t.integer "requirement_id", null: false
+  end
+
   create_table "features", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -52,6 +57,17 @@ ActiveRecord::Schema.define(version: 20150821232554) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "requirement_integrations", force: :cascade do |t|
+    t.integer "requirement_id",    null: false
+    t.integer "integration_id",    null: false
+    t.string  "integration_class", null: false
+  end
+
+  create_table "requirement_test_cases", force: :cascade do |t|
+    t.integer "requirement_id", null: false
+    t.integer "test_case_id",   null: false
+  end
+
   create_table "requirements", force: :cascade do |t|
     t.string   "title"
     t.string   "summary"
@@ -59,6 +75,11 @@ ActiveRecord::Schema.define(version: 20150821232554) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.string   "status"
+  end
+
+  create_table "test_case_test_records", force: :cascade do |t|
+    t.integer "test_case_id",   null: false
+    t.integer "test_record_id", null: false
   end
 
   create_table "test_cases", force: :cascade do |t|
@@ -76,6 +97,7 @@ ActiveRecord::Schema.define(version: 20150821232554) do
     t.datetime "updated_at", null: false
     t.string   "status"
     t.string   "server"
+    t.text     "summary"
   end
 
   create_table "trello_cards", force: :cascade do |t|

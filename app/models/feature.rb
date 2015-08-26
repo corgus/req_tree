@@ -13,8 +13,19 @@ class Feature < ActiveRecord::Base
 
   validates :title, presence: true, allow_blank: false
 
+  has_many :feature_requirements
+  has_many :requirements, through: :feature_requirements
+
   def self.as_indexed_json(*)
     as_json(only: [:id, :title, :summary])
+  end
+
+  def name # alias for use in closure_tree
+    title
+  end
+
+  def breadcrumbs
+    ancestry_path.join(' > ')
   end
 
 end

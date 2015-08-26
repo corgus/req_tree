@@ -1,0 +1,6 @@
+.breadcrumbs
+  - @feature.ancestor_hierarchies.sort_by(&:generations).reverse.each_with_index do |h, i|
+    - if i > 0
+      span.gt >
+    a href=feature_path(h.ancestor_id)
+      = Feature.find(h.ancestor_id).title

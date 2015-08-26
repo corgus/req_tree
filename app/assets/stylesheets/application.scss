@@ -22,6 +22,7 @@
 @import "vendor/bootstrap";
 @import "vendor/quill.base";
 @import "vendor/quill.snow";
+@import 'bootstrap-datetimepicker';
 // @import "vendor/compass/stylesheets/compass";
 
 @import "partials/base";
@@ -61,7 +62,7 @@ body, .modal {
 }
 
 body {
-  background: #FCF8F4;
+  background: $background-color;
 }
 
 #main-table {
@@ -75,17 +76,39 @@ body {
 }
 
 #page-content {
-  padding: 20px;
+  width: 80%;
+  padding: 30px 20px;
   margin-top: 10px;
   background: white;
-  @include box-shadow( 1px 1px 3px rgba(0,0,0,0.5));
+  // @include box-shadow( 1px 1px 3px rgba(0,0,0,0.5));
+  outline: 1px solid rgba(0, 0, 0, 0.04);
+  @include box-shadow(0px 1px 3px -1px rgba(0, 0, 0, 0.3));
 }
 
 .container-fluid {
   max-width: 1200px;
 }
 
+.main-details {
+
+}
+
+.main-actions .btn {
+  float: right;
+  margin-right: 0;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.bootstrap-datetimepicker-widget {
+
+}
+
 /* miscellaneous */
+
+.actions {
+  margin-top: 20px;
+}
 
 p.notice, p.alert {
   margin-bottom: 20px;
@@ -96,6 +119,21 @@ p.notice, p.alert {
 
 .error {
   color: red;
+}
+
+.breadcrumbs {
+  .gt {
+    margin: 0 5px 0 2px;
+  }
+  a {
+    color: #333;
+  }
+}
+
+.status {
+  font-weight: 600;
+  &.current { color: $green-text; }
+  &.obsolete { color: gray; }
 }
 
 .debug_dump {
