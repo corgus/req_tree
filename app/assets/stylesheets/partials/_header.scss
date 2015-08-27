@@ -2,11 +2,12 @@
 
 header.navbar {
   height: 50px;
-  background: rgba(white, 0.98);
-  outline: 1px solid rgba(#99C, 0.05);
+  background: #DEEEF6; //#D6EDF8;
+  border: none;
+  // outline: 1px solid rgba(#99C, 0.05);
   .navbar-brand {
     a {
-      color: #999;
+      color: #666;
       font-weight: lighter;
       &:hover {
         text-decoration: none;
@@ -20,13 +21,13 @@ header.navbar {
     position: relative;
     input {
       margin: 12px 0 0;
-      background: rgba(245,245,255,.1);
-      border: 1px solid #CCC;
+      background: rgba(#FFF,0.5);
+      border: 1px solid #BBB;
       padding: 3px 20px 3px 10px;
       width: 300px;
-      @include input-placeholder {
-        font-weight: lighter !important;
-        color: #CCC !important;
+      @include style-placeholder {
+        font-weight: lighter;
+        color: #CCC;
       }
     }
     .glyphicon-search {
@@ -47,6 +48,7 @@ header.navbar {
       a {
         display: inline-block;
         padding: 5px 10px;
+        color: #333;
         &:first-child { width: 70% }
         &:last-child  { width: 30% }
       }
@@ -56,8 +58,15 @@ header.navbar {
     margin-left: 5px;
   }
   .navbar-collapse.in {
+    position: relative;
     background: rgba(white, 0.98);
     border-bottom: 1px solid #DDD;
     padding-bottom: 20px;
+    z-index: 10;
+  }
+  button.navbar-toggle {
+    &:hover {
+      background: rgba(white, 0.5);
+    }
   }
 }

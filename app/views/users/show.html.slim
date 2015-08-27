@@ -1,6 +1,15 @@
-p#notice = notice
-
-
-= link_to 'Edit', edit_user_path(@user)
-'|
-= link_to 'Back', users_path
+.row
+  .main-content.col-sm-10
+    h2
+      = @user.name
+    table.left-column-heading
+      tr
+        td email
+        td = @user.email
+  .actions.main.col-sm-2
+    .row
+      .col-sm-6
+    a.btn.btn-default href=edit_user_path(@user)
+      | Edit
+    a.btn.btn-default href=users_path
+      | List

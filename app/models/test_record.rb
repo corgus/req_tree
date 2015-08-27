@@ -1,7 +1,5 @@
 class TestRecord < ActiveRecord::Base
   extend Enumerize
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
   include Attachable
   include Searchable
 

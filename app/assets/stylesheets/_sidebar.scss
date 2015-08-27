@@ -1,13 +1,13 @@
-#main-table > #sidebar {
-
-  // background: #FCF8F4;
-
+#sidebar {
+  margin-bottom: 30px;
   a {
-    color: #666;
+    color: #888;
     display: block;
+    font-weight: lighter;
   }
   .selected > a {
     color: $link-color;
+    font-weight: normal;
     margin-bottom: 10px;
   }
   li {

@@ -1,48 +1,58 @@
 .row
-  .main-details.col-sm-9
+  .main-content.col-sm-10
     h2
       = @feature.title
       span.type Feature
-    table
+    table.left-column-heading
       - if @feature.depth > 0
         tr
-          td.heading Ancestry
+          td Ancestry
           td = render partial: 'breadcrumbs'
       tr
-        td.heading Summary
+        td Summary
         td = @feature.summary
       tr
-        td.heading Status
-        td.status class=@feature.status
-          = @feature.status
-  .main-actions.col-sm-3
+        td Status
+        td
+          .status class=@feature.status
+            = @feature.status
+  .actions.main.col-sm-2
     a.btn.btn-default href=edit_feature_path(@feature)
       | Edit
+    a.btn.btn-default href=features_path
+      | List
 
 hr
 
 .row
-  .col-sm-6
+  .col-md-6
     h3 Requirements
-    - @feature.requirements.each do |req|
-      table.list.requirements
-        tr
-          td= req.title
-          td.status class=req.status
-            = req.status
+    .link-list
+      - @feature.requirements.each do |req|
+        a href=requirement_path(req)
+          table.list.requirements
+            tr
+              td= req.title
+              td.status class=req.status
+                = req.status
     .actions
       a.btn.btn-default href=new_requirement_path('feature_id': @feature.id)
         | New Requirement
 
-  .col-sm-6
+  .hr-container.visible-sm.visible-xs
+    hr
+
+  .col-md-6
     h3 Child Features
-    - @feature.children.each do |feature|
-      a href=feature_path(feature)
-        table.list.features
-          tr
-            td= feature.title
-            td.status class=feature.status
-              = feature.status
+    .link-list
+      - @feature.children.each do |feature|
+        a href=feature_path(feature)
+          table.list.features
+            tr
+              td= feature.title
+              td
+                .status class=feature.status
+                  = feature.status
     .actions
       a.btn.btn-default href=new_feature_path('parent_id': @feature.id)
         | New Child Feature

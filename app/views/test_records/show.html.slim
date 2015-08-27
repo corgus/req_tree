@@ -1,15 +1,24 @@
-p#notice = notice
+.row
+  .main-content.col-sm-10
+    h2
+      = "Test Record #{@test_record.id}"
+    table.left-column-heading
+      tr
+        td Timestamp
+        td = @test_record.timestamp
+      tr
+        td Status
+        td.status class=@test_record.status
+          = @test_record.status
+      tr
+        td Server
+        td = @test_record.server
+      tr
+        td Summary
+        td = @test_record.summary
 
-p
-  strong Status:
-  = @test_record.status
-p
-  strong Timestamp:
-  = @test_record.timestamp
-p
-  strong Server:
-  = @test_record.server
-
-= link_to 'Edit', edit_test_record_path(@test_record)
-'|
-= link_to 'Back', test_records_path
+  .actions.main.col-sm-2
+    a.btn.btn-default href=edit_test_record_path(@test_record)
+      | Edit
+    a.btn.btn-default href=test_records_path
+      | List

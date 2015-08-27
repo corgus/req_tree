@@ -1,15 +1,25 @@
-p#notice = notice
+.row
+  .main-content.col-sm-10
+    h2
+      = @requirement.title
+      span.type Requirement
+    table.left-column-heading
+      tr
+        td Title
+        td = @requirement.title
+      tr
+        td Summary
+        td = @requirement.summary
+      tr
+        td Acceptance Criteria
+        td = @requirement.acceptance_criteria
+      tr
+        td Status
+        td class=@requirement.status
+          = @requirement.status
 
-p
-  strong Summary:
-  = @requirement.summary
-p
-  strong Acceptance criteria:
-  = @requirement.acceptance_criteria
-p
-  strong Status:
-  = @requirement.status
-
-= link_to 'Edit', edit_requirement_path(@requirement)
-'|
-= link_to 'Back', requirements_path
+  .actions.main.col-sm-2
+    a.btn.btn-default href=edit_requirement_path(@requirement)
+      | Edit
+    a.btn.btn-default href=requirements_path
+      | List

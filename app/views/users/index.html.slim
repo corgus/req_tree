@@ -1,19 +1,16 @@
-h1 Listing users
+/ h1 Listing Users
 
-table
-  thead
-    tr
-      th
-      th
-      th
+.row
+  .main-content.col-sm-10
+    h2 Listing Users
+    table
+      - @users.each do |user|
+        tr
+          td = user.name
+          td = link_to 'Show', user
+          td = link_to 'Edit', edit_user_path(user)
+          td = link_to 'Destroy', user, data: {:confirm => 'Are you sure?'}, :method => :delete
+  .actions.main.col-sm-2
+    a.btn.btn-default href=new_user_path
+      | New User
 
-  tbody
-    - @users.each do |user|
-      tr
-        td = link_to 'Show', user
-        td = link_to 'Edit', edit_user_path(user)
-        td = link_to 'Destroy', user, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to 'New User', new_user_path

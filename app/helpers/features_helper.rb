@@ -7,6 +7,8 @@ module FeaturesHelper
       elsif (params[:controller].downcase == 'features') && (parent_id = params[:parent_id])
         parent_feature = Feature.find(parent_id)
         [parent_feature, parent_feature.ancestors].flatten
+      else
+        []
       end
     elsif @requirement
       @requirement.features

@@ -1,18 +1,24 @@
-p#notice = notice
+.row
+  .main-content.col-sm-10
+    h2
+      = @test_case.title
+      span.type Feature
+    table.left-column-heading
+      tr
+        td Title
+        td = @test_case.title
+      tr
+        td Summary
+        td = @test_case.summary
+      tr
+        td Automated Test Path
+        td = @test_case.automated_test_path
+      tr
+        td Manual Process
+        td = @test_case.manual_process
 
-p
-  strong Title:
-  = @test_case.title
-p
-  strong Summary:
-  = @test_case.summary
-p
-  strong Manual process:
-  = @test_case.manual_process
-p
-  strong Automated test path:
-  = @test_case.automated_test_path
-
-= link_to 'Edit', edit_test_case_path(@test_case)
-'|
-= link_to 'Back', test_cases_path
+  .actions.main.col-sm-2
+    a.btn.btn-default href=edit_test_case_path(@test_case)
+      | Edit
+    a.btn.btn-default href=test_cases_path
+      | List

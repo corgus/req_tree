@@ -2,8 +2,6 @@ require 'elasticsearch/model'
 
 class Feature < ActiveRecord::Base
   extend Enumerize
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
   include Attachable
   include Searchable
 

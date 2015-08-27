@@ -18,6 +18,7 @@
 @import "utilities/variables";
 @import "utilities/colors";
 @import "utilities/mixins";
+@import "utilities/placeholders";
 
 @import "vendor/bootstrap";
 @import "vendor/quill.base";
@@ -58,46 +59,57 @@ body, .modal {
 }
 
 #main-content {
-  padding-bottom:100px; /* Height of the footer element */
+  padding-bottom: 50px; /* Min: height of the footer element */
 }
 
 body {
   background: $background-color;
 }
 
-#main-table {
-  display: table;
-  width: 100%;
-}
+// #main-table {
+//   display: table;
+//   width: 100%;
+// }
 
-#sidebar, #page-content {
-  display: table-cell;
-  vertical-align: top;
-}
+// #sidebar, #page-content {
+//   display: table-cell;
+//   vertical-align: top;
+// }
 
 #page-content {
-  width: 80%;
   padding: 30px 20px;
   margin-top: 10px;
   background: white;
-  // @include box-shadow( 1px 1px 3px rgba(0,0,0,0.5));
   outline: 1px solid rgba(0, 0, 0, 0.04);
   @include box-shadow(0px 1px 3px -1px rgba(0, 0, 0, 0.3));
+  @extend %clearfix;
 }
 
 .container-fluid {
-  max-width: 1200px;
+  max-width: 1500px;
 }
 
 .main-details {
 
 }
 
-.main-actions .btn {
-  float: right;
-  margin-right: 0;
-  margin-bottom: 10px;
-  display: block;
+.main-actins {
+  @extend %clearfix;
+}
+
+.actions {
+  margin-bottom: 20px;
+}
+
+.actions.main .btn {
+  float: left;
+  margin: 0 10px 10px 0;
+  display: inline-block;
+  @media screen and (min-width: $screen-sm-min) {
+    margin-right: 0;
+    float: right;
+    clear: right;
+  }
 }
 
 .bootstrap-datetimepicker-widget {
@@ -111,9 +123,9 @@ body {
 }
 
 p.notice, p.alert {
-  margin-bottom: 20px;
-  padding: 10px;
-  &.notice { background: rgba(200, 250, 220, 0.8); }
+  margin: -30px -20px 20px -20px;
+  padding: 10px 20px;
+  &.notice { background: $green-background; }
   &.alert { background: rgba(255, 120, 100, 0.7); }
 }
 
@@ -121,19 +133,43 @@ p.notice, p.alert {
   color: red;
 }
 
+.link-list > a {
+  display: block;
+  margin: 0 -10px;
+  padding: 0 10px;
+  &:hover, > table > tr:hover {
+    background: #F5F5F5;
+  }
+}
+
+.hr-container {
+  position: relative;
+  padding: 0 15px;
+  > hr {
+    margin-top: 20px;
+  }
+}
+
 .breadcrumbs {
   .gt {
     margin: 0 5px 0 2px;
   }
   a {
-    color: #333;
+    color: #6677CC;// #333;
   }
 }
 
-.status {
-  font-weight: 600;
-  &.current { color: $green-text; }
-  &.obsolete { color: gray; }
+div.status {
+  // font-weight: normal;
+  display: inline-block;
+  border-radius: 20px;
+  height: 20px;
+  padding: 2px 7px;
+  font-size: 11px;
+  text-align: center;
+  &.current { background: rgba($green-text, 0.4); } //$green-text; }#33dd66
+  &.pending { background: rgba(#AAA, 0.4); }
+  &.obsolete { background: red; }
 }
 
 .debug_dump {

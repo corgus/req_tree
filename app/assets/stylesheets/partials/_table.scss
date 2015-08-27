@@ -5,7 +5,9 @@ table {
   }
   td, th {
     padding: 5px 20px 5px 0;
-    &.heading {
+  }
+  &.left-column-heading {
+    td:first-of-type {
       font-weight: lighter;
       font-style: italic;
       color: #999;
@@ -15,7 +17,7 @@ table {
 
 table.list {
   width: 100%;
-  td.status {
+  td {
     width: 100px;
   }
 }

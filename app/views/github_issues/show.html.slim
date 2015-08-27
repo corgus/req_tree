@@ -1,12 +1,23 @@
-p#notice = notice
+.row
+  .main-content.col-sm-10
+    h2
+      = "Github Issue #{@github_issue.repository}-#{@github_issue.github_id}"
+    table.left-column-heading
+      tr
+        td Repository
+        td = @github_issue.repository
+      tr
+        td Issue
+        td = @github_issue.github_id
+      tr
+        td Link
+        td
+          - link = "https://trello.com/c/#{@github_issue.shortlink}"
+          a href='#'
+            | TODO
 
-p
-  strong Github:
-  = @github_issue.github_id
-p
-  strong Path:
-  = @github_issue.path
-
-= link_to 'Edit', edit_github_issue_path(@github_issue)
-'|
-= link_to 'Back', github_issues_path
+  .actions.main.col-sm-2
+    a.btn.btn-default href=edit_github_issue_path(@github_issue)
+      | Edit
+    a.btn.btn-default href=github_issues_path
+      | List

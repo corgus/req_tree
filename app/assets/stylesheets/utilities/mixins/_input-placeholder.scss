@@ -1,4 +1,4 @@
-@mixin input-placeholder {
+@mixin style-placeholder {
   ::-webkit-input-placeholder {@content;}
   :-moz-placeholder           {@content;}
   ::-moz-placeholder          {@content;}

@@ -1,12 +1,17 @@
-p#notice = notice
+.row
+  .main-content.col-sm-10
+    h2
+      = "Trello Card #{@trello_card.id}"
+    table.left-column-heading
+      tr
+        td Link
+        td
+          - link = "https://trello.com/c/#{@trello_card.shortlink}"
+          a href=link
+            = link
 
-p
-  strong Card:
-  = @trello_card.card_id
-p
-  strong Shortlink:
-  = @trello_card.shortlink
-
-= link_to 'Edit', edit_trello_card_path(@trello_card)
-'|
-= link_to 'Back', trello_cards_path
+  .actions.main.col-sm-2
+    a.btn.btn-default href=edit_trello_card_path(@trello_card)
+      | Edit
+    a.btn.btn-default href=trello_cards_path
+      | List
