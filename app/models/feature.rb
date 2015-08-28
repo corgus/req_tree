@@ -5,7 +5,7 @@ class Feature < ActiveRecord::Base
   include Attachable
   include Searchable
 
-  acts_as_tree
+  acts_as_tree order: 'position'
 
   enumerize :status, in: [ :pending, :obsolete, :current ], default: :current
 
@@ -15,8 +15,14 @@ class Feature < ActiveRecord::Base
   has_many :feature_requirements
   has_many :requirements, through: :feature_requirements
 
+  before_validation :set_position
+
   def self.as_indexed_json(*)
     as_json(only: [:id, :title, :summary])
+  end
+
+  def set_position
+    self.position ||= parent.children.count + 1
   end
 
   def name # alias for use in closure_tree
@@ -28,30 +34,24 @@ class Feature < ActiveRecord::Base
   end
 
   def update_position(new_position)
-    new_position = new_position.to_i
-    siblings = parent ? parent.children : Feature.where(parent_id: nil).where.not(id: self.id)
-    sorted = [new_position, position].sort
-    siblings = siblings.where(position: sorted[0]..sorted[1])
-    if new_position > position
-      siblings.each(&:increment_position)
-    else
-      siblings.each(&:decrement_position)
-    end
-    update(position: new_position)
+    siblings.find_by(position: new_position).prepend_sibling(self)
   end
 
-  def increment_position
-    update(position: position + 1)
-  end
-
-  def decrement_position
-    update(position: position - 1)
+  def log_children
+    puts "\n///////////"
+    puts children.sort.each{|c| puts "#{c.position} = #{c.title}";};
+    puts "///////////\n"
   end
 
   def <=>(other)
     position > other.position ? 1 : position < other.position ? -1 : 0
   end
 
+end
+
+
+if %x(curl -XHEAD -i 'http://localhost:9200/reqtree_features').match('404 Not Found')
+  %x(curl -XPUT 'http://localhost:9200/reqtree_features')
 end
 
 # Delete the previous features index in Elasticsearch

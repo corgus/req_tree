@@ -18,6 +18,8 @@ class Requirement < ActiveRecord::Base
   has_many :requirement_test_cases
   has_many :test_cases, through: :requirement_test_cases
 
-  enumerize :status, in: [ :pending, :obsolete, :current ]
+  enumerize :status, in: [ :pending, :obsolete, :current ], default: :pending
+
+  validates :title, presence: true, allow_blank: false
 
 end

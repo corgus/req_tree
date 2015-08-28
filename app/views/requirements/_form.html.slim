@@ -1,6 +1,7 @@
 = simple_form_for @requirement, :html => { :class => 'form-horizontal' } do |f|
   = render partial: 'shared/form_errors', locals: { resource: @requirement }
 
+  = f.input :title
   = f.input :summary
   = f.input :acceptance_criteria
   = f.input :status
