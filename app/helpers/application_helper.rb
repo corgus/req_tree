@@ -9,12 +9,6 @@ module ApplicationHelper
     end
   end
 
-  def log(str)
-    puts "\n\n////////////////////////////////\n"
-    puts "#{str}\n"
-    puts "////////////////////////////////\n\n"
-  end
-
   def body_class
     [params[:controller].split('/'), params[:action]].flatten.join(' ')
   end

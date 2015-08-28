@@ -1,0 +1,43 @@
+.dragged {
+  position: absolute;
+  display: block;
+  top: 0;
+  opacity: .5;
+  z-index: 2000;
+}
+
+table.sortable {
+  tr.placeholder {
+    margin: 0;
+    padding: 0;
+    // td:second-of-type {
+    //   border: 1px dashed #EEE;
+    // }
+  }
+}
+
+table.sortable {
+  margin-left: -25px !important;
+  position: relative;
+  td.sortable-icon {
+    width: 25px;
+    padding: 0 5px;
+    vertical-align: middle;
+    .icon {
+      height: 15px;
+      width: 15px;
+      display: none;
+      background-image: asset-url('drag_reorder_15.png');
+    }
+  }
+  tr {
+    &:not(.dragged):hover {
+      cursor: ns-resize;
+      background: rgba(0,0,0,0.02);
+      outline: 1px solid rgba(0,0,0,0.08);
+      .sortable-icon .icon {
+        display: block !important;
+      }
+    }
+  }
+}

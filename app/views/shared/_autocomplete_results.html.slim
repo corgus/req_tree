@@ -16,10 +16,10 @@ ul
     )
       - display_properties.each do |property|
         span = item['_source'][property.to_s]
-  li.new (
-    data-id = 0
-    data-name = ''
-    data-select-path = new_item_path
-    class = (items.length == 0 ? 'hovering' : '')
-  )
-    span = "New #{type.to_s.capitalize}"
+  / li.new (
+  /   data-id = 0
+  /   data-name = ''
+  /   data-select-path = new_item_path
+  /   class = (items.length == 0 ? 'hovering' : '')
+  / )
+  /   span = "New #{type.to_s.capitalize}"

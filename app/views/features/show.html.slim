@@ -44,15 +44,33 @@ hr
 
   .col-md-6
     h3 Child Features
-    .link-list
-      - @feature.children.each do |feature|
-        a href=feature_path(feature)
-          table.list.features
-            tr
-              td= feature.title
-              td
-                .status class=feature.status
-                  = feature.status
+    / .link-list
+    /   - @feature.children.each do |feature|
+    /     a href=feature_path(feature)
+    /       table.list.features
+    /         tr
+    /           td= feature.title
+    /           td
+    /             .status class=feature.status
+    /               = feature.status
+    table.sortable.child-features (
+      data-update-sidebar = 'true'
+      data-sort-attribute = 'position'
+    )
+      tbody
+        - @feature.children.sort.each do |feature|
+          tr (
+            data-drop-path = update_position_feature_path(feature.id)
+          )
+            td.sortable-icon
+              .icon
+            td= feature.title
+            td
+              .status class=feature.status
+                = feature.status
+            td
+              a href=feature_path(feature)
+                | Show
     .actions
       a.btn.btn-default href=new_feature_path('parent_id': @feature.id)
         | New Child Feature

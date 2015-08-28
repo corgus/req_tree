@@ -13,11 +13,13 @@ $(document).ready ->
 
   # Key press: Up/Down hovers item, Enter selects it
   $(document).on 'keydown', '.autocomplete-container > input', (e) ->
+    input_name = $(@).parent().attr('name')
+    $("input[name='#{input_name}']").val ''
     return unless e.which in [38, 40, 13]
     e.preventDefault()
     options = $(@).parents('.autocomplete-container').find('.results li')
     current_hover = $(options).filter('.hovering')
-    # console.log(current_hover)
+
     if e.which in [13, 9] # enter / tab
       if current_hover.length > 0
         current_hover.click()

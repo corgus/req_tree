@@ -18,7 +18,7 @@ module FeaturesHelper
   end
 
   def root_features
-    Feature.where(parent_id: nil)
+    Feature.where(parent_id: nil).sort
   end
 
 end

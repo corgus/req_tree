@@ -1,5 +1,5 @@
 class FeaturesController < ApplicationController
-  before_action :set_feature, only: [:show, :edit, :update, :destroy]
+  before_action :set_feature, only: [:show, :edit, :update, :destroy, :update_position]
 
   # GET /features
   # GET /features.json
@@ -61,6 +61,11 @@ class FeaturesController < ApplicationController
     end
   end
 
+  def update_position
+    @feature.update_position(feature_params['position'])
+    head :ok, content_type: "text/html"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_feature
@@ -69,6 +74,6 @@ class FeaturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def feature_params
-      params.require(:feature).permit(:title, :summary, :status, :parent_id)
+      params.require(:feature).permit(:title, :summary, :status, :parent_id, :position)
     end
 end

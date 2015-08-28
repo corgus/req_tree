@@ -10,6 +10,7 @@ class Feature < ActiveRecord::Base
   enumerize :status, in: [ :pending, :obsolete, :current ], default: :current
 
   validates :title, presence: true, allow_blank: false
+  validates :position, presence: true, allow_blank: false
 
   has_many :feature_requirements
   has_many :requirements, through: :feature_requirements
@@ -24,6 +25,31 @@ class Feature < ActiveRecord::Base
 
   def breadcrumbs
     ancestry_path.join(' > ')
+  end
+
+  def update_position(new_position)
+    new_position = new_position.to_i
+    siblings = parent ? parent.children : Feature.where(parent_id: nil).where.not(id: self.id)
+    sorted = [new_position, position].sort
+    siblings = siblings.where(position: sorted[0]..sorted[1])
+    if new_position > position
+      siblings.each(&:increment_position)
+    else
+      siblings.each(&:decrement_position)
+    end
+    update(position: new_position)
+  end
+
+  def increment_position
+    update(position: position + 1)
+  end
+
+  def decrement_position
+    update(position: position - 1)
+  end
+
+  def <=>(other)
+    position > other.position ? 1 : position < other.position ? -1 : 0
   end
 
 end

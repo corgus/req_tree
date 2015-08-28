@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   get 'autocomplete_features', to: 'autocomplete#features'
 
   resources :users
-  resources :features
+  resources :features do
+    member do
+      post '/update_position', to: 'features#update_position', as: 'update_position'
+    end
+  end
   resources :requirements
 
   resources :attachments
