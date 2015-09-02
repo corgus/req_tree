@@ -1,7 +1,7 @@
 / h1 Listing Users
 
 .row
-  .main-content.col-sm-10
+  .main-content.col-sm-9
     h2 Listing Users
     table
       - @users.each do |user|
@@ -10,7 +10,7 @@
           td = link_to 'Show', user
           td = link_to 'Edit', edit_user_path(user)
           td = link_to 'Destroy', user, data: {:confirm => 'Are you sure?'}, :method => :delete
-  .actions.main.col-sm-2
+  .actions.main.col-sm-3
     a.btn.btn-default href=new_user_path
       | New User
 

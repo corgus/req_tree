@@ -1,5 +1,5 @@
 .row
-  .main-content.col-sm-10
+  .main-content.col-sm-9
     h2
       = "Attachment #{@attachment.id}"
     table.left-column-heading
@@ -16,7 +16,7 @@
         td Resource
         td = @attachment.resource
 
-  .actions.main.col-sm-2
+  .actions.main.col-sm-3
     a.btn.btn-default href=edit_attachment_path(@attachment)
       | Edit
     a.btn.btn-default href=attachments_path

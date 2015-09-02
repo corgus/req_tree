@@ -1,5 +1,5 @@
 .row
-  .main-content.col-sm-10
+  .main-content.col-sm-9
     h2
       = "Test Record #{@test_record.id}"
     table.left-column-heading
@@ -17,7 +17,7 @@
         td Summary
         td = @test_record.summary
 
-  .actions.main.col-sm-2
+  .actions.main.col-sm-3
     a.btn.btn-default href=edit_test_record_path(@test_record)
       | Edit
     a.btn.btn-default href=test_records_path

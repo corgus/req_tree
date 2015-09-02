@@ -1,3 +1,5 @@
+require 'elasticsearch/model'
+
 module Searchable
 
   extend ActiveSupport::Concern
@@ -6,10 +8,18 @@ module Searchable
 
     include Elasticsearch::Model
     include Elasticsearch::Model::Callbacks
+    include Elasticsearch::Model::Naming::InstanceMethods
+    extend Elasticsearch::Model::Naming::ClassMethods
 
-    def self.index_name
-      "reqtree_#{to_s.downcase.pluralize}"
-    end
+    index_name "reqtree_#{to_s.downcase.pluralize}"
+
+    # def self.index_name
+    #   "reqtree_#{to_s.downcase.pluralize}"
+    # end
+
+    # def index_name
+    #   debugger
+    # end
 
     def self.search(terms)
       __elasticsearch__.search(

@@ -6,6 +6,19 @@
   = f.input :acceptance_criteria
   = f.input :status
 
+  - freqs = @requirement.feature_requirements
+  - if freqs.present? && freqs[0].feature_id && @requirement.new?
+    .form-group
+      label.control-label.col-sm-3 First Feature
+      .col-sm-9
+        input.hidden (
+          name = 'requirement[feature_requirements_attributes][0][feature_id]'
+          value = freqs[0].feature_id
+        )
+        span.input.disabled= freqs[0].feature.title
+
   .actions
     = f.submit class:'btn btn-primary'
     = link_to "Cancel", :back, class: 'btn btn-default'
+    - unless @requirement.new?
+      = render partial: 'shared/destroy_item', locals: { item: @feature }

@@ -17,7 +17,7 @@
 
 #   new_class = Class.new(superclass) do
 #     def input_html_classes
-#       super.push('form-control col-sm-10')
+#       super.push('form-control col-sm-9')
 #     end
 #   end
 

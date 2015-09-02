@@ -15,7 +15,7 @@ gem 'will_paginate-bootstrap'
 gem 'simple_form'
 gem 'enumerize'
 
-gem 'elasticsearch-model'
+gem 'elasticsearch-persistence'
 gem 'elasticsearch-rails'
 
 gem 'uglifier', '>= 1.3.0'

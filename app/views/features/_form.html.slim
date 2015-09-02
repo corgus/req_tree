@@ -13,8 +13,21 @@
                locals: {  autocomplete_path: autocomplete_features_path,
                           name: 'feature[parent_id]',
                           placeholder: 'Search Features',
-                          default_value: @feature.parent.try(:title) }
+                          default_value: @feature.parent.try(:title),
+                          no_new: true }
+
+  - if reqs = @feature.feature_requirements && @feature.new?
+    - if reqs.present? && reqs[0].requirement_id
+      .form-group
+        label.control-label.col-sm-3 First Requirement
+        .col-sm-9
+          span.input.disabled= reqs[0].requirement.title
+
+
+  - if @feature.id
+    = f.input :position
 
   .actions
     = f.submit class:'btn btn-primary'
     = link_to "Cancel", :back, class: 'btn btn-default'
+    = render partial: 'shared/destroy_item', locals: { item: @feature }

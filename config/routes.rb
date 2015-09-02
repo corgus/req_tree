@@ -9,9 +9,10 @@ Rails.application.routes.draw do
   resources :users
   resources :features do
     member do
-      post '/update_position', to: 'features#update_position', as: 'update_position'
+      post '/reorder', to: 'features#reorder', as: 'reorder'
     end
   end
+  resources :feature_requirements, only: :destroy
   resources :requirements
 
   resources :attachments

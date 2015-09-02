@@ -7,6 +7,7 @@
     width: 100%;
     ul {
       list-style-type: none;
+      margin: 0;
       @include border-radius(4px);
       @include box-shadow(1px 1px 5px #666);
       li {

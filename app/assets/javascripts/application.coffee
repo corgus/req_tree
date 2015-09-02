@@ -19,3 +19,7 @@
 
 $(document).ready ->
   $('.datetime-picker').datetimepicker();
+
+  $(document).on 'click', ->
+    $('.close-on-blur').removeClass 'open'
+    $('.close-on-blur .hovering').removeClass 'hovering'

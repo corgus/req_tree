@@ -1,12 +1,12 @@
 .row
-  .main-content.col-sm-10
+  .main-content.col-sm-9
     h2
       = @user.name
     table.left-column-heading
       tr
         td email
         td = @user.email
-  .actions.main.col-sm-2
+  .actions.main.col-sm-3
     .row
       .col-sm-6
     a.btn.btn-default href=edit_user_path(@user)

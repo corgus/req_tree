@@ -1,5 +1,5 @@
 .row
-  .main-content.col-sm-10
+  .main-content.col-sm-9
     h2
       = @requirement.title
       span.type Requirement
@@ -12,14 +12,64 @@
         td = @requirement.summary
       tr
         td Acceptance Criteria
-        td = @requirement.acceptance_criteria
+        td = simple_format(@requirement.acceptance_criteria)
       tr
         td Status
         td class=@requirement.status
           = @requirement.status
 
-  .actions.main.col-sm-2
+  .actions.main.col-sm-3
     a.btn.btn-default href=edit_requirement_path(@requirement)
-      | Edit
+      | Edit Requirement
     a.btn.btn-default href=requirements_path
-      | List
+      | List Requirements
+
+hr
+
+.row
+  .col-md-6
+    h3 Associated Features
+    table.associated.features
+      tbody
+        - @requirement.features.sort.each do |feature|
+          tr
+            td= feature.title
+            td
+              .status class=feature.status
+                = feature.status
+            td
+              a href=feature_path(feature)
+                | Show
+            td
+              a href=feature_requirement_path data-method='delete'
+                | Remove
+    .actions
+      = render partial: 'add_feature_to_requirement'
+
+
+  .hr-container.visible-sm.visible-xs
+    hr
+
+  .col-md-6
+    h3 Test Cases
+    table.associated.test-cases
+      tbody
+        - @requirement.test_cases.sort.each do |test_case|
+          tr
+            td= test_case.title
+            td
+              .status class=test_case.status
+                = test_case.status
+            td
+              a href=test_case_path(test_case)
+                | Show
+    .actions
+      = simple_form_for @requirement do |f|
+        .form-group
+          .col-sm-9
+            = render partial: 'add_feature_to_requirement',
+                     locals: { form: f, requirement: @requirement}
+          .actions
+            = f.submit class:'btn btn-default'
+
+

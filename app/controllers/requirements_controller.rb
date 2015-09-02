@@ -1,28 +1,22 @@
 class RequirementsController < ApplicationController
   before_action :set_requirement, only: [:show, :edit, :update, :destroy]
+  before_action :build_features, only: [:edit]
 
-  # GET /requirements
-  # GET /requirements.json
   def index
     @requirements = Requirement.all
   end
 
-  # GET /requirements/1
-  # GET /requirements/1.json
   def show
   end
 
-  # GET /requirements/new
   def new
     @requirement = Requirement.new
+    @requirement.feature_requirements.build(feature_id: params[:feature_id])
   end
 
-  # GET /requirements/1/edit
   def edit
   end
 
-  # POST /requirements
-  # POST /requirements.json
   def create
     @requirement = Requirement.new(requirement_params)
 
@@ -62,13 +56,22 @@ class RequirementsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_requirement
       @requirement = Requirement.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    def build_features
+      @requirement.features.build
+    end
+
     def requirement_params
-      params.require(:requirement).permit(:summary, :acceptance_criteria, :status)
+      params.require(:requirement)
+            .permit(:title,
+                    :summary,
+                    :acceptance_criteria,
+                    :status,
+                    feature_requirements_attributes: [
+                      :feature_id, :requirement_id
+                    ])
     end
 end

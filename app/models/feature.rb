@@ -1,5 +1,3 @@
-require 'elasticsearch/model'
-
 class Feature < ActiveRecord::Base
   extend Enumerize
   include Attachable
@@ -14,15 +12,17 @@ class Feature < ActiveRecord::Base
 
   has_many :feature_requirements
   has_many :requirements, through: :feature_requirements
+  accepts_nested_attributes_for :feature_requirements, reject_if: :all_blank, allow_destroy: true
 
   before_validation :set_position
 
-  def self.as_indexed_json(*)
-    as_json(only: [:id, :title, :summary])
+  def as_indexed_json(opts={})
+    self.as_json(only: [:id, :title, :summary])
+        .merge({'display_path' => Rails.application.routes.url_helpers.feature_path(self.id)})
   end
 
   def set_position
-    self.position ||= parent.children.count + 1
+    self.position ||= siblings.count
   end
 
   def name # alias for use in closure_tree
@@ -34,17 +34,25 @@ class Feature < ActiveRecord::Base
   end
 
   def update_position(new_position)
-    siblings.find_by(position: new_position).prepend_sibling(self)
+    if target = siblings.find_by(position: new_position)
+      target.prepend_sibling(self)
+    else
+      update(position: 0)
+    end
   end
 
   def log_children
     puts "\n///////////"
-    puts children.sort.each{|c| puts "#{c.position} = #{c.title}";};
+    puts children.sort.each{|c| puts "#{c.position} = #{c.title}";}
     puts "///////////\n"
   end
 
   def <=>(other)
     position > other.position ? 1 : position < other.position ? -1 : 0
+  end
+
+  def new?
+    self.id == nil
   end
 
 end

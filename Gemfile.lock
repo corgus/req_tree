@@ -37,6 +37,10 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -48,6 +52,8 @@ GEM
       activerecord (>= 3.2.0)
       with_advisory_lock (>= 3.0.0)
     coderay (1.1.0)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -56,6 +62,8 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     debug_inspector (0.0.2)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     devise (3.5.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -73,12 +81,20 @@ GEM
       activesupport (> 3)
       elasticsearch (> 0.4)
       hashie
+    elasticsearch-persistence (0.1.7)
+      activemodel (> 3)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      elasticsearch-model (>= 0.1)
+      hashie
+      virtus
     elasticsearch-rails (0.1.7)
     elasticsearch-transport (1.0.12)
       faraday
       multi_json
     enumerize (1.0.0)
       activesupport (>= 3.2)
+    equalizer (0.0.11)
     erubis (2.7.0)
     execjs (2.6.0)
     faraday (0.9.1)
@@ -115,6 +131,7 @@ GEM
     hashie (3.4.2)
     hike (1.2.3)
     i18n (0.7.0)
+    ice_nine (0.11.1)
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -254,6 +271,11 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.3)
       rack (>= 1.0)
     web-console (2.2.1)
@@ -282,7 +304,7 @@ DEPENDENCIES
   closure_tree
   coffee-rails (~> 4.1.0)
   devise (~> 3.5.2)
-  elasticsearch-model
+  elasticsearch-persistence
   elasticsearch-rails
   enumerize
   growl

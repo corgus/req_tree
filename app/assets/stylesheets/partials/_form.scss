@@ -74,3 +74,11 @@ form .actions {
     margin-left: 10px;
   }
 }
+
+span.input.disabled {
+  display: inline-block;
+  padding-top: 7px;
+  color: #AAA;
+  font-weight: lighter;
+  font-style: italic;
+}

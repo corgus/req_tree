@@ -1,5 +1,5 @@
 .row
-  .main-content.col-sm-10
+  .main-content.col-sm-9
     h2
       = @feature.title
       span.type Feature
@@ -16,25 +16,29 @@
         td
           .status class=@feature.status
             = @feature.status
-  .actions.main.col-sm-2
+  .actions.main.col-sm-3
     a.btn.btn-default href=edit_feature_path(@feature)
-      | Edit
+      | Edit Feature
     a.btn.btn-default href=features_path
-      | List
+      | List Features
+    a.btn.btn-default href=new_feature_path('parent_id': @feature.parent_id)
+      | New Sibling Feature
 
 hr
 
 .row
   .col-md-6
-    h3 Requirements
-    .link-list
-      - @feature.requirements.each do |req|
-        a href=requirement_path(req)
-          table.list.requirements
-            tr
-              td= req.title
-              td.status class=req.status
-                = req.status
+    h3 Associated Requirements
+    table.child-requirements
+      tbody
+        - @feature.requirements.sort.each do |requirement|
+          td= requirement.title
+          td
+            .status class=requirement.status
+              = requirement.status
+          td
+            a href=requirement_path(requirement)
+              | Show
     .actions
       a.btn.btn-default href=new_requirement_path('feature_id': @feature.id)
         | New Requirement
@@ -44,15 +48,6 @@ hr
 
   .col-md-6
     h3 Child Features
-    / .link-list
-    /   - @feature.children.each do |feature|
-    /     a href=feature_path(feature)
-    /       table.list.features
-    /         tr
-    /           td= feature.title
-    /           td
-    /             .status class=feature.status
-    /               = feature.status
     table.sortable.child-features (
       data-update-sidebar = 'true'
       data-sort-attribute = 'position'
@@ -60,7 +55,7 @@ hr
       tbody
         - @feature.children.sort.each do |feature|
           tr (
-            data-drop-path = update_position_feature_path(feature.id)
+            data-drop-path = reorder_feature_path(feature.id)
           )
             td.sortable-icon
               .icon
@@ -74,5 +69,3 @@ hr
     .actions
       a.btn.btn-default href=new_feature_path('parent_id': @feature.id)
         | New Child Feature
-      a.btn.btn-default href=new_feature_path('parent_id': @feature.parent_id)
-        | New Sibling Feature

@@ -1,13 +1,13 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+
 
 $(document).ready ->
   $(document).on 'input', '.autocomplete-container > input', ->
     results = $(@).next('.results')
     $.ajax(
       url: $(@).data('source-path')
-      data: query: $(@).val()
+      data:
+        query: $(@).val()
+        new: $(@).data('new-params')
     ).done (response) ->
       results.html(response).addClass 'open'
 
@@ -45,13 +45,12 @@ $(document).ready ->
     # console.warn($("input[name='#{input_name}']").val())
     # $(@).closest('.autocomplete-container >').find('input[type=hidden]').val $(this).data('id')
 
+  $(document).on 'click', '.autocomplete-container > .results li.new', (e) ->
+    document.location = $(@).data('select-path')
+
   $(document).on 'mouseenter', '.autocomplete-container > .results li', ->
     $(@).siblings('li').removeClass('hovering')
     $(@).addClass('hovering')
 
   $(document).on 'mouseleave', '.autocomplete-container > .results li', ->
     $(@).removeClass('hovering')
-
-  $(document).on 'click', ->
-    $('.close-on-blur').removeClass 'open'
-    $('.close-on-blur .hovering').removeClass 'hovering'

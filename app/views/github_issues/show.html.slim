@@ -1,5 +1,5 @@
 .row
-  .main-content.col-sm-10
+  .main-content.col-sm-9
     h2
       = "Github Issue #{@github_issue.repository}-#{@github_issue.github_id}"
     table.left-column-heading
@@ -16,7 +16,7 @@
           a href='#'
             | TODO
 
-  .actions.main.col-sm-2
+  .actions.main.col-sm-3
     a.btn.btn-default href=edit_github_issue_path(@github_issue)
       | Edit
     a.btn.btn-default href=github_issues_path

@@ -1,5 +1,5 @@
 .row
-  .main-content.col-sm-10
+  .main-content.col-sm-9
     h2
       = @test_case.title
       span.type Feature
@@ -17,7 +17,7 @@
         td Manual Process
         td = @test_case.manual_process
 
-  .actions.main.col-sm-2
+  .actions.main.col-sm-3
     a.btn.btn-default href=edit_test_case_path(@test_case)
       | Edit
     a.btn.btn-default href=test_cases_path

@@ -93,13 +93,16 @@ body {
 
 }
 
-.main-actins {
-  @extend %clearfix;
-}
+/* miscellaneous */
 
 .actions {
+  margin-top: 20px;
   margin-bottom: 20px;
+  &.main {
+    margin: 0;
+  }
 }
+
 
 .actions.main .btn {
   float: left;
@@ -114,12 +117,6 @@ body {
 
 .bootstrap-datetimepicker-widget {
 
-}
-
-/* miscellaneous */
-
-.actions {
-  margin-top: 20px;
 }
 
 p.notice, p.alert {
