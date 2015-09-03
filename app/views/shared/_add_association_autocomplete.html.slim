@@ -6,16 +6,15 @@
 = simple_form_for target do |f|
   .form-group
     - tgt = "#{target.class.to_s.underscore}"
-    = f.simple_fields_for join.to_sym, f.object.send(join).build do |join|
-      / TODO: should be test_record[test_case_test_record_attributes][..etc]
-      = join.hidden_field "#{tgt}_id".to_sym, value: target.id
-      = join.hidden_field "#{source}_id".to_sym, value:
-
+    = f.simple_fields_for join.to_sym, f.object.send(join).build do |join_fields|
+      = join_fields.hidden_field "#{tgt}_id".to_sym, value: target.id
+      = join_fields.hidden_field "#{source}_id".to_sym
     - autocomplete_path = Rails.application.routes.url_helpers.send("autocomplete_#{source}s_path")
     = render partial: 'shared/autocomplete',
              locals: { autocomplete_path: autocomplete_path,
                        name: "#{tgt}[#{join}_attributes][0][#{source}_id]",
                        placeholder: "Add #{source.titleize} Association",
                        select_path: "",
-                       new_params: {"#{tgt}_id": target.id}.to_query }
+                       new_params: {"#{tgt}_id": target.id}.to_query,
+                       klass: 'submit-on-select' }
     = f.submit class:'hidden'

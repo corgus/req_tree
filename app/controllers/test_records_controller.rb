@@ -59,14 +59,13 @@ class TestRecordsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_record_params
       params.require(:test_record)
-            .permit(:status,
-                    :timestamp,
-                    :server,
-                    :summary,
-                    test_case_test_record: [
-                      :test_case_id,
-                      :test_record_id
-                    ]
+            .permit(  :status,
+                      :timestamp,
+                      :server,
+                      :summary,
+                      test_case_test_record_attributes: [
+                        :test_case_id, :test_record_id
+                      ]
                     )
     end
 end

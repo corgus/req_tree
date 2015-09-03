@@ -52,7 +52,7 @@ SimpleForm.setup do |config|
     b.use :placeholder
     b.wrapper tag: 'div', class: 'controls' do |input|
       input.wrapper tag: 'div', class: 'input-group' do |prepend|
-      prepend.use :label , class: 'input-group-addon' ###Please note setting class here fro the label does not currently work (let me know if you know a workaround as this is the final hurdle)
+      prepend.use :label , class: 'input-group-addon' ###Please note setting class here for the label does not currently work (let me know if you know a workaround as this is the final hurdle)
         prepend.use :input
       end
       input.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
@@ -73,14 +73,17 @@ SimpleForm.setup do |config|
     end
   end
 
-  config.wrappers :checkbox, tag: :div, class: "checkbox", error_class: "has-error" do |b|
+  config.wrappers :checkbox, tag: 'div', class: "form-group checkbox-group", error_class: "has-error" do |b|
     b.use :html5
-    b.wrapper tag: :label do |ba|
-      ba.use :input
-      ba.use :label_text
+
+    b.use :label, class: 'control-label col-sm-3'\
+
+    b.wrapper tag: 'div', class: 'col-sm-9', error_class: 'has-error' do |ba|
+      ba.use :input, class: 'form-control checkbox'
+      ba.use :hint,  wrap_with: { tag: 'span', class: 'help-block' }
+      ba.use :error, wrap_with: { tag: 'span', class: 'help-block has-error' }
     end
-    b.use :hint,  wrap_with: { tag: :p, class: "help-block" }
-    b.use :error, wrap_with: { tag: :span, class: "help-block text-danger" }
+
   end
 
   config.wrappers :vertical, tag: :div, class: 'form-group vertical', error_class: 'has-error' do |b|

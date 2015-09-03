@@ -65,12 +65,16 @@ class RequirementsController < ApplicationController
 
     def requirement_params
       params.require(:requirement)
-            .permit(:title,
-                    :summary,
-                    :acceptance_criteria,
-                    :status,
-                    feature_requirements_attributes: [
-                      :feature_id, :requirement_id
-                    ])
+            .permit(  :title,
+                      :summary,
+                      :acceptance_criteria,
+                      :status,
+                      feature_requirements_attributes: [
+                        :feature_id, :requirement_id
+                      ],
+                      requirement_test_cases_attributes: [
+                        :requirement_id, :test_case_id
+                      ]
+                    )
     end
 end

@@ -23,3 +23,6 @@ $(document).ready ->
   $(document).on 'click', ->
     $('.close-on-blur').removeClass 'open'
     $('.close-on-blur .hovering').removeClass 'hovering'
+
+  $(document).on 'click', 'body.test_records.show .autocomplete-container[name*="test_record[test_case_test_records_attributes]"] > .results li:not(.new)', ->
+    $(@).parents('form').find('input[type="submit"]').click()

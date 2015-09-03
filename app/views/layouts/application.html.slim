@@ -15,11 +15,19 @@ html
       #main-content
         .container-fluid
           .row
-            .col-sm-3.col-lg-2
-              #sidebar
-                = render 'layouts/sidebar'
-            .col-sm-9.col-lg-10
-              #page-content
+            - if current_user
+              .col-sm-3.col-lg-2
+                #sidebar
+                  = render 'layouts/sidebar'
+              .col-sm-9.col-lg-10
+                #page-content
+                  - if notice
+                    p class="notice" = notice
+                  - if alert
+                    p class="alert" = alert
+                  = yield
+            - else
+              .col-xs-12.external
                 - if notice
                   p class="notice" = notice
                 - if alert

@@ -63,7 +63,7 @@ body, .modal {
 }
 
 body {
-  background: $background-color;
+  background: $bg-body;
 }
 
 #page-content {
@@ -85,6 +85,7 @@ body {
 
 // partials
 
+// .actions within form at _form.scss
 .actions {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -93,14 +94,17 @@ body {
   }
 }
 
-.actions.main .btn {
-  float: left;
-  margin: 0 10px 10px 0;
-  display: inline-block;
-  @media screen and (min-width: $screen-sm-min) {
-    margin-right: 0;
-    float: right;
-    clear: right;
+.actions.main {
+  margin: 0;
+  .btn {
+    float: left;
+    margin: 0 10px 10px 0;
+    display: inline-block;
+    @media screen and (min-width: $screen-sm-min) {
+      margin-right: 0;
+      float: right;
+      clear: right;
+    }
   }
 }
 
@@ -119,8 +123,12 @@ span.glyphicon.glyphicon-remove {
 p.notice, p.alert {
   margin: -30px -20px 20px -20px;
   padding: 10px 20px;
-  &.notice { background: $green-background; }
-  &.alert { background: rgba(255, 120, 100, 0.7); }
+  @include border-radius(0);
+  &.notice { background: $bg-green; }
+  &.alert { background: $bg-red; }
+  .external & {
+    margin: 0 0 20px 0;
+  }
 }
 
 .error {
@@ -154,10 +162,14 @@ div.status {
   text-align: center;
   background: #EEE;
   &.current,
-  &.pass      { background: rgba($green-text, 0.4); } //$green-text; }#33dd66
-  &.pending   { background: rgba(#AAA, 0.4); }
+  &.pass {
+    background: $bg-green;
+  }
+  &.pending {
+    background: $bg-gray;
+  }
   &.obsolete,
-  &.fail      {
+  &.fail {
     font-weight: bold;
     background: rgba(255, 130, 120, 1);
   }

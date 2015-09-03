@@ -17,6 +17,7 @@ class Requirement < ActiveRecord::Base
 
   has_many :requirement_test_cases
   has_many :test_cases, through: :requirement_test_cases
+  accepts_nested_attributes_for :requirement_test_cases, reject_if: :all_blank, allow_destroy: true
 
   enumerize :status, in: [ :pending, :obsolete, :current ], default: :pending
 

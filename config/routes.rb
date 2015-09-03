@@ -1,33 +1,45 @@
 Rails.application.routes.draw do
 
-  root to: "features#index"
+  # namespace :external do
+  #   root to: 'static_pages#home'
+  # end
 
   devise_for :users
 
-  get 'autocomplete_global',       to: 'autocomplete#global'
-  get 'autocomplete_features',     to: 'autocomplete#features'
-  get 'autocomplete_requirements', to: 'autocomplete#requirements'
-  get 'autocomplete_test_cases',   to: 'autocomplete#test_cases'
-
-  resources :users
-  resources :features do
-    member do
-      post '/reorder', to: 'features#reorder', as: 'reorder'
-    end
+  devise_scope :user do
+    root :to => 'devise/sessions#new'
+    get 'signup', to: 'devise/registrations#new'
+    get 'login', to: 'devise/sessions#new'
+    get 'logout', to: 'devise/sessions#destroy'
   end
-  resources :requirements
 
-  resources :attachments
-  resources :trello_cards
-  resources :github_issues
+  authenticate :user do
 
-  resources :test_cases
-  resources :test_records
+    resources :users
+    resources :features do
+      member do
+        post '/reorder', to: 'features#reorder', as: 'reorder'
+      end
+    end
+    resources :requirements
+    resources :attachments
+    resources :trello_cards
+    resources :github_issues
+    resources :test_cases
+    resources :test_records
 
-  # Associations
-  resources :feature_requirements, only: :destroy
-  resources :requirement_test_cases, only: :destroy
-  resources :test_case_test_records, only: :destroy
+    # Associations
+    resources :feature_requirements, only: :destroy
+    resources :requirement_test_cases, only: :destroy
+    resources :test_case_test_records, only: :destroy
+
+    # Autocompletes
+    get 'autocomplete_global',       to: 'autocomplete#global'
+    get 'autocomplete_features',     to: 'autocomplete#features'
+    get 'autocomplete_requirements', to: 'autocomplete#requirements'
+    get 'autocomplete_test_cases',   to: 'autocomplete#test_cases'
+
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -68,13 +68,14 @@ class FeaturesController < ApplicationController
 
     def feature_params
       params.require(:feature)
-            .permit(:title,
-                    :summary,
-                    :status,
-                    :parent_id,
-                    :position,
-                    feature_requirements_attributes: [
-                      :requirement_id, :feature_id
-                    ])
+            .permit(  :title,
+                      :summary,
+                      :status,
+                      :parent_id,
+                      :position,
+                      feature_requirements_attributes: [
+                        :requirement_id, :feature_id
+                      ]
+                    )
     end
 end

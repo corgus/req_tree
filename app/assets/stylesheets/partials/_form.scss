@@ -11,6 +11,14 @@ input, textarea, select {
   @include border-radius(0px);
 }
 
+input.boolean {
+  border: none;
+  @include box-shadow(none);
+  &.form-control {
+    margin-left: 0;
+  }
+}
+
 textarea {
   resize: vertical;
 }
@@ -30,12 +38,29 @@ textarea {
   }
 }
 
-.checkbox {
-  margin-top: -10px;
-  margin-bottom: 10px;
-  span {
-    margin-left: 20px;
-    font-weight: normal;
+// .checkbox {
+//   margin-top: -10px;
+//   margin-bottom: 10px;
+//   span {
+//     margin-left: 20px;
+//     font-weight: normal;
+//   }
+// }
+.form-group.checkbox-group {
+  margin-bottom: 15px;
+  label.control-label {
+    font-weight: bold;
+    padding-top: 0;
+  }
+  label.checkbox {
+    padding: 3px 0 0 0;
+    width: 20px;
+    cursor: pointer;
+    input.form-control.checkbox {
+      height: auto;
+      width: 20px;
+      cursor: pointer;
+    }
   }
 }
 
@@ -69,9 +94,16 @@ input[type="submit"] {
 
 form .actions {
   margin-top: 20px;
-  a, input, button {
+  a, input, span, button {
     float: right;
-    margin-left: 10px;
+    margin-right: 0px;
+    margin-left: 20px;
+    &:not(.btn) {
+      padding-top: 7px;
+    }
+  }
+  span.divider {
+    color: #EEE;
   }
 }
 

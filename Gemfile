@@ -8,12 +8,15 @@ gem 'actionpack',       RAILS_VERSION, require: 'action_pack'
 gem 'pg', '~> 0.18.2'
 gem 'puma', '~> 2.13.4'
 
+gem 'closure_tree'
+gem 'enumerize'
+
 gem 'sass-rails', '~> 5.0'
 # gem 'compass-rails', '~> 2.0.4'
 gem 'will_paginate',    '3.0.7'
 gem 'will_paginate-bootstrap'
 gem 'simple_form'
-gem 'enumerize'
+gem 'sanitize'
 
 gem 'elasticsearch-persistence'
 gem 'elasticsearch-rails'
@@ -26,6 +29,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# Datetime picker
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 
@@ -34,8 +38,6 @@ gem 'devise', '~> 3.5.2'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-gem 'closure_tree'
 
 group :development, :test do
   gem 'pry-rails', '~> 0.3.3'

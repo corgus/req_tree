@@ -14,7 +14,7 @@
         @include border-radius(4px);
         padding: 5px 10px;
         &.hovering {
-          background: rgba($col-hover-light-blue, 0.6);
+          background: rgba($highlight-blue, 0.6);
           cursor: pointer;
         }
         span:first-of-type {

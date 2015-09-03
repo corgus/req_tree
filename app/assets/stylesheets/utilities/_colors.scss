@@ -1,17 +1,28 @@
+// BS: used by bootstrap
 
-/* COLOR VARIABLES */
-$yellow-highlight: #FDFDDD;
-$gray-highlight: #F3F3F3;
-$green-highlight: #DDFFE5;
-$col-hover-light-blue: #DEF;
-$link-color: #3366EE; // #337ab7;
-$background-color: #F6F7FA; // #F3F6FB; //#FCF8F4;
-$green-background: rgba(0, 170, 51, 0.3); // rgba(200, 250, 220, 0.8);
-$green-text: #00AA33;
+// Background
+$bg-body:   #EAF6FA; // #F3F4F9; // #F6F7FA;
+$bg-green:  rgba(0, 170, 51, 0.3); // rgba(#00AA33, 0.4);
+$bg-red:    rgba(255, 120, 100, 0.7);
+$bg-gray:   rgba(#AAA, 0.4);
 
-$gray-medium-light: #eaeaea;
+// Header
+$navbar-default-bg: darken($bg-body, 5%); // #DEEEF6; // BS - default: white
+$navbar-default-link-active-color: #333; // BS - default: #555
 
-// BOOTSTRAP
+// Text
+$text-green: #00AA33;
+$link-color: #3366EE; // BS - #337ab7;
+
+// Highlight
+$highlight-blue:    #DEF;
+$highlight-yellow:  #FDFDDD;
+$highlight-gray:    #F3F3F3;
+$highlight-green:   #DDFFE5;
+
+
+// Other Bootstrap Colors
+
 .text-muted {
   color: #777;
 }

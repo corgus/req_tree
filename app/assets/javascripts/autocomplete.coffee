@@ -42,8 +42,6 @@ $(document).ready ->
     $(@).closest('.autocomplete-container').find('input').val $(this).data('title')
     input_name = $(@).closest('.autocomplete-container').attr('name')
     $("input[name='#{input_name}']").val $(@).data('id')
-    # console.warn($("input[name='#{input_name}']").val())
-    # $(@).closest('.autocomplete-container >').find('input[type=hidden]').val $(this).data('id')
 
   $(document).on 'click', '.autocomplete-container > .results li.new', (e) ->
     document.location = $(@).data('select-path')
@@ -54,3 +52,7 @@ $(document).ready ->
 
   $(document).on 'mouseleave', '.autocomplete-container > .results li', ->
     $(@).removeClass('hovering')
+
+  # Trigger form submit on select
+  $(document).on 'click', '.autocomplete-container.submit-on-select > .results li:not(.new)', ->
+    $(@).parents('form').find('input[type="submit"]').click()

@@ -1,0 +1,15 @@
+.row
+  .col-sm-8.col-sm-offset-2
+    #page-content
+      h2 Forgot your password?
+
+      = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'form-horizontal' }) do |f|
+
+        = render partial: 'shared/form_errors', locals: { resource: resource }
+
+        = f.input :email, required: false, autofocus: true
+
+        .actions
+          = f.button :submit, 'Send me password reset instructions', class: 'btn btn-primary'
+          = link_to "Sign Up", new_registration_path(resource_name)
+          = link_to "Log In", new_session_path(resource_name)

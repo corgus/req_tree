@@ -60,6 +60,17 @@ class TestCasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_case_params
-      params.require(:test_case).permit(:title, :summary, :manual_process, :automated_test_path)
+      params.require(:test_case)
+            .permit(  :title,
+                      :summary,
+                      :manual_process,
+                      :automated_test_path,
+                      requirement_test_cases_attributes: [
+                        :requirement_id, :test_case_id
+                      ],
+                      test_case_test_records_attributes: [
+                        :test_case_id, :test_record_id
+                      ]
+                    )
     end
 end

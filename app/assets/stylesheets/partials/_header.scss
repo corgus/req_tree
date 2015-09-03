@@ -2,17 +2,22 @@
 
 header.navbar {
   height: 50px;
-  background: #DEEEF6; //#D6EDF8;
+  background: $navbar-default-bg;
   border: none;
-  // outline: 1px solid rgba(#99C, 0.05);
+  @include border-radius(0);
+  a {
+    cursor: pointer;
+    .open & {
+      background: rgba(#999, 0.2) !important;
+    }
+  }
   .navbar-brand {
     a {
       color: #666;
       font-weight: lighter;
       &:hover {
         text-decoration: none;
-        color: #666;
-        cursor: pointer;
+        color: $navbar-default-link-active-color;
       }
     }
   }
@@ -42,7 +47,7 @@ header.navbar {
   }
   ul.dropdown-menu {
     a:hover {
-      background: #eee;
+      background: #EEE;
     }
     li.with_new {
       a {
@@ -65,6 +70,10 @@ header.navbar {
     z-index: 10;
   }
   button.navbar-toggle {
+    background: rgba(white, 0.3);
+    &:focus {
+      background: rgba(white, 0.3);
+    }
     &:hover {
       background: rgba(white, 0.5);
     }
