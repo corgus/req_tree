@@ -1,8 +1,9 @@
 = simple_form_for @github_issue, :html => { :class => 'form-horizontal' } do |f|
   = render partial: 'shared/form_errors', locals: { resource: @github_issue }
 
-  = f.input :github_id
+  = f.input :github_id, label: 'Github ID'
   = f.input :path
+  = f.input :repository
 
   .actions
     = f.submit class:'btn btn-primary'

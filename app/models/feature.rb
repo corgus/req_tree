@@ -1,4 +1,4 @@
-class Feature < ActiveRecord::Base
+class Feature < ReqTree::Base
   extend Enumerize
   include Attachable
   include Searchable
@@ -39,9 +39,15 @@ class Feature < ActiveRecord::Base
   end
 
   def update_position(new_position)
-    if target = siblings.find_by(position: new_position)
+    if !new_position && position
+      return
+    elsif target = siblings.find_by(position: new_position)
+      target.prepend_sibling(self)
+    elsif target = siblings.sort[new_position.to_i]
+      log "no sibling found with position #{new_position}.\n Prepending to #{target.title}."
       target.prepend_sibling(self)
     elsif siblings
+      log "No sibling found with position #{new_position}.\n Appending to end."
       update(position: siblings.count)
     else
       update(position: 0)

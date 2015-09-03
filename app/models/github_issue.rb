@@ -1,6 +1,6 @@
-class GithubIssue < ActiveRecord::Base
-  extend Enumerizable
+class GithubIssue < ReqTree::Base
+  extend Enumerize
   include Searchable
 
-  enumerize :repository, in: ['sw', 'bd-sw']
+  enumerize :repository, in: ['sw', 'bd-sw'], default: 'sw'
 end

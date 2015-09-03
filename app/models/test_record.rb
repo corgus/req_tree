@@ -1,4 +1,4 @@
-class TestRecord < ActiveRecord::Base
+class TestRecord < ReqTree::Base
   extend Enumerize
   include Attachable
   include Searchable

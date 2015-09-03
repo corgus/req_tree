@@ -1,2 +1,2 @@
-class TrelloCard < ActiveRecord::Base
+class TrelloCard < ReqTree::Base
 end

@@ -6,13 +6,10 @@ $bg-green:  rgba(0, 170, 51, 0.3); // rgba(#00AA33, 0.4);
 $bg-red:    rgba(255, 120, 100, 0.7);
 $bg-gray:   rgba(#AAA, 0.4);
 
-// Header
-$navbar-default-bg: darken($bg-body, 5%); // #DEEEF6; // BS - default: white
-$navbar-default-link-active-color: #333; // BS - default: #555
-
 // Text
 $text-green: #00AA33;
-$link-color: #3366EE; // BS - #337ab7;
+$text-red: #EE0000;
+$text-link: #3366EE;
 
 // Highlight
 $highlight-blue:    #DEF;
@@ -21,7 +18,17 @@ $highlight-gray:    #F3F3F3;
 $highlight-green:   #DDFFE5;
 
 
-// Other Bootstrap Colors
+/////////////////////////////////////////////////////////
+
+
+// Bootstrap Colors
+
+$link-color: $text-link; // default: #337ab7
+$navbar-default-bg: darken($bg-body, 5%); // default: white
+$navbar-default-link-active-color: #333; // default: #555
+$state-danger-text:   $text-red; // default: #a94442
+$state-danger-bg:     $text-red; // default: #f2dede
+$state-danger-border: darken(adjust-hue($state-danger-bg, -10), 5%) !default;
 
 .text-muted {
   color: #777;

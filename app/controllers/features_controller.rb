@@ -1,6 +1,6 @@
 class FeaturesController < ApplicationController
   before_action :set_feature, only: [:show, :edit, :update, :destroy, :reorder]
-  after_action :update_position, only: [:update, :reorder, :update, :create]
+  after_action :update_position, only: [:reorder, :update, :create]
 
   def index
     @features = Feature.all

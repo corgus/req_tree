@@ -1,4 +1,4 @@
-class Requirement < ActiveRecord::Base
+class Requirement < ReqTree::Base
   extend Enumerize
   include Attachable
   include Searchable

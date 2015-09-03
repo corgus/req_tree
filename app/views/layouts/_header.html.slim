@@ -8,8 +8,8 @@ header.navbar.navbar-default
         span.icon-bar
         span.icon-bar
     nav#navbar.navbar-collapse.collapse
-      ul.nav.navbar-nav.navbar-right
-        - if user_signed_in?
+      - if user_signed_in?
+        ul.nav.navbar-nav.navbar-right
           / - if user.super_user?
           /   li.dropdown
           /     a.dropdown-toggle data-target="#" data-toggle="dropdown"
@@ -25,7 +25,7 @@ header.navbar.navbar-default
           /       li.with_new
           /         a href=entries_path Entries
           /         a href=new_entry_path new
-          li.dropdown
+          li.dropdown.navbar-right
             a.dropdown-toggle data-target="#" data-toggle="dropdown"
               = current_user.first_name
               i.caret
@@ -34,8 +34,10 @@ header.navbar.navbar-default
               li= link_to "Settings", edit_user_path(current_user)
               li.divider
               li= link_to "Log out", destroy_user_session_path, method: :delete
-          .navbar-search-container.navbar-right
-            input.search placeholder="Search for anything"
-            a.glyphicon.glyphicon-search
-        - else
+        .navbar-search-container.navbar-right
+          input.search placeholder="Search for anything"
+          a.glyphicon.glyphicon-search
+      - else
+        ul.nav.navbar-nav.navbar-right
+          li= link_to "Sign up", new_user_registration_path
           li= link_to "Log in", new_user_session_path

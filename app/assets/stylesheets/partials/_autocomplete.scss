@@ -1,4 +1,5 @@
 .autocomplete-container {
+  position: relative;
   .results {
     display: none;
     position: absolute;
@@ -21,7 +22,7 @@
           font-weight: bold;
         }
         &.new {
-          padding: 10px;
+          padding: 7px 10px;
           border-top: 1px solid #DDD;
           color: #666;
           &:not(:first-of-type) {
