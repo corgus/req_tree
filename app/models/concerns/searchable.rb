@@ -13,14 +13,6 @@ module Searchable
 
     index_name "reqtree_#{to_s.downcase.pluralize}"
 
-    # def self.index_name
-    #   "reqtree_#{to_s.downcase.pluralize}"
-    # end
-
-    # def index_name
-    #   debugger
-    # end
-
     def self.search(terms)
       __elasticsearch__.search(
         query: {
@@ -48,5 +40,11 @@ module Searchable
       import
     end
 
+    def self.load_index
+      if %x(curl -XHEAD -i "http://localhost:9200/#{index_name}").match('404 Not Found')
+        %x(curl -XPUT 'http://localhost:9200/#{index_name}')
+      end
+      reindex
+    end
   end
 end

@@ -1,0 +1,3 @@
+class RequirementTestCasesController < AssociationController
+
+end

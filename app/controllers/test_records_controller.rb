@@ -1,28 +1,21 @@
 class TestRecordsController < ApplicationController
   before_action :set_test_record, only: [:show, :edit, :update, :destroy]
 
-  # GET /test_records
-  # GET /test_records.json
   def index
     @test_records = TestRecord.all
   end
 
-  # GET /test_records/1
-  # GET /test_records/1.json
   def show
   end
 
-  # GET /test_records/new
   def new
     @test_record = TestRecord.new
+    @test_record.test_case_test_record.build(test_case_id: params[:test_case_id])
   end
 
-  # GET /test_records/1/edit
   def edit
   end
 
-  # POST /test_records
-  # POST /test_records.json
   def create
     @test_record = TestRecord.new(test_record_params)
 
@@ -37,8 +30,6 @@ class TestRecordsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /test_records/1
-  # PATCH/PUT /test_records/1.json
   def update
     respond_to do |format|
       if @test_record.update(test_record_params)
@@ -51,8 +42,6 @@ class TestRecordsController < ApplicationController
     end
   end
 
-  # DELETE /test_records/1
-  # DELETE /test_records/1.json
   def destroy
     @test_record.destroy
     respond_to do |format|
@@ -69,6 +58,15 @@ class TestRecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_record_params
-      params.require(:test_record).permit(:status, :timestamp, :server)
+      params.require(:test_record)
+            .permit(:status,
+                    :timestamp,
+                    :server,
+                    :summary,
+                    test_case_test_record: [
+                      :test_case_id,
+                      :test_record_id
+                    ]
+                    )
     end
 end

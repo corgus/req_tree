@@ -12,4 +12,23 @@ class ApplicationController < ActionController::Base
       puts JSON.pretty_generate params
       puts "///////////////////////////////////////////////////////\n\n"
     end
+
+    def route(query)
+      Rails.application.routes.url_helpers.send(query)
+    end
+
+    def log(str)
+      puts "\n\n////////////////////////////////\n"
+      puts "#{str}\n"
+      puts "////////////////////////////////\n\n"
+    end
+
+    # def redirect_back(opts={})
+    #   redirect_to(:back, opts)
+    # rescue ActionController::RedirectBackError => e
+    #   redirect_to root_path
+    # rescue ActiveRecord::RecordNotFound => e
+    #   redirect_to root_path
+    # end
+
 end

@@ -4,7 +4,10 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  get 'autocomplete_features', to: 'autocomplete#features'
+  get 'autocomplete_global',       to: 'autocomplete#global'
+  get 'autocomplete_features',     to: 'autocomplete#features'
+  get 'autocomplete_requirements', to: 'autocomplete#requirements'
+  get 'autocomplete_test_cases',   to: 'autocomplete#test_cases'
 
   resources :users
   resources :features do
@@ -12,7 +15,6 @@ Rails.application.routes.draw do
       post '/reorder', to: 'features#reorder', as: 'reorder'
     end
   end
-  resources :feature_requirements, only: :destroy
   resources :requirements
 
   resources :attachments
@@ -21,6 +23,11 @@ Rails.application.routes.draw do
 
   resources :test_cases
   resources :test_records
+
+  # Associations
+  resources :feature_requirements, only: :destroy
+  resources :requirement_test_cases, only: :destroy
+  resources :test_case_test_records, only: :destroy
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

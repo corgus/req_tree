@@ -19,6 +19,32 @@
 
   .actions.main.col-sm-3
     a.btn.btn-default href=edit_test_record_path(@test_record)
-      | Edit
+      | Edit Test Record
     a.btn.btn-default href=test_records_path
-      | List
+      | List Test Records
+
+
+hr
+
+.row
+  .col-md-6
+    h3 Associated Test Cases
+    table.associated.features
+      tbody
+        - @test_record.test_case_test_records.sort.each do |tctr|
+          tr
+            td= tctr.test_case.title
+            td
+              .status class=tctr.test_case.status
+                = tctr.test_case.status
+            td
+              a href=test_case_path(tctr.test_case)
+                | Show
+            td
+              a href=test_case_test_record(tctr.id) data-method='delete'
+                span.glyphicon.glyphicon-remove
+    .actions
+      = render partial: 'shared/add_association_autocomplete',
+               locals: { target: @test_record,
+                         source: 'test_case',
+                         join: 'test_case_test_records'  }

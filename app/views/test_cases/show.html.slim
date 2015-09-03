@@ -2,7 +2,7 @@
   .main-content.col-sm-9
     h2
       = @test_case.title
-      span.type Feature
+      span.type Test Case
     table.left-column-heading
       tr
         td Title
@@ -16,9 +16,62 @@
       tr
         td Manual Process
         td = @test_case.manual_process
+      tr
+        td Status
+        td
+          .status class=@test_case.status
+            = @test_case.status
+
 
   .actions.main.col-sm-3
     a.btn.btn-default href=edit_test_case_path(@test_case)
-      | Edit
-    a.btn.btn-default href=test_cases_path
-      | List
+      | Edit Test Case
+
+hr
+
+.row
+  .col-md-6
+    h3 Associated Requirements
+    table.associated.features
+      tbody
+        - @test_case.requirements.sort.each do |requirement|
+          tr
+            td= requirement.title
+            td
+              .status class=requirement.status
+                = requirement.status
+            td
+              a href=requirement_path(requirement)
+                | Show
+            td
+              a href=requirement_test_case_path data-method='delete'
+                span.glyphicon.glyphicon-remove
+    .actions
+      = render partial: 'shared/add_association_autocomplete',
+               locals: { target: @test_case,
+                         source: 'requirement',
+                         join: 'requirement_test_cases'}
+
+
+  .hr-container.visible-sm.visible-xs
+    hr
+
+  .col-md-6
+    h3 Test Records
+    table.associated.test-cases
+      tbody
+        - @test_case.test_records.sort.each do |test_record|
+          tr
+            td= test_record.id
+            td
+              .status class=test_record.status
+                = test_record.status
+            td
+              .status
+                = test_record.timestamp.strftime("%-d:%d %b %y, %Y")
+            td
+              a href=test_record_path(test_record)
+                | Show
+    .actions
+      a.btn.btn-default href="#{new_test_record_path}?test_case_id=#{@test_case.id}"
+        | New Test Record

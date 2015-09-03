@@ -1,11 +1,13 @@
 doctype html
 html
   head
-    title ReqTree
+    title= full_title(yield(:title))
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,600,700&subset=latin,latin-ext'
 
     = csrf_meta_tags
+
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
 
   body class= body_class
     #main-wrapper
@@ -26,5 +28,4 @@ html
         = render 'layouts/footer'
     = debug(params) if Rails.env.development?
 
-  = javascript_include_tag 'application', 'data-turbolinks-track' => true
   = yield :javascripts

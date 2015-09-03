@@ -21,8 +21,8 @@
       | Edit Feature
     a.btn.btn-default href=features_path
       | List Features
-    a.btn.btn-default href=new_feature_path('parent_id': @feature.parent_id)
-      | New Sibling Feature
+    / a.btn.btn-default href=new_feature_path('parent_id': @feature.parent_id)
+    /   | New Sibling Feature
 
 hr
 
@@ -31,17 +31,22 @@ hr
     h3 Associated Requirements
     table.child-requirements
       tbody
-        - @feature.requirements.sort.each do |requirement|
-          td= requirement.title
+        - @feature.feature_requirements.sort.each do |freq|
+          td= freq.requirement.title
           td
-            .status class=requirement.status
-              = requirement.status
+            .status class=freq.requirement.status
+              = freq.requirement.status
           td
-            a href=requirement_path(requirement)
+            a href=requirement_path(freq.requirement)
               | Show
+          td
+            a href=feature_requirement_path(freq.id) data-method='delete'
+              span.glyphicon.glyphicon-remove
     .actions
-      a.btn.btn-default href=new_requirement_path('feature_id': @feature.id)
-        | New Requirement
+      = render partial: 'shared/add_association_autocomplete',
+               locals: { target: @feature,
+                         source: 'requirement',
+                         join: 'feature_requirements'  }
 
   .hr-container.visible-sm.visible-xs
     hr

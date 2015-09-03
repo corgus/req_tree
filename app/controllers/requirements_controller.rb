@@ -11,7 +11,9 @@ class RequirementsController < ApplicationController
 
   def new
     @requirement = Requirement.new
-    @requirement.feature_requirements.build(feature_id: params[:feature_id])
+    if params[:feature_id]
+      @requirement.feature_requirements.build(feature_id: params[:feature_id])
+    end
   end
 
   def edit
@@ -22,7 +24,7 @@ class RequirementsController < ApplicationController
 
     respond_to do |format|
       if @requirement.save
-        format.html { redirect_to @requirement, notice: 'Requirement was successfully created.' }
+        format.html { redirect_to @requirement.new_redirect_path, notice: 'Requirement was successfully created.' }
         format.json { render :show, status: :created, location: @requirement }
       else
         format.html { render :new }
@@ -31,8 +33,6 @@ class RequirementsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /requirements/1
-  # PATCH/PUT /requirements/1.json
   def update
     respond_to do |format|
       if @requirement.update(requirement_params)
@@ -45,10 +45,9 @@ class RequirementsController < ApplicationController
     end
   end
 
-  # DELETE /requirements/1
-  # DELETE /requirements/1.json
   def destroy
     @requirement.destroy
+    @requirement.destroy_associations
     respond_to do |format|
       format.html { redirect_to requirements_url, notice: 'Requirement was successfully destroyed.' }
       format.json { head :no_content }

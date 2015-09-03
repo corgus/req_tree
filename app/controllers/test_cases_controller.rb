@@ -1,28 +1,23 @@
 class TestCasesController < ApplicationController
   before_action :set_test_case, only: [:show, :edit, :update, :destroy]
 
-  # GET /test_cases
-  # GET /test_cases.json
   def index
     @test_cases = TestCase.all
   end
 
-  # GET /test_cases/1
-  # GET /test_cases/1.json
   def show
   end
 
-  # GET /test_cases/new
   def new
     @test_case = TestCase.new
+    if params[:requirement_id]
+      @test_case.requirement_test_cases.build(requirement_id: params[:requirement_id])
+    end
   end
 
-  # GET /test_cases/1/edit
   def edit
   end
 
-  # POST /test_cases
-  # POST /test_cases.json
   def create
     @test_case = TestCase.new(test_case_params)
 
@@ -37,8 +32,6 @@ class TestCasesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /test_cases/1
-  # PATCH/PUT /test_cases/1.json
   def update
     respond_to do |format|
       if @test_case.update(test_case_params)
@@ -51,8 +44,6 @@ class TestCasesController < ApplicationController
     end
   end
 
-  # DELETE /test_cases/1
-  # DELETE /test_cases/1.json
   def destroy
     @test_case.destroy
     respond_to do |format|

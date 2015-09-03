@@ -66,16 +66,6 @@ body {
   background: $background-color;
 }
 
-// #main-table {
-//   display: table;
-//   width: 100%;
-// }
-
-// #sidebar, #page-content {
-//   display: table-cell;
-//   vertical-align: top;
-// }
-
 #page-content {
   padding: 30px 20px;
   margin-top: 10px;
@@ -93,7 +83,7 @@ body {
 
 }
 
-/* miscellaneous */
+// partials
 
 .actions {
   margin-top: 20px;
@@ -102,7 +92,6 @@ body {
     margin: 0;
   }
 }
-
 
 .actions.main .btn {
   float: left;
@@ -119,6 +108,14 @@ body {
 
 }
 
+span.glyphicon.glyphicon-remove {
+  color: rgba(#999, 0.5);
+  font-size: 12px;
+  &:hover {
+    color: red;
+  }
+}
+
 p.notice, p.alert {
   margin: -30px -20px 20px -20px;
   padding: 10px 20px;
@@ -130,14 +127,6 @@ p.notice, p.alert {
   color: red;
 }
 
-.link-list > a {
-  display: block;
-  margin: 0 -10px;
-  padding: 0 10px;
-  &:hover, > table > tr:hover {
-    background: #F5F5F5;
-  }
-}
 
 .hr-container {
   position: relative;
@@ -157,16 +146,21 @@ p.notice, p.alert {
 }
 
 div.status {
-  // font-weight: normal;
   display: inline-block;
   border-radius: 20px;
   height: 20px;
   padding: 2px 7px;
   font-size: 11px;
   text-align: center;
-  &.current { background: rgba($green-text, 0.4); } //$green-text; }#33dd66
-  &.pending { background: rgba(#AAA, 0.4); }
-  &.obsolete { background: red; }
+  background: #EEE;
+  &.current,
+  &.pass      { background: rgba($green-text, 0.4); } //$green-text; }#33dd66
+  &.pending   { background: rgba(#AAA, 0.4); }
+  &.obsolete,
+  &.fail      {
+    font-weight: bold;
+    background: rgba(255, 130, 120, 1);
+  }
 }
 
 .debug_dump {

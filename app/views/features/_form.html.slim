@@ -8,7 +8,7 @@
   .form-group
     label.control-label.col-sm-3 Parent
     .col-sm-9
-      = f.hidden_field :parent_id
+      = f.hidden_field :parent_id, value: @feature.parent.try(:id)
       = render partial: 'shared/autocomplete',
                locals: {  autocomplete_path: autocomplete_features_path,
                           name: 'feature[parent_id]',
@@ -16,8 +16,8 @@
                           default_value: @feature.parent.try(:title),
                           no_new: true }
 
-  - if reqs = @feature.feature_requirements && @feature.new?
-    - if reqs.present? && reqs[0].requirement_id
+  - if reqs = @feature.feature_requirements
+    - if reqs.present? && reqs[0].requirement_id && @feature.new?
       .form-group
         label.control-label.col-sm-3 First Requirement
         .col-sm-9
@@ -30,4 +30,5 @@
   .actions
     = f.submit class:'btn btn-primary'
     = link_to "Cancel", :back, class: 'btn btn-default'
-    = render partial: 'shared/destroy_item', locals: { item: @feature }
+    - unless @feature.new?
+      = render partial: 'shared/destroy_item', locals: { item: @feature }

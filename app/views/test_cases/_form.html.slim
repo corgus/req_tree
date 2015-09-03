@@ -1,21 +1,24 @@
-= form_for @test_case do |f|
-  - if @test_case.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@test_case.errors.count, "error")} prohibited this test_case from being saved:"
-      ul
-        - @test_case.errors.full_messages.each do |message|
-          li = message
+= simple_form_for @test_case, :html => { :class => 'form-horizontal' } do |f|
+  = render partial: 'shared/form_errors', locals: { resource: @test_case }
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :summary
-    = f.text_field :summary
-  .field
-    = f.label :manual_process
-    = f.text_area :manual_process
-  .field
-    = f.label :automated_test_path
-    = f.text_field :automated_test_path
-  .actions = f.submit
+  = f.input :title
+  = f.input :summary
+  = f.input :manual_process
+  = f.input :automated_test_path
+
+  - reqs = @test_case.requirement_test_cases
+  - if reqs.present? && reqs[0].requirement_id && @test_case.new?
+    .form-group
+      label.control-label.col-sm-3 First Requirement
+      .col-sm-9
+        input.hidden (
+          name = 'test_case[requirement_test_cases_attributes][0][requirement_id]'
+          value = reqs[0].requirement_id
+        )
+        span.input.disabled= reqs[0].requirement.title
+
+  .actions
+    = f.submit class:'btn btn-primary'
+    = link_to "Cancel", :back, class: 'btn btn-default'
+    - unless @test_case.new?
+      = render partial: 'shared/destroy_item', locals: { item: @test_case }

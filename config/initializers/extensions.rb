@@ -1,1 +1,1 @@
-require "active_record_utilities"
+# require "active_record_utilities"

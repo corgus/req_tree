@@ -4,8 +4,12 @@
 / placeholder
 / select_path
 / new_params
+/ klass
 
-.autocomplete-container name=name
+.autocomplete-container (
+  name = name
+  class = (klass ||= '')
+)
   input(
     name = 'query'
     id = 'query'

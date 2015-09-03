@@ -21,11 +21,12 @@
           font-weight: bold;
         }
         &.new {
-          margin-top: 5px;
           padding: 10px;
           border-top: 1px solid #DDD;
           color: #666;
-          @include border-top-radius(0px);
+          &:not(:first-of-type) {
+            @include border-top-radius(0px);
+          }
           span {
             font-weight: normal;
           }

@@ -21,4 +21,4 @@
     = f.submit class:'btn btn-primary'
     = link_to "Cancel", :back, class: 'btn btn-default'
     - unless @requirement.new?
-      = render partial: 'shared/destroy_item', locals: { item: @feature }
+      = render partial: 'shared/destroy_item', locals: { item: @requirement }

@@ -22,24 +22,34 @@ class Requirement < ActiveRecord::Base
 
   validates :title, presence: true, allow_blank: false
 
+  scope :without_features, -> { includes(:feature_requirements).where(feature_requirements: {feature_id: nil}) }
+  scope :with_features, -> { includes(:feature_requirements).where.not(feature_requirements: {feature_id: nil}) }
+
+
+  def self.destroy_associations_with(id)
+    FeatureRequirement.destroy_all(requirement_id: id)
+    RequirementIntegration.destroy_all(requirement_id: id)
+    RequirementTestCase.destroy_all(requirement_id: id)
+  end
+
   def new?
     id == nil
   end
 
+  def new_redirect_path
+    if features.present?
+      features.first
+    elsif test_cases.present?
+      test_cases.first
+    else
+      self
+    end
+  end
+
+  def destroy_associations
+    Requirement.destroy_associations_with(self.id)
+  end
+
 end
 
-
-if %x(curl -XHEAD -i 'http://localhost:9200/reqtree_requirements').match('404 Not Found')
-  %x(curl -XPUT 'http://localhost:9200/reqtree_requirements')
-end
-
-# Delete the previous features index in Elasticsearch
-Requirement.__elasticsearch__.client.indices.delete index: Requirement.index_name # rescue nil
-
-# Create the new index with the new mapping
-Requirement.__elasticsearch__.client.indices.create \
-  index: Requirement.index_name,
-  body: { settings: Requirement.settings.to_hash, mappings: Requirement.mappings.to_hash }
-
-# Index all article records from the DB to Elasticsearch
-Requirement.import
+Requirement.load_index

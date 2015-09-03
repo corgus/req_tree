@@ -16,6 +16,11 @@ class Feature < ActiveRecord::Base
 
   before_validation :set_position
 
+
+  def self.destroy_associations_with(id)
+    FeatureRequirement.destroy_all(feature_id: id)
+  end
+
   def as_indexed_json(opts={})
     self.as_json(only: [:id, :title, :summary])
         .merge({'display_path' => Rails.application.routes.url_helpers.feature_path(self.id)})
@@ -36,15 +41,15 @@ class Feature < ActiveRecord::Base
   def update_position(new_position)
     if target = siblings.find_by(position: new_position)
       target.prepend_sibling(self)
+    elsif siblings
+      update(position: siblings.count)
     else
       update(position: 0)
     end
   end
 
   def log_children
-    puts "\n///////////"
-    puts children.sort.each{|c| puts "#{c.position} = #{c.title}";}
-    puts "///////////\n"
+    log children.sort.each{|c| puts "#{c.position} = #{c.title}";}
   end
 
   def <=>(other)
@@ -55,20 +60,20 @@ class Feature < ActiveRecord::Base
     self.id == nil
   end
 
+  def new_redirect_path
+    if requirements.present?
+      requirements.first
+    elsif parent.present?
+      parent
+    else
+      self
+    end
+  end
+
+  def destroy_associations
+    Feature.destroy_associations_with(self.id)
+  end
+
 end
 
-
-if %x(curl -XHEAD -i 'http://localhost:9200/reqtree_features').match('404 Not Found')
-  %x(curl -XPUT 'http://localhost:9200/reqtree_features')
-end
-
-# Delete the previous features index in Elasticsearch
-Feature.__elasticsearch__.client.indices.delete index: Feature.index_name # rescue nil
-
-# Create the new index with the new mapping
-Feature.__elasticsearch__.client.indices.create \
-  index: Feature.index_name,
-  body: { settings: Feature.settings.to_hash, mappings: Feature.mappings.to_hash }
-
-# Index all article records from the DB to Elasticsearch
-Feature.import
+Feature.load_index

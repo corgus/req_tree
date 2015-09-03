@@ -15,8 +15,9 @@
         td = simple_format(@requirement.acceptance_criteria)
       tr
         td Status
-        td class=@requirement.status
-          = @requirement.status
+        td
+          .status class=@requirement.status
+            = @requirement.status
 
   .actions.main.col-sm-3
     a.btn.btn-default href=edit_requirement_path(@requirement)
@@ -31,20 +32,23 @@ hr
     h3 Associated Features
     table.associated.features
       tbody
-        - @requirement.features.sort.each do |feature|
+        - @requirement.feature_requirements.sort.each do |freq|
           tr
-            td= feature.title
+            td= freq.feature.title
             td
-              .status class=feature.status
-                = feature.status
+              .status class=freq.feature.status
+                = freq.feature.status
             td
-              a href=feature_path(feature)
+              a href=feature_path(freq.feature)
                 | Show
             td
-              a href=feature_requirement_path data-method='delete'
-                | Remove
+              a href=feature_requirement_path(freq.id) data-method='delete'
+                span.glyphicon.glyphicon-remove
     .actions
-      = render partial: 'add_feature_to_requirement'
+      = render partial: 'shared/add_association_autocomplete',
+               locals: { target: @requirement,
+                         source: 'feature',
+                         join: 'feature_requirements'  }
 
 
   .hr-container.visible-sm.visible-xs
@@ -64,12 +68,9 @@ hr
               a href=test_case_path(test_case)
                 | Show
     .actions
-      = simple_form_for @requirement do |f|
-        .form-group
-          .col-sm-9
-            = render partial: 'add_feature_to_requirement',
-                     locals: { form: f, requirement: @requirement}
-          .actions
-            = f.submit class:'btn btn-default'
+      = render partial: 'shared/add_association_autocomplete',
+               locals: { target: @requirement,
+                         source: 'test_case',
+                         join: 'requirement_test_cases'}
 
 

@@ -3,12 +3,16 @@ class TestRecord < ActiveRecord::Base
   include Attachable
   include Searchable
 
-  belongs_to :test_case
+  has_many :test_case_test_records
+  has_many :test_cases, through: :test_case_test_records
 
-  enumerize :status, in: [ :pass, :fail, :pending ]
-  enumerize :server, in: [ :production, :issues, :beta1, :beta2, :local ]
+  enumerize :status, in: [ :pass, :fail, :pending ], default: :pass
+  enumerize :server, in: [ :production, :issues, :beta1, :beta2, :local ], default: :local
 
   validates :status, presence: true, allow_blank: false
   validates :server, presence: true, allow_blank: false
   validates :timestamp, presence: true, allow_blank: false
+
 end
+
+TestRecord.load_index
