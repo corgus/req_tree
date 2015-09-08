@@ -7,7 +7,14 @@ Rails.application.routes.draw do
   devise_for :users
 
   devise_scope :user do
-    root :to => 'devise/sessions#new'
+
+    authenticated :user do
+      root to: 'dashboard#show', as: :authenticated_root
+    end
+    unauthenticated do
+      root to: 'devise/sessions#new', as: :unauthenticated_root
+    end
+
     get 'signup', to: 'devise/registrations#new'
     get 'login', to: 'devise/sessions#new'
     get 'logout', to: 'devise/sessions#destroy'
@@ -38,6 +45,8 @@ Rails.application.routes.draw do
     get 'autocomplete_features',     to: 'autocomplete#features'
     get 'autocomplete_requirements', to: 'autocomplete#requirements'
     get 'autocomplete_test_cases',   to: 'autocomplete#test_cases'
+
+    get 'dashboard', to: 'dashboard#show'
 
   end
 
