@@ -15,9 +15,15 @@
 #= require turbolinks
 #= require moment
 #= require bootstrap-datetimepicker
-#= require_tree .
+#= require vendor/quill
+#= require quill_input
+#= require_self
+#= require_tree
 
 $(document).ready ->
+
+  window.QuillInputs = {}
+
   $('.datetime-picker').datetimepicker();
 
   $(document).on 'click', ->
@@ -26,3 +32,8 @@ $(document).ready ->
 
   $(document).on 'click', 'body.test_records.show .autocomplete-container[name*="test_record[test_case_test_records_attributes]"] > .results li:not(.new)', ->
     $(@).parents('form').find('input[type="submit"]').click()
+
+  $('.quill').each( (index) ->
+    input_name = $(@).data('input-name')
+    window.QuillInputs[input_name] = new QuillInput(input_name)
+  )

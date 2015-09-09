@@ -3,8 +3,15 @@
 
   = f.input :title
   = f.input :summary
-  = f.input :manual_process
   = f.input :automated_test_path
+
+  .form-group
+    label.control-label.col-sm-3 Manual Process
+    .col-sm-9
+      = render partial: 'shared/quill_input',
+               locals: { form: f,
+                         attribute: :manual_process,
+                         input_name: 'test_case[manual_process]' }
 
   - reqs = @test_case.requirement_test_cases
   - if reqs.present? && reqs[0].requirement_id && @test_case.new?

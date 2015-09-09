@@ -15,7 +15,7 @@
         td = @test_case.automated_test_path
       tr
         td Manual Process
-        td = @test_case.manual_process
+        td.raw = raw sanitized @test_case.manual_process
       tr
         td Status
         td

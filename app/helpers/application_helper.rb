@@ -13,4 +13,8 @@ module ApplicationHelper
     [params[:controller].split('/'), params[:action]].flatten.join(' ')
   end
 
+  def sanitized(html)
+    Sanitize.fragment(html, Sanitize::Config::RELAXED)
+  end
+
 end

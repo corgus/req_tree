@@ -9,6 +9,8 @@ class TestCase < ReqTree::Base
   has_many :requirement_test_cases
   has_many :requirements, through: :requirement_test_cases
 
+  validates :title, presence: true, allow_blank: false
+
   def status
     if test_record = test_records.last
       test.record.fail? ? 'fail' : 'pass'

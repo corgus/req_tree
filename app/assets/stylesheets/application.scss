@@ -187,3 +187,12 @@ div.status {
   @include box-sizing(border-box);
 }
 
+.raw {
+  ul {
+    list-style: disc inside none;
+  }
+  ol {
+    list-style: decimal inside none;
+  }
+}
+

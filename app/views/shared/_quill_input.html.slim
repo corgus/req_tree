@@ -1,0 +1,24 @@
+/ locals:
+/ * form
+/ * attribute
+/ * input_name
+
+= form.hidden_field attribute
+
+.quill data-input-name=input_name
+  .toolbar-container
+    span.ql-format-group
+      span.ql-format-button.ql-bold title="Bold"
+      span.ql-format-separator
+      span.ql-format-button.ql-italic title="Italic"
+      span.ql-format-separator
+      span.ql-format-button.ql-underline title="Underline"
+    span.ql-format-group.ql-format-right
+      span.ql-format-button.ql-link title="Link"
+      span.ql-format-separator
+      span.ql-format-button.ql-list title="List"
+      span.ql-format-separator
+      span.ql-format-button.ql-bullet title="Bullet List"
+      / span.ql-format-separator
+      / span.ql-format-button.ql-image title="Image"
+  .editor-container

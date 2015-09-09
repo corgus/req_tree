@@ -12,10 +12,7 @@
         td = @requirement.title
       tr
         td Summary
-        td = @requirement.summary
-      tr
-        td Acceptance Criteria
-        td = simple_format(@requirement.acceptance_criteria)
+        td.raw = raw sanitized @requirement.summary
       tr
         td Status
         td

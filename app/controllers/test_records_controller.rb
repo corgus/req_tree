@@ -10,7 +10,7 @@ class TestRecordsController < ApplicationController
 
   def new
     @test_record = TestRecord.new
-    @test_record.test_case_test_record.build(test_case_id: params[:test_case_id])
+    @test_record.test_case_test_records.build(test_case_id: params[:test_case_id])
   end
 
   def edit

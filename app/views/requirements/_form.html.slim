@@ -2,8 +2,15 @@
   = render partial: 'shared/form_errors', locals: { resource: @requirement }
 
   = f.input :title
-  = f.input :summary
-  = f.input :acceptance_criteria
+
+  .form-group
+    label.control-label.col-sm-3 Summary
+    .col-sm-9
+      = render partial: 'shared/quill_input',
+               locals: { form: f,
+                         attribute: :summary,
+                         input_name: 'requirement[summary]' }
+
   = f.input :status
 
   - freqs = @requirement.feature_requirements
@@ -18,7 +25,7 @@
         span.input.disabled= freqs[0].feature.title
 
   .actions
-    = f.submit class:'btn btn-primary'
+    = f.submit class: 'btn btn-primary'
     = link_to "Cancel", :back, class: 'btn btn-default'
     - unless @requirement.new?
       = render partial: 'shared/destroy_item', locals: { item: @requirement }

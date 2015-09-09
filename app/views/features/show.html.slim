@@ -13,7 +13,7 @@
           td = render partial: 'breadcrumbs'
       tr
         td Summary
-        td = @feature.summary
+        td.raw = raw sanitized @feature.summary
       tr
         td Status
         td
@@ -35,16 +35,17 @@ hr
     table.child-requirements
       tbody
         - @feature.feature_requirements.sort.each do |freq|
-          td= freq.requirement.title
-          td
-            .status class=freq.requirement.status
-              = freq.requirement.status
-          td
-            a href=requirement_path(freq.requirement)
-              | Show
-          td
-            a href=feature_requirement_path(freq.id) data-method='delete'
-              span.glyphicon.glyphicon-remove
+          tr
+            td= freq.requirement.title
+            td
+              .status class=freq.requirement.status
+                = freq.requirement.status
+            td
+              a href=requirement_path(freq.requirement)
+                | Show
+            td
+              a href=feature_requirement_path(freq.id) data-method='delete'
+                span.glyphicon.glyphicon-remove
     .actions
       = render partial: 'shared/add_association_autocomplete',
                locals: { target: @feature,

@@ -2,7 +2,15 @@
   = render partial: 'shared/form_errors', locals: { resource: @feature }
 
   = f.input :title
-  = f.input :summary
+
+  .form-group
+    label.control-label.col-sm-3 Summary
+    .col-sm-9
+      = render partial: 'shared/quill_input',
+               locals: { form: f,
+                         attribute: :summary,
+                         input_name: 'feature[summary]' }
+
   = f.input :status
 
   .form-group
@@ -32,3 +40,5 @@
     = link_to "Cancel", :back, class: 'btn btn-default'
     - unless @feature.new?
       = render partial: 'shared/destroy_item', locals: { item: @feature }
+
+

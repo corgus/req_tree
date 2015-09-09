@@ -15,7 +15,6 @@ module ReqTree
       puts "#{str}\n"
       puts "///////////////////////////////////////////////\n\n"
     end
-
   end
 end
 

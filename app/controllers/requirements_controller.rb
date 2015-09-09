@@ -67,7 +67,6 @@ class RequirementsController < ApplicationController
       params.require(:requirement)
             .permit(  :title,
                       :summary,
-                      :acceptance_criteria,
                       :status,
                       feature_requirements_attributes: [
                         :feature_id, :requirement_id

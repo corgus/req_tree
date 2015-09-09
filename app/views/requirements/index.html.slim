@@ -3,8 +3,8 @@ h1 Listing requirements
 table
   thead
     tr
+      th Title
       th Summary
-      th Acceptance criteria
       th Status
       th
       th
@@ -13,8 +13,8 @@ table
   tbody
     - @requirements.each do |requirement|
       tr
+        tt = requirement.title
         td = requirement.summary
-        td = requirement.acceptance_criteria
         td = requirement.status
         td = link_to 'Show', requirement
         td = link_to 'Edit', edit_requirement_path(requirement)
