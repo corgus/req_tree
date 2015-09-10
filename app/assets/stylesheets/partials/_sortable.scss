@@ -17,17 +17,17 @@ table.sortable {
 }
 
 table.sortable {
-  margin-left: -25px !important;
+  margin-left: -15px !important;
   position: relative;
   td.sortable-icon {
-    width: 25px;
-    padding: 0 5px;
+    width: 15px;
+    padding: 0 3px;
     vertical-align: middle;
     .icon {
       height: 15px;
-      width: 15px;
+      width: 8px;
       display: none;
-      background-image: asset-url('drag_reorder_15.png');
+      background-image: asset-url('drag_reorder_8.png');
     }
   }
   tr {

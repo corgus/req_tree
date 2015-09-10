@@ -2,6 +2,7 @@ class Feature < ReqTree::Base
   extend Enumerize
   include Attachable
   include Searchable
+  include Sortable
 
   acts_as_tree order: 'position'
 
@@ -26,10 +27,6 @@ class Feature < ReqTree::Base
         .merge({'display_path' => Rails.application.routes.url_helpers.feature_path(self.id)})
   end
 
-  def set_position
-    self.position ||= siblings.count
-  end
-
   def name # alias for use in closure_tree
     title
   end
@@ -38,28 +35,8 @@ class Feature < ReqTree::Base
     ancestry_path.join(' > ')
   end
 
-  def update_position(new_position)
-    if !new_position && position
-      return
-    elsif target = siblings.find_by(position: new_position)
-      target.prepend_sibling(self)
-    elsif target = siblings.sort[new_position.to_i]
-      log "no sibling found with position #{new_position}.\n Prepending to #{target.title}."
-      target.prepend_sibling(self)
-    elsif siblings
-      log "No sibling found with position #{new_position}.\n Appending to end."
-      update(position: siblings.count)
-    else
-      update(position: 0)
-    end
-  end
-
   def log_children
     log children.sort.each{|c| puts "#{c.position} = #{c.title}";}
-  end
-
-  def <=>(other)
-    position > other.position ? 1 : position < other.position ? -1 : 0
   end
 
   def new?
