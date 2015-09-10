@@ -28,7 +28,11 @@ Rails.application.routes.draw do
         post '/reorder', to: 'features#reorder', as: 'reorder'
       end
     end
-    resources :requirements
+    resources :requirements do
+      member do
+        post '/reorder', to: 'requirements#reorder', as: 'reorder'
+      end
+    end
     resources :attachments
     resources :trello_cards
     resources :github_issues
@@ -36,9 +40,9 @@ Rails.application.routes.draw do
     resources :test_records
 
     # Associations
-    resources :feature_requirements, only: :destroy
+    # resources :feature_requirements, only: :destroy
     resources :requirement_test_cases, only: :destroy
-    resources :test_case_test_records, only: :destroy
+    # resources :test_case_test_records, only: :destroy
 
     # Autocompletes
     get 'autocomplete_global',       to: 'autocomplete#global'

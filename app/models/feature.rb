@@ -11,11 +11,12 @@ class Feature < ReqTree::Base
   validates :title, presence: true, allow_blank: false
   validates :position, presence: true, allow_blank: false
 
-  has_many :feature_requirements
-  has_many :requirements, through: :feature_requirements
-  accepts_nested_attributes_for :feature_requirements, reject_if: :all_blank, allow_destroy: true
+  # has_many :feature_requirements
+  # has_many :requirements, through: :feature_requirements
+  # accepts_nested_attributes_for :feature_requirements, reject_if: :all_blank, allow_destroy: true
 
-  before_validation :set_position
+  has_many :requirements
+  accepts_nested_attributes_for :requirements, reject_if: :all_blank, allow_destroy: true
 
 
   def self.destroy_associations_with(id)
@@ -55,6 +56,10 @@ class Feature < ReqTree::Base
 
   def destroy_associations
     Feature.destroy_associations_with(self.id)
+  end
+
+  def root_requirement
+    requirements.unscoped.find_by(feature_root: true)
   end
 
 end

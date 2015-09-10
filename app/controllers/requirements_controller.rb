@@ -1,6 +1,7 @@
 class RequirementsController < ApplicationController
   before_action :set_requirement, only: [:show, :edit, :update, :destroy]
-  before_action :build_features, only: [:edit]
+  after_action :update_parent, only: [:create, :update]
+  after_action :update_position, only: [:create, :update, :reorder]
 
   def index
     @requirements = Requirement.all
@@ -10,10 +11,10 @@ class RequirementsController < ApplicationController
   end
 
   def new
-    @requirement = Requirement.new
-    if params[:feature_id]
-      @requirement.feature_requirements.build(feature_id: params[:feature_id])
-    end
+    @requirement = Requirement.new(feature_id: params[:feature_id])
+    # if params[:feature_id]
+    #   @requirement.feature_requirements.build(feature_id: params[:feature_id])
+    # end
   end
 
   def edit
@@ -54,23 +55,36 @@ class RequirementsController < ApplicationController
     end
   end
 
+  def reorder
+    @requirement ||= Requirement.find(params('requirement[id]'))
+    head :ok, content_type: "text/html"
+  end
+
   private
     def set_requirement
       @requirement = Requirement.find(params[:id])
     end
 
-    def build_features
-      @requirement.features.build
+    def update_parent
+      @requirement.update_parent(requirement_params['parent_id'])
+    end
+
+    def update_position
+      @requirement.update_position(requirement_params['position'])
     end
 
     def requirement_params
       params.require(:requirement)
-            .permit(  :title,
+            .permit(  :id,
+                      :title,
                       :summary,
                       :status,
-                      feature_requirements_attributes: [
-                        :feature_id, :requirement_id
-                      ],
+                      :feature_id,
+                      :position,
+                      :parent_id,
+                      # feature_requirements_attributes: [
+                      #   :feature_id, :requirement_id
+                      # ],
                       requirement_test_cases_attributes: [
                         :requirement_id, :test_case_id
                       ]

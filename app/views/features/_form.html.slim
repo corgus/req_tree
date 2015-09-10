@@ -24,15 +24,15 @@
                           default_value: @feature.parent.try(:title),
                           no_new: true }
 
-  - if reqs = @feature.feature_requirements
-    - if reqs.present? && reqs[0].requirement_id && @feature.new?
-      .form-group
-        label.control-label.col-sm-3 First Requirement
-        .col-sm-9
-          span.input.disabled= reqs[0].requirement.title
+  / - if reqs = @feature.requirements
+  /   - if reqs.present? && reqs[0].requirement_id && @feature.new?
+  /     .form-group
+  /       label.control-label.col-sm-3 First Requirement
+  /       .col-sm-9
+  /         span.input.disabled= reqs[0].requirement.title
 
 
-  - if @feature.id
+  - if @feature.id && !@feature.parent_id
     = f.input :position
 
   .actions

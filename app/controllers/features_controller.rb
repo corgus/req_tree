@@ -1,6 +1,7 @@
 class FeaturesController < ApplicationController
   before_action :set_feature, only: [:show, :edit, :update, :destroy, :reorder]
   after_action :update_position, only: [:reorder, :update, :create]
+  before_action :create_root_requirement, only: [:create]
 
   def index
     @features = Feature.all
@@ -11,7 +12,7 @@ class FeaturesController < ApplicationController
 
   def new
     @feature = Feature.new(parent_id: params[:parent_id])
-    @feature.feature_requirements.build(requirement_id: params[:requirement_id])
+    # @feature.feature_requirements.build(requirement_id: params[:requirement_id])
   end
 
   def edit
@@ -53,6 +54,7 @@ class FeaturesController < ApplicationController
   end
 
   def reorder
+    @feature ||= Feature.find(params['feature[id]'])
     head :ok, content_type: "text/html"
   end
 
@@ -66,9 +68,14 @@ class FeaturesController < ApplicationController
       @feature.update_position(feature_params['position'])
     end
 
+    def create_root_requirement
+      @feature.requirements.create(title: 'root', feature_root: true)
+    end
+
     def feature_params
       params.require(:feature)
-            .permit(  :title,
+            .permit(  :id,
+                      :title,
                       :summary,
                       :status,
                       :parent_id,

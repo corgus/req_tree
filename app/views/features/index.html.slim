@@ -11,7 +11,7 @@ table
     - @features.each do |feature|
       tr
         td = feature.title
-        td = feature.summary
+        td = raw sanitized feature.summary
         td = feature.status
         td = link_to 'Show', feature
         td = link_to 'Edit', edit_feature_path(feature)

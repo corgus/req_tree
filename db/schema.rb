@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150909000458) do
+ActiveRecord::Schema.define(version: 20150909211504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,15 @@ ActiveRecord::Schema.define(version: 20150909000458) do
     t.string   "repository"
   end
 
+  create_table "requirement_hierarchies", id: false, force: :cascade do |t|
+    t.integer "ancestor_id",   null: false
+    t.integer "descendant_id", null: false
+    t.integer "generations",   null: false
+  end
+
+  add_index "requirement_hierarchies", ["ancestor_id", "descendant_id", "generations"], name: "requirement_anc_desc_idx", unique: true, using: :btree
+  add_index "requirement_hierarchies", ["descendant_id"], name: "requirement_desc_idx", using: :btree
+
   create_table "requirement_integrations", force: :cascade do |t|
     t.integer "requirement_id",    null: false
     t.integer "integration_id",    null: false
@@ -73,10 +82,16 @@ ActiveRecord::Schema.define(version: 20150909000458) do
   create_table "requirements", force: :cascade do |t|
     t.string   "title"
     t.text     "summary"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "status"
+    t.integer  "feature_id"
+    t.integer  "position"
+    t.integer  "parent_id"
+    t.boolean  "feature_root"
   end
+
+  add_index "requirements", ["feature_id"], name: "index_requirements_on_feature_id", using: :btree
 
   create_table "test_case_test_records", force: :cascade do |t|
     t.integer "test_case_id",   null: false

@@ -24,6 +24,7 @@ $(document).ready ->
 
   window.QuillInputs = {}
 
+  $('form:first *:input[type!=hidden]:first').focus();
   $('.datetime-picker').datetimepicker();
 
   $(document).on 'click', ->

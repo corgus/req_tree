@@ -8,8 +8,9 @@
       span.type Requirement
     table.left-column-heading
       tr
-        td Title
-        td = @requirement.title
+        td Feature
+        td = render partial: 'features/breadcrumbs',
+                    locals: { feature: @requirement.feature }
       tr
         td Summary
         td.raw = raw sanitized @requirement.summary
@@ -27,34 +28,35 @@
 
 hr
 
+/ .row
+/   .col-md-6
+/     h3 Associated Features
+/     table.associated.features
+/       tbody
+/         - @requirement.feature_requirements.sort.each do |freq|
+/           tr
+/             td= freq.feature.title
+/             td
+/               .status class=freq.feature.status
+/                 = freq.feature.status
+/             td
+/               a href=feature_path(freq.feature)
+/                 | Show
+/             td
+/               a href=feature_requirement_path(freq.id) data-method='delete'
+/                 span.glyphicon.glyphicon-remove
+/     .actions
+/       = render partial: 'shared/add_association_autocomplete',
+/                locals: { target: @requirement,
+/                          source: 'feature',
+/                          join: 'feature_requirements'  }
+
+
+/   .hr-container.visible-sm.visible-xs
+/     hr
+
 .row
-  .col-md-6
-    h3 Associated Features
-    table.associated.features
-      tbody
-        - @requirement.feature_requirements.sort.each do |freq|
-          tr
-            td= freq.feature.title
-            td
-              .status class=freq.feature.status
-                = freq.feature.status
-            td
-              a href=feature_path(freq.feature)
-                | Show
-            td
-              a href=feature_requirement_path(freq.id) data-method='delete'
-                span.glyphicon.glyphicon-remove
-    .actions
-      = render partial: 'shared/add_association_autocomplete',
-               locals: { target: @requirement,
-                         source: 'feature',
-                         join: 'feature_requirements'  }
-
-
-  .hr-container.visible-sm.visible-xs
-    hr
-
-  .col-md-6
+  .col-md-12
     h3 Test Cases
     table.associated.test-cases
       tbody
@@ -72,5 +74,3 @@ hr
                locals: { target: @requirement,
                          source: 'test_case',
                          join: 'requirement_test_cases'}
-
-

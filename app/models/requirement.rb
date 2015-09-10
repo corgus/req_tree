@@ -2,10 +2,15 @@ class Requirement < ReqTree::Base
   extend Enumerize
   include Attachable
   include Searchable
+  include Sortable
 
-  has_many :feature_requirements
-  has_many :features, through: :feature_requirements
-  accepts_nested_attributes_for :feature_requirements, reject_if: :all_blank, allow_destroy: true
+  acts_as_tree order: 'position'
+
+  # has_many :feature_requirements
+  # has_many :features, through: :feature_requirements
+  # accepts_nested_attributes_for :feature_requirements, reject_if: :all_blank, allow_destroy: true
+
+  belongs_to :feature
 
   has_many :requirement_integrations
   has_many :github_issues, through: :requirement_integrations,
@@ -23,9 +28,13 @@ class Requirement < ReqTree::Base
 
   validates :title, presence: true, allow_blank: false
 
-  scope :without_features, -> { includes(:feature_requirements).where(feature_requirements: {feature_id: nil}) }
-  scope :with_features, -> { includes(:feature_requirements).where.not(feature_requirements: {feature_id: nil}) }
+  # scope :without_features, -> { includes(:feature_requirements).where(feature_requirements: {feature_id: nil}) }
+  # scope :with_features, -> { includes(:feature_requirements).where.not(feature_requirements: {feature_id: nil}) }
+  scope :root, -> { where(feature_root: true) }
 
+  def self.default_scope
+    where(feature_root: [false, nil])
+  end
 
   def self.destroy_associations_with(id)
     FeatureRequirement.destroy_all(requirement_id: id)
@@ -38,8 +47,8 @@ class Requirement < ReqTree::Base
   end
 
   def new_redirect_path
-    if features.present?
-      features.first
+    if feature.present?
+      feature
     elsif test_cases.present?
       test_cases.first
     else
@@ -51,6 +60,14 @@ class Requirement < ReqTree::Base
     Requirement.destroy_associations_with(self.id)
   end
 
+  def name # alias for use in closure_tree
+    title
+  end
+
+  def update_parent(parent_id)
+    parent_id ||= feature.root_requirement.id
+    self.update(parent_id: parent_id)
+  end
 end
 
 Requirement.load_index

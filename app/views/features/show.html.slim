@@ -10,7 +10,8 @@
       - if @feature.depth > 0
         tr
           td Ancestry
-          td = render partial: 'breadcrumbs'
+          td = render partial: 'breadcrumbs',
+                      locals: { feature: @feature}
       tr
         td Summary
         td.raw = raw sanitized @feature.summary
@@ -24,33 +25,35 @@
       | Edit Feature
     a.btn.btn-default href=features_path
       | List Features
-    / a.btn.btn-default href=new_feature_path('parent_id': @feature.parent_id)
-    /   | New Sibling Feature
 
 hr
 
 .row
   .col-md-6
-    h3 Associated Requirements
-    table.child-requirements
+    h3 Requirements
+    table.sortable.feature-requirements (
+      data-sort-object = 'requirement'
+      data-sort-attribute = 'position'
+    )
       tbody
-        - @feature.feature_requirements.sort.each do |freq|
-          tr
-            td= freq.requirement.title
+        - @feature.requirements.sort.each do |requirement|
+          tr (
+            data-drop-path = reorder_requirement_path(requirement.id)
+            data-drop-id = requirement.id
+          )
+            td.sortable-icon
+              .icon
+            td= requirement.title
             td
-              .status class=freq.requirement.status
-                = freq.requirement.status
+              .status class=requirement.status
+                = requirement.status
             td
-              a href=requirement_path(freq.requirement)
+              a href=requirement_path(requirement)
                 | Show
-            td
-              a href=feature_requirement_path(freq.id) data-method='delete'
-                span.glyphicon.glyphicon-remove
     .actions
-      = render partial: 'shared/add_association_autocomplete',
-               locals: { target: @feature,
-                         source: 'requirement',
-                         join: 'feature_requirements'  }
+      a.btn.btn-default href=new_requirement_path('feature_id': @feature.id)
+        | New Requirement
+
 
   .hr-container.visible-sm.visible-xs
     hr
@@ -59,12 +62,14 @@ hr
     h3 Child Features
     table.sortable.child-features (
       data-update-sidebar = 'true'
+      data-sort-object = 'feature'
       data-sort-attribute = 'position'
     )
       tbody
         - @feature.children.sort.each do |feature|
           tr (
             data-drop-path = reorder_feature_path(feature.id)
+            data-drop-id = feature.id
           )
             td.sortable-icon
               .icon

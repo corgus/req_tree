@@ -12,17 +12,27 @@
                          input_name: 'requirement[summary]' }
 
   = f.input :status
+  .form-group
+    label.control-label.col-sm-3 Feature
+    .col-sm-9
+      = f.hidden_field :feature_id, value: @requirement.feature.try(:id)
+      = render partial: 'shared/autocomplete',
+               locals: {  autocomplete_path: autocomplete_features_path,
+                          name: 'requirement[feature_id]',
+                          placeholder: 'Search Features',
+                          default_value: @requirement.feature.try(:title),
+                          no_new: true }
 
-  - freqs = @requirement.feature_requirements
-  - if freqs.present? && freqs[0].feature_id && @requirement.new?
-    .form-group
-      label.control-label.col-sm-3 First Feature
-      .col-sm-9
-        input.hidden (
-          name = 'requirement[feature_requirements_attributes][0][feature_id]'
-          value = freqs[0].feature_id
-        )
-        span.input.disabled= freqs[0].feature.title
+  / - freqs = @requirement.feature_requirements
+  / - if freqs.present? && freqs[0].feature_id && @requirement.new?
+  /   .form-group
+  /     label.control-label.col-sm-3 First Feature
+  /     .col-sm-9
+  /       input.hidden (
+  /         name = 'requirement[feature_requirements_attributes][0][feature_id]'
+  /         value = freqs[0].feature_id
+  /       )
+  /       span.input.disabled= freqs[0].feature.title
 
   .actions
     = f.submit class: 'btn btn-primary'

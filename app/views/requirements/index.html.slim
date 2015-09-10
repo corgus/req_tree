@@ -13,8 +13,8 @@ table
   tbody
     - @requirements.each do |requirement|
       tr
-        tt = requirement.title
-        td = requirement.summary
+        td = requirement.title
+        td = raw sanitized requirement.summary
         td = requirement.status
         td = link_to 'Show', requirement
         td = link_to 'Edit', edit_requirement_path(requirement)
