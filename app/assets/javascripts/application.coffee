@@ -15,10 +15,11 @@
 #= require turbolinks
 #= require moment
 #= require bootstrap-datetimepicker
-#= require vendor/quill
+#= require_tree ./vendor
+#= require autocomplete
 #= require quill_input
+#= require sortable
 #= require_self
-#= require_tree
 
 $(document).ready ->
 
