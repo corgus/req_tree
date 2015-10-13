@@ -3,11 +3,11 @@
   a {
     color: #888;
     display: block;
-    font-weight: lighter;
+    font-weight: $f-lightest;
   }
   .selected > a {
     color: $link-color;
-    font-weight: normal;
+    font-weight: $f-normal;
     margin-bottom: 10px;
   }
   li {

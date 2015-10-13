@@ -19,7 +19,7 @@
           cursor: pointer;
         }
         span:first-of-type {
-          font-weight: bold;
+          font-weight: $f-semibold;
         }
         &.new {
           padding: 7px 10px;

@@ -10,7 +10,7 @@ class QuillInput
         'multi-cursor': false
       styles:
         '.ql-editor':
-          'font-family': "'Open Sans', san-serif"
+          'font-family': "'Roboto', san-serif"
           'font-size': '14px'
       theme: 'snow'
     )

@@ -1,5 +1,15 @@
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../assets/glyphicons-halflings-regular.eot');
+  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+       url('../assets/glyphicons-halflings-regular.woff') format('woff'),
+       url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
+       url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
 html, body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-weight: $f-normal;
 }
 
 h1 {
@@ -17,22 +27,22 @@ h2 {
   span.type {
     margin-left: 10px;
     font-size: 12px;
-    font-weight: lighter;
+    font-weight: $f-lighter;
     color: #999;
   }
 }
 
 h3 {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 h4 {
   font-size: 14px;
   color: #999;
-  font-weight: lighter;
+  font-weight: $f-lighter;
 }
 
 .semibold {
-  font-weight: 600;
+  font-weight: 500;
 }

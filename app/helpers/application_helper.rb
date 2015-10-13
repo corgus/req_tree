@@ -10,7 +10,10 @@ module ApplicationHelper
   end
 
   def body_class
-    [params[:controller].split('/'), params[:action]].flatten.join(' ')
+    ['data-no-turbolinks',
+      params[:controller].split('/'),
+      params[:action]]
+      .flatten.join(' ')
   end
 
   def sanitized(html)

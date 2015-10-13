@@ -31,18 +31,9 @@
 @import "utilities/typography";
 @import "utilities/select";
 
-@font-face {
-  font-family: 'Glyphicons Halflings';
-  src: url('../assets/glyphicons-halflings-regular.eot');
-  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
-       url('../assets/glyphicons-halflings-regular.woff') format('woff'),
-       url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
-       url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-}
-
-
 body {
   @include box-sizing('border-box');
+  background: $bg-body;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -62,10 +53,6 @@ body, .modal {
   padding-bottom: 50px; /* Min: height of the footer element */
 }
 
-body {
-  background: $bg-body;
-}
-
 #page-content {
   padding: 30px 20px;
   margin-top: 10px;
@@ -80,7 +67,6 @@ body {
 }
 
 .main-details {
-
 }
 
 // partials
@@ -109,7 +95,6 @@ body {
 }
 
 .bootstrap-datetimepicker-widget {
-
 }
 
 span.glyphicon.glyphicon-remove {
@@ -170,7 +155,7 @@ div.status {
   }
   &.obsolete,
   &.fail {
-    font-weight: bold;
+    font-weight: $f-semibold;
     background: rgba(255, 130, 120, 1);
   }
 }
@@ -196,3 +181,5 @@ div.status {
   }
 }
 
+// For angular-bootstrap:
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
