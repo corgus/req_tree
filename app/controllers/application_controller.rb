@@ -13,14 +13,14 @@ class ApplicationController < ActionController::Base
       puts "///////////////////////////////////////////////////////\n\n"
     end
 
-    def route(query)
-      Rails.application.routes.url_helpers.send(query)
-    end
-
     def log(str)
       puts "\n\n////////////////////////////////\n"
       puts "#{str}\n"
       puts "////////////////////////////////\n\n"
+    end
+
+    def route(query)
+      Rails.application.routes.url_helpers.send(query)
     end
 
     # def redirect_back(opts={})

@@ -27,6 +27,7 @@ class Requirement < ReqTree::Base
   enumerize :status, in: [ :pending, :obsolete, :current ], default: :pending
 
   validates :title, presence: true, allow_blank: false
+  validates :feature, presence: true, allow_blank: false
 
   # scope :without_features, -> { includes(:feature_requirements).where(feature_requirements: {feature_id: nil}) }
   # scope :with_features, -> { includes(:feature_requirements).where.not(feature_requirements: {feature_id: nil}) }
@@ -67,6 +68,10 @@ class Requirement < ReqTree::Base
   def update_parent(parent_id)
     parent_id ||= feature.root_requirement.id
     self.update(parent_id: parent_id)
+  end
+
+  def breadcrumbs
+    "#{feature.ancestry_path.join(' > ')} >> #{title}"
   end
 end
 

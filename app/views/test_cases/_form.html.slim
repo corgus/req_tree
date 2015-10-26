@@ -1,4 +1,4 @@
-= simple_form_for @test_case, :html => { :class => 'form-horizontal' } do |f|
+= simple_form_for @test_case, :html => { :class => 'form-horizontal autofocus' } do |f|
   = render partial: 'shared/form_errors', locals: { resource: @test_case }
 
   = f.input :title
@@ -22,7 +22,7 @@
           name = 'test_case[requirement_test_cases_attributes][0][requirement_id]'
           value = reqs[0].requirement_id
         )
-        span.input.disabled= reqs[0].requirement.title
+        span.input.disabled= reqs[0].requirement.breadcrumbs
 
   .actions
     = f.submit class:'btn btn-primary'

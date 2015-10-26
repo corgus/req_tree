@@ -1,4 +1,4 @@
-= simple_form_for @trello_card, :html => { :class => 'form-horizontal' } do |f|
+= simple_form_for @trello_card, :html => { :class => 'form-horizontal autofocus' } do |f|
   = render partial: 'shared/form_errors', locals: { resource: @trello_card }
 
   = f.input :card_id, label: 'Card ID'

@@ -6,11 +6,13 @@
 // new_item_path
 // no_new
 
+- select_path ||= ""
+- type ||= nil
 ul
   - items.each_with_index do |item, index|
     li (
       data-id= item["_source"]["id"]
-      data-title= item["_source"]["title"]
+      data-display= item["_source"]["display"]
       data-select-path= (item["_source"][select_path] || '#')
       class = (index == 0 ? 'hovering' : '')
     )

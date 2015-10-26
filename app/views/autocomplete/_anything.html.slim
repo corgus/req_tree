@@ -1,0 +1,36 @@
+// locals:
+// * items
+// * display_properties
+// * select_path
+// type (enables 'new' link)
+// new_item_path
+// no_new
+
+- select_path = ""
+ul
+  - results_features.each_with_index do |item, index|
+    li.redirect (
+      data-id= item["_source"]["id"]
+      data-display= item["_source"]["display"]
+      data-select-path= feature_path(item["_source"]["id"])
+    )
+      span.label Feature:
+      span = item['_source']['breadcrumbs']
+
+  - results_requirements.each_with_index do |item, index|
+    li.redirect (
+      data-id= item["_source"]["id"]
+      data-display= item["_source"]["display"]
+      data-select-path= requirement_path(item["_source"]["id"])
+    )
+      span.label Requirement:
+      span = item['_source']['title']
+
+  - results_test_cases.each_with_index do |item, index|
+    li.redirect (
+      data-id= item["_source"]["id"]
+      data-display= item["_source"]["display"]
+      data-select-path= test_case_path(item["_source"]["id"])
+    )
+      span.label Test Case:
+      span = item['_source']['title']

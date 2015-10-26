@@ -1,12 +1,12 @@
-h1 Listing requirements
+h1 Listing Requirements
 
 table
   thead
     tr
       th Title
       th Summary
+      th Feature
       th Status
-      th
       th
       th
 
@@ -15,10 +15,16 @@ table
       tr
         td = requirement.title
         td = raw sanitized requirement.summary
-        td = requirement.status
+        td
+          - if requirement.feature
+            a href=feature_path(requirement.feature)
+              = requirement.feature.breadcrumbs
+        td
+          .status class=requirement.status
+            = requirement.status
         td = link_to 'Show', requirement
         td = link_to 'Edit', edit_requirement_path(requirement)
-        td = link_to 'Destroy', requirement, data: {:confirm => 'Are you sure?'}, :method => :delete
+        / td = link_to 'Destroy', requirement, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 

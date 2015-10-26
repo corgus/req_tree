@@ -12,7 +12,10 @@
 
       / = render "devise/shared/links"
 
-      = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'form-horizontal' }) do |f|
+      = simple_form_for(resource,
+                        as: resource_name,
+                        url: password_path(resource_name),
+                        html: { method: :put, class: 'form-horizontal autofocus' }) do |f|
 
         = render partial: 'shared/form_errors', locals: { resource: resource }
 

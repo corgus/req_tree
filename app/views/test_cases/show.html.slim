@@ -66,9 +66,7 @@ hr
             td
               .status class=test_record.status
                 = test_record.status
-            td
-              .status
-                = test_record.timestamp.strftime("%-d:%d %b %y, %Y")
+            td= test_record.timestamp_display
             td
               a href=test_record_path(test_record)
                 | Show

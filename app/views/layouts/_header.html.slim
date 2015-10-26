@@ -34,9 +34,23 @@ header.navbar.navbar-default
               li= link_to "Settings", edit_user_path(current_user)
               li.divider
               li= link_to "Log out", destroy_user_session_path, method: :delete
-        .navbar-search-container.navbar-right
-          input.search placeholder="Search for anything"
+
+
+        .navbar-search-container.navbar-right.autocomplete-container
+          input(
+            name = 'query'
+            id = 'query'
+            type = 'text'
+            autocomplete = 'off'
+            placeholder = 'Search for anything'
+            data-source-path = autocomplete_anything_path
+            data-select-path = (select_path ||= '#')
+            data-new-params = (new_params ||= nil)
+          )
           a.glyphicon.glyphicon-search
+          .results.close-on-blur
+
+
       - else
         ul.nav.navbar-nav.navbar-right
           li= link_to "Sign up", new_user_registration_path

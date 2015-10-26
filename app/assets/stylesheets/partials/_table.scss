@@ -6,6 +6,9 @@ table {
   td, th {
     padding: 5px 20px 5px 0;
   }
+  th {
+    font-weight: $f-semibold;
+  }
   &.left-column-heading {
     td:first-of-type {
       font-weight: lighter;

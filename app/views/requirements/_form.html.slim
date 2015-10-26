@@ -1,4 +1,4 @@
-= simple_form_for @requirement, :html => { :class => 'form-horizontal' } do |f|
+= simple_form_for @requirement, :html => { :class => 'form-horizontal autofocus' } do |f|
   = render partial: 'shared/form_errors', locals: { resource: @requirement }
 
   = f.input :title
@@ -21,7 +21,8 @@
                           name: 'requirement[feature_id]',
                           placeholder: 'Search Features',
                           default_value: @requirement.feature.try(:title),
-                          no_new: true }
+                          no_new: true,
+                          klass: 'bold-last-field' }
 
   / - freqs = @requirement.feature_requirements
   / - if freqs.present? && freqs[0].feature_id && @requirement.new?

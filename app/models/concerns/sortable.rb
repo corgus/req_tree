@@ -26,10 +26,10 @@ module Sortable
           target.prepend_sibling(self)
         end
       elsif target = siblings.sort[new_position]
-        log "no sibling found with position #{new_position}.\n Prepending to #{target.title}."
+        log "No sibling found with position #{new_position}.\nPrepending to '#{target.title}'"
         target.prepend_sibling(self)
       elsif siblings
-        log "No sibling found with position #{new_position}.\n Appending to end."
+        log "No sibling found with position #{new_position}.\nAppending to end."
         update(position: siblings.count)
       else
         update(position: 0)

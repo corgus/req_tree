@@ -17,7 +17,7 @@ class TestRecordsController < ApplicationController
   end
 
   def create
-    @test_record = TestRecord.new(test_record_params)
+    @test_record = TestRecord.new(updated_test_record_params)
 
     respond_to do |format|
       if @test_record.save
@@ -31,8 +31,9 @@ class TestRecordsController < ApplicationController
   end
 
   def update
+
     respond_to do |format|
-      if @test_record.update(test_record_params)
+      if @test_record.update(updated_test_record_params)
         format.html { redirect_to @test_record, notice: 'Test record was successfully updated.' }
         format.json { render :show, status: :ok, location: @test_record }
       else
@@ -56,14 +57,21 @@ class TestRecordsController < ApplicationController
       @test_record = TestRecord.find(params[:id])
     end
 
+    def updated_test_record_params
+      return test_record_params unless test_record_params['timestamp']
+      ts = DateTime.strptime(test_record_params['timestamp'], '%m/%d/%Y %I:%M %p')
+      test_record_params.merge(timestamp: ts)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_record_params
       params.require(:test_record)
-            .permit(  :status,
+            .permit(  :user_id,
+                      :status,
                       :timestamp,
                       :server,
                       :summary,
-                      test_case_test_record_attributes: [
+                      test_case_test_records_attributes: [
                         :test_case_id, :test_record_id
                       ]
                     )

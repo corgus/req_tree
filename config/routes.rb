@@ -42,10 +42,10 @@ Rails.application.routes.draw do
     # Associations
     # resources :feature_requirements, only: :destroy
     resources :requirement_test_cases, only: :destroy
-    # resources :test_case_test_records, only: :destroy
+    resources :test_case_test_records, only: :destroy
 
     # Autocompletes
-    get 'autocomplete_global',       to: 'autocomplete#global'
+    get 'autocomplete_anything',       to: 'autocomplete#anything'
     get 'autocomplete_features',     to: 'autocomplete#features'
     get 'autocomplete_requirements', to: 'autocomplete#requirements'
     get 'autocomplete_test_cases',   to: 'autocomplete#test_cases'

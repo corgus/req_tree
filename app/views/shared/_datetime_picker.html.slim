@@ -5,10 +5,9 @@
 - default_value ||= Time.now.strftime("%m/%d/%Y %-l:%M %p")
 .datetime-picker.input-group.date
   input.form-control (
-    type = "text"
+    type = "datetime"
     name = input_name
     value = default_value
-    placeholder = default_value
   )
   span.input-group-addon
     span.glyphicon.glyphicon-calendar

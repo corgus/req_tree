@@ -18,9 +18,6 @@
           background: rgba($highlight-blue, 0.6);
           cursor: pointer;
         }
-        span:first-of-type {
-          font-weight: $f-semibold;
-        }
         &.new {
           padding: 7px 10px;
           border-top: 1px solid #DDD;
@@ -37,6 +34,27 @@
     &.open {
       display: block;
     }
+  }
+}
+
+.autocomplete-container .results span {
+  &.label {
+    font-size: 11px;
+    color: #999;
+    font-weight: $f-lighter;
+    padding-right: 5px;
+  }
+}
+
+.autocomplete-container.bold-last-field {
+  .results > ul > li > span:last-of-type {
+    font-weight: $f-semibold;
+  }
+}
+
+.autocomplete-container.bold-first-field {
+  .results > ul > li > span:first-of-type {
+    font-weight: $f-semibold;
   }
 }
 

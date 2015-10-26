@@ -1,0 +1,3 @@
+class TestCaseTestRecordsController < AssociationController
+
+end

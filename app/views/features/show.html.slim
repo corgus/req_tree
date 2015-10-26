@@ -11,7 +11,7 @@
         tr
           td Ancestry
           td = render partial: 'breadcrumbs',
-                      locals: { feature: @feature}
+                      locals: { feature: @feature }
       tr
         td Summary
         td.raw = raw sanitized @feature.summary

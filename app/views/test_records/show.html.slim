@@ -5,11 +5,12 @@
     table.left-column-heading
       tr
         td Timestamp
-        td = @test_record.timestamp
+        td = @test_record.timestamp_display
       tr
         td Status
-        td.status class=@test_record.status
-          = @test_record.status
+        td
+          .status class=@test_record.status
+            = @test_record.status
       tr
         td Server
         td = @test_record.server
@@ -41,7 +42,7 @@ hr
               a href=test_case_path(tctr.test_case)
                 | Show
             td
-              a href=test_case_test_record(tctr.id) data-method='delete'
+              a href=test_case_test_record_path(tctr.id) data-method='delete'
                 span.glyphicon.glyphicon-remove
     .actions
       = render partial: 'shared/add_association_autocomplete',

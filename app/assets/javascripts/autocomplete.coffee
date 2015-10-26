@@ -2,7 +2,7 @@
 
 $(document).ready ->
   $(document).on 'input', '.autocomplete-container > input', ->
-    results = $(@).next('.results')
+    results = $(@).siblings('.results')
     $.ajax(
       url: $(@).data('source-path')
       data:
@@ -39,11 +39,14 @@ $(document).ready ->
         next.addClass('hovering')
 
   $(document).on 'click', '.autocomplete-container > .results li:not(.new)', ->
-    $(@).closest('.autocomplete-container').find('input').val $(this).data('title')
+    $(@).closest('.autocomplete-container').find('input').val $(this).data('display')
     input_name = $(@).closest('.autocomplete-container').attr('name')
     $("input[name='#{input_name}']").val $(@).data('id')
 
   $(document).on 'click', '.autocomplete-container > .results li.new', (e) ->
+    document.location = $(@).data('select-path')
+
+  $(document).on 'click', '.autocomplete-container > .results li.redirect', (e) ->
     document.location = $(@).data('select-path')
 
   $(document).on 'mouseenter', '.autocomplete-container > .results li', ->

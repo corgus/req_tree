@@ -151,12 +151,16 @@ div.status {
     background: $bg-green;
   }
   &.pending {
-    background: $bg-gray;
+    // background: $bg-gray;
+    background: $bg-yellow;
   }
-  &.obsolete,
   &.fail {
     font-weight: $f-semibold;
     background: rgba(255, 130, 120, 1);
+  }
+  &.obsolete {
+    background: #F2F2F2;
+    color: #999;
   }
 }
 

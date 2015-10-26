@@ -3,13 +3,12 @@ module FeaturesHelper
   def sidebar_selected_features
     items = if @feature
       if @feature.id
-        [@feature, @feature.ancestors].flatten
+        selected_features_for(@feature)
       elsif (params[:controller].downcase == 'features') && (parent_id = params[:parent_id])
-        parent_feature = Feature.find(parent_id)
-        [parent_feature, parent_feature.ancestors].flatten
+        selected_features_for(Feature.find(parent_id))
       end
     elsif @requirement
-      @requirement.feature
+      selected_features_for(@requirement.feature)
     end
     Array(items)
   end
@@ -17,5 +16,11 @@ module FeaturesHelper
   def root_features
     Feature.where(parent_id: nil).sort
   end
+
+  private
+
+    def selected_features_for(feature)
+      [feature, feature.ancestors].flatten if feature
+    end
 
 end

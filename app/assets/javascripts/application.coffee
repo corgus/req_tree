@@ -12,7 +12,6 @@
 #
 #= require jquery
 #= require jquery_ujs
-#= require turbolinks
 #= require moment
 #= require bootstrap-datetimepicker
 #= require_tree ./vendor
@@ -25,15 +24,15 @@ $(document).ready ->
 
   window.QuillInputs = {}
 
-  $('form:first *:input[type!=hidden]:first').focus();
+  $('form.autofocus:first *:input[type!=hidden]:first').focus();
   $('.datetime-picker').datetimepicker();
 
   $(document).on 'click', ->
     $('.close-on-blur').removeClass 'open'
     $('.close-on-blur .hovering').removeClass 'hovering'
 
-  $(document).on 'click', 'body.test_records.show .autocomplete-container[name*="test_record[test_case_test_records_attributes]"] > .results li:not(.new)', ->
-    $(@).parents('form').find('input[type="submit"]').click()
+  # $(document).on 'click', 'body.test_records.show .autocomplete-container[name*="test_record[test_case_test_records_attributes]"] > .results li:not(.new)', ->
+  #   $(@).parents('form').find('input[type="submit"]').click()
 
   $('.quill').each( (index) ->
     input_name = $(@).data('input-name')

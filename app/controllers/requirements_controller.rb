@@ -56,7 +56,7 @@ class RequirementsController < ApplicationController
   end
 
   def reorder
-    @requirement ||= Requirement.find(params('requirement[id]'))
+    @requirement ||= Requirement.find(requirement_params['id'])
     head :ok, content_type: "text/html"
   end
 
@@ -66,7 +66,7 @@ class RequirementsController < ApplicationController
     end
 
     def update_parent
-      @requirement.update_parent(requirement_params['parent_id'])
+      @requirement.update_parent(requirement_params['parent_id']) if requirement_params['parent_id']
     end
 
     def update_position

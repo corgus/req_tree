@@ -14,7 +14,6 @@
              locals: { autocomplete_path: autocomplete_path,
                        name: "#{tgt}[#{join}_attributes][0][#{source}_id]",
                        placeholder: "Add #{source.titleize} Association",
-                       select_path: "",
                        new_params: {"#{tgt}_id": target.id}.to_query,
                        klass: 'submit-on-select' }
     = f.submit class:'hidden'

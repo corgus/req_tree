@@ -1,4 +1,4 @@
-= simple_form_for @github_issue, :html => { :class => 'form-horizontal' } do |f|
+= simple_form_for @github_issue, :html => { :class => 'form-horizontal autofocus' } do |f|
   = render partial: 'shared/form_errors', locals: { resource: @github_issue }
 
   = f.input :github_id, label: 'Github ID'

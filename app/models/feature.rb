@@ -23,9 +23,19 @@ class Feature < ReqTree::Base
     FeatureRequirement.destroy_all(feature_id: id)
   end
 
+  def as_json(opts={})
+    super.merge({
+      display: breadcrumbs
+    })
+  end
+
   def as_indexed_json(opts={})
     self.as_json(only: [:id, :title, :summary])
-        .merge({'display_path' => Rails.application.routes.url_helpers.feature_path(self.id)})
+        .merge({
+          'display_path': Rails.application.routes.url_helpers.feature_path(self.id),
+          'breadcrumbs': breadcrumbs,
+          'ancestors_string': ancestors_string
+        })
   end
 
   def name # alias for use in closure_tree
@@ -34,6 +44,11 @@ class Feature < ReqTree::Base
 
   def breadcrumbs
     ancestry_path.join(' > ')
+  end
+
+  def ancestors_string
+    return nil unless ancestry_path.length > 1
+    ancestry_path[0...-1].join(' > ') + ' >'
   end
 
   def log_children
@@ -60,6 +75,20 @@ class Feature < ReqTree::Base
 
   def root_requirement
     requirements.unscoped.find_by(feature_root: true)
+  end
+
+  def self.search(terms)
+    __elasticsearch__.search(
+      query: {
+        match: {
+          breadcrumbs: {
+            query: terms,
+            fuzziness: 2,
+            prefix_length: 1
+          }
+        }
+      }
+    )
   end
 
 end

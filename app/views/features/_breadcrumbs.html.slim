@@ -1,9 +1,15 @@
 / locals:
 / *feature
+/ include_leaf_link
+
+- include_leaf_link ||= false
 
 .breadcrumbs
   - feature.ancestor_hierarchies.sort_by(&:generations).reverse.each_with_index do |h, i|
     - if i > 0
       span.gt >
-    a href=feature_path(h.ancestor_id)
-      = Feature.find(h.ancestor_id).title
+    - if h.ancestor_id == feature.id && !include_leaf_link
+      span= Feature.find(h.ancestor_id).title
+    - else
+      a href=feature_path(h.ancestor_id)
+        = Feature.find(h.ancestor_id).title
