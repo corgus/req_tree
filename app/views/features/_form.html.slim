@@ -11,7 +11,7 @@
                          attribute: :summary,
                          input_name: 'feature[summary]' }
 
-  = f.input :status
+  = f.input :status, :include_blank => false
 
   .form-group
     label.control-label.col-sm-3 Parent
@@ -21,7 +21,7 @@
                locals: {  autocomplete_path: autocomplete_features_path,
                           name: 'feature[parent_id]',
                           placeholder: 'Search Features',
-                          default_value: @feature.parent.try(:title),
+                          default_value: @feature.parent.try(:breadcrumbs),
                           no_new: true }
 
   / - if reqs = @feature.requirements

@@ -1,10 +1,11 @@
 class FeaturesController < ApplicationController
   before_action :set_feature, only: [:show, :edit, :update, :destroy, :reorder]
   after_action :update_position, only: [:reorder, :update, :create]
-  before_action :create_root_requirement, only: [:create]
+  after_action :create_root_requirement, only: [:create]
 
   def index
-    @features = Feature.all
+    @features = Feature.all.paginate(:page => params[:page])
+    @query = params[:query]
   end
 
   def show
@@ -69,7 +70,7 @@ class FeaturesController < ApplicationController
     end
 
     def create_root_requirement
-      @feature.requirements.create(title: 'root', feature_root: true)
+      @feature.requirements.build(title: 'root', feature_root: true).save
     end
 
     def feature_params

@@ -1,0 +1,33 @@
+.featureNav {
+  margin-bottom: 30px;
+}
+.featureNav--expanded {
+  a {
+    color: #888;
+    display: block;
+    font-weight: $f-lightest;
+  }
+  .selected > a {
+    color: $link-color;
+    font-weight: $f-normal;
+    margin-bottom: 10px;
+  }
+  li {
+    margin-top: 10px;
+    margin-right: 5px;
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+  }
+}
+.featureNav--collapsed {
+  a {
+    font-weight: $f-lighter;
+    display: inline-block;
+    color: #999;
+  }
+  a:not(:first-of-type)::before {
+    content: " > "
+  }
+}

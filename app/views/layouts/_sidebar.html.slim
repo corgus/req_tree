@@ -1,1 +1,8 @@
-= render partial: 'shared/menu_item', locals: { features: root_features }
+.featureNav.featureNav--expanded.hidden-xs
+  = render partial: 'shared/menu_item', locals: { features: root_features }
+.featureNav.featureNav--collapsed.visible-xs-block
+  / - ssf = sidebar_selected_features
+  / - features = ssf.any? ? ssf : root_features
+  - sidebar_selected_features.each do |f|
+    a href=feature_path(f)
+      = f.title

@@ -1,24 +1,40 @@
-h1 Listing features
+.row
+  .col-md-6
+    h2
+      | Features
+      span.type List
+  .col-md-6
+    = render partial: 'shared/search_input',
+             locals: {  search_path: search_features_path,
+                        placeholder: 'Search Features',
+                        default_value: @query,
+                        klass: 'bold-last-field redirect' }
+hr
 
 table
   thead
     tr
-      th
-      th
-      th
+      th Feature
+      th Requirements
+      th Status
 
   tbody
     - @features.each do |feature|
       tr
-        td = feature.title
-        td = raw sanitized feature.summary
+        td
+          - if feature.ancestors_string
+            span.f-lighter.space-right = feature.ancestors_string
+          span.f-semibold = feature.title
+        / td = raw sanitized feature.summary
+        td = feature.requirements.try(:length)
         td
           .status class=feature.status
             = feature.status
         td = link_to 'Show', feature
-        td = link_to 'Edit', edit_feature_path(feature)
-        td = link_to 'Destroy', feature, data: {:confirm => 'Are you sure?'}, :method => :delete
+        / td = link_to 'Edit', edit_feature_path(feature)
+        / td = link_to 'Destroy', feature, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
-
+= will_paginate @features, renderer: BootstrapPagination::Rails
+br
 = link_to 'New Feature', new_feature_path

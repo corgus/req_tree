@@ -1,7 +1,7 @@
 
 
 $(document).ready ->
-  $(document).on 'input', '.autocomplete-container > input', ->
+  $(document).on 'input', '.search-container > input', ->
     results = $(@).siblings('.results')
     $.ajax(
       url: $(@).data('source-path')
@@ -12,12 +12,12 @@ $(document).ready ->
       results.html(response).addClass 'open'
 
   # Key press: Up/Down hovers item, Enter selects it
-  $(document).on 'keydown', '.autocomplete-container > input', (e) ->
+  $(document).on 'keydown', '.search-container > input', (e) ->
     input_name = $(@).parent().attr('name')
     $("input[name='#{input_name}']").val ''
     return unless e.which in [38, 40, 13]
     e.preventDefault()
-    options = $(@).parents('.autocomplete-container').find('.results li')
+    options = $(@).parents('.search-container').find('.results li')
     current_hover = $(options).filter('.hovering')
 
     if e.which in [13, 9] # enter / tab
@@ -38,24 +38,24 @@ $(document).ready ->
         current_hover.removeClass('hovering')
         next.addClass('hovering')
 
-  $(document).on 'click', '.autocomplete-container:not(.redirect) > .results li:not(.redirect)', ->
-    $(@).closest('.autocomplete-container').find('input').val $(this).data('display')
-    input_name = $(@).closest('.autocomplete-container').attr('name')
+  $(document).on 'click', '.search-container:not(.redirect) > .results li:not(.redirect)', ->
+    $(@).closest('.search-container').find('input').val $(this).data('display')
+    input_name = $(@).closest('.search-container').attr('name')
     $("input[name='#{input_name}']").val $(@).data('id')
 
-  $(document).on 'click', '.autocomplete-container > .results li.redirect', (e) ->
+  $(document).on 'click', '.search-container > .results li.redirect', (e) ->
     document.location = $(@).data('select-path')
 
-  $(document).on 'click', '.autocomplete-container.redirect > .results li', (e) ->
+  $(document).on 'click', '.search-container.redirect > .results li', (e) ->
     document.location = $(@).data('select-path')
 
-  $(document).on 'mouseenter', '.autocomplete-container > .results li', ->
+  $(document).on 'mouseenter', '.search-container > .results li', ->
     $(@).siblings('li').removeClass('hovering')
     $(@).addClass('hovering')
 
-  $(document).on 'mouseleave', '.autocomplete-container > .results li', ->
+  $(document).on 'mouseleave', '.search-container > .results li', ->
     $(@).removeClass('hovering')
 
   # Trigger form submit on select
-  $(document).on 'click', '.autocomplete-container.submit-on-select > .results li:not(.redirect)', ->
+  $(document).on 'click', '.search-container.submit-on-select > .results li:not(.redirect)', ->
     $(@).parents('form').find('input[type="submit"]').click()

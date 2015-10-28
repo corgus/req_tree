@@ -1,4 +1,15 @@
-h1 Listing Requirements
+.row
+  .col-md-6
+    h2
+      | Requirements
+      span.type List
+  .col-md-6
+    = render partial: 'shared/search_input',
+             locals: {  search_path: search_requirements_path,
+                        placeholder: 'Search Requirements',
+                        default_value: @query,
+                        klass: 'bold-last-field redirect' }
+hr
 
 table
   thead
@@ -23,7 +34,7 @@ table
           .status class=requirement.status
             = requirement.status
         td = link_to 'Show', requirement
-        td = link_to 'Edit', edit_requirement_path(requirement)
+        / td = link_to 'Edit', edit_requirement_path(requirement)
         / td = link_to 'Destroy', requirement, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br

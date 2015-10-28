@@ -31,6 +31,10 @@
 @import "utilities/typography";
 @import "utilities/select";
 
+* {
+  @include box-sizing('border-box');
+}
+
 body {
   @include box-sizing('border-box');
   background: $bg-body;

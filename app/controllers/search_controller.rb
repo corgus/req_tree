@@ -1,12 +1,13 @@
-class AutocompleteController < ApplicationController
+class SearchController < ApplicationController
 
   before_action :ensure_query
 
   def anything
-    results_features = Feature.autocomplete(params[:query]).collect(&:as_json)
-    results_requirements = Requirement.autocomplete(params[:query]).collect(&:as_json)
-    results_test_cases = TestCase.autocomplete(params[:query]).collect(&:as_json)
-    render partial: 'autocomplete/anything',
+    results_features = Feature.search(params[:query]).collect(&:as_json)
+    results_requirements = Requirement.search(params[:query]).collect(&:as_json)
+    results_test_cases = TestCase.search(params[:query]).collect(&:as_json)
+    log "#{results_features} \n\n #{results_requirements} \n\n #{results_test_cases}"
+    render partial: 'anything',
            locals: { results_features: results_features,
                      results_requirements: results_requirements,
                      results_test_cases: results_test_cases}
@@ -14,20 +15,20 @@ class AutocompleteController < ApplicationController
   end
 
   def features
-    es_results = Feature.autocomplete params[:query]
+    es_results = Feature.search params[:query]
     locals = result_params(Feature, es_results,
                            { display_properties: [:ancestors_string, :title] })
     render_results(es_results, locals)
   end
 
   def requirements
-    es_results = Requirement.autocomplete params[:query]
+    es_results = Requirement.search params[:query]
     locals = result_params(Requirement, es_results)
     render_results(es_results, locals)
   end
 
   def test_cases
-    es_results = TestCase.autocomplete params[:query]
+    es_results = TestCase.search params[:query]
     locals = result_params(TestCase, es_results)
     render_results(es_results, locals)
   end

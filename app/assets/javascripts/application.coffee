@@ -16,6 +16,7 @@
 #= require bootstrap-datetimepicker
 #= require_tree ./vendor
 #= require autocomplete
+#= require search
 #= require quill_input
 #= require sortable
 #= require_self

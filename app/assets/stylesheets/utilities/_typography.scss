@@ -43,6 +43,18 @@ h4 {
   font-weight: $f-lighter;
 }
 
+span.space-right {
+  margin-right: 5px;
+}
+
 .semibold {
   font-weight: 500;
+}
+
+.f-lighter {
+  font-weight: $f-lighter;
+}
+
+.f-semibold {
+  font-weight: $f-semibold;
 }

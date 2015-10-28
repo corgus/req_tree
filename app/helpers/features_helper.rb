@@ -20,7 +20,7 @@ module FeaturesHelper
   private
 
     def selected_features_for(feature)
-      [feature, feature.ancestors].flatten if feature
+      [feature, feature.ancestors].flatten.reverse if feature
     end
 
 end

@@ -11,7 +11,7 @@
                          attribute: :summary,
                          input_name: 'requirement[summary]' }
 
-  = f.input :status
+  = f.input :status, :include_blank => false
   .form-group
     label.control-label.col-sm-3 Feature
     .col-sm-9
@@ -20,7 +20,7 @@
                locals: {  autocomplete_path: autocomplete_features_path,
                           name: 'requirement[feature_id]',
                           placeholder: 'Search Features',
-                          default_value: @requirement.feature.try(:title),
+                          default_value: @requirement.feature.try(:breadcrumbs),
                           no_new: true,
                           klass: 'bold-last-field' }
 

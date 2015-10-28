@@ -11,5 +11,5 @@
     - if h.ancestor_id == feature.id && !include_leaf_link
       span= Feature.find(h.ancestor_id).title
     - else
-      a href=feature_path(h.ancestor_id)
+      a.breadcrumbLink href=feature_path(h.ancestor_id)
         = Feature.find(h.ancestor_id).title

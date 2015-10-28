@@ -4,7 +4,8 @@ class RequirementsController < ApplicationController
   after_action :update_position, only: [:create, :update, :reorder]
 
   def index
-    @requirements = Requirement.all
+    @requirements = Requirement.all.paginate(:page => params[:page])
+    @query = params[:query]
   end
 
   def show
@@ -56,13 +57,13 @@ class RequirementsController < ApplicationController
   end
 
   def reorder
-    @requirement ||= Requirement.find(requirement_params['id'])
+    @requirement ||= Requirement.unscoped.find(requirement_params['id'])
     head :ok, content_type: "text/html"
   end
 
   private
     def set_requirement
-      @requirement = Requirement.find(params[:id])
+      @requirement = Requirement.unscoped.find(params[:id])
     end
 
     def update_parent

@@ -13,7 +13,7 @@
                locals: { input_name: 'test_record[timestamp]',
                          default_value: @test_record.timestamp.strftime('%m/%d/%Y %I:%M %p') }
 
-  = f.input :status
+  = f.input :status, :include_blank => false
   / TODO: add class to inputs for color indicators
   = f.input :server
 

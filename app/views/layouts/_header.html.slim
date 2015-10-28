@@ -36,14 +36,14 @@ header.navbar.navbar-default
               li= link_to "Log out", destroy_user_session_path, method: :delete
 
 
-        .navbar-search-container.navbar-right.autocomplete-container
+        .navbar-search-container.navbar-right.search-container.redirect
           input(
             name = 'query'
             id = 'query'
             type = 'text'
             autocomplete = 'off'
             placeholder = 'Search for anything'
-            data-source-path = autocomplete_anything_path
+            data-source-path = search_anything_path
             data-select-path = (select_path ||= '#')
             data-new-params = (new_params ||= nil)
           )

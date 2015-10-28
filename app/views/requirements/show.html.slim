@@ -12,9 +12,10 @@
         td = render partial: 'features/breadcrumbs',
                     locals: { feature: @requirement.feature,
                               include_leaf_link: true }
-      tr
-        td Summary
-        td.raw = raw sanitized @requirement.summary
+      - if @requirement.summary.present?
+        tr
+          td Summary
+          td.raw = raw sanitized @requirement.summary
       tr
         td Status
         td

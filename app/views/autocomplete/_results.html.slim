@@ -6,8 +6,9 @@
 // new_item_path
 // no_new
 
-- select_path ||= ""
-- type ||= nil
+- select_path = ""  unless local_assigns[:select_path]
+- type = nil        unless local_assigns[:type]
+
 ul
   - items.each_with_index do |item, index|
     li (
@@ -17,9 +18,10 @@ ul
       class = (index == 0 ? 'hovering' : '')
     )
       - display_properties.each do |property|
-        span = item['_source'][property.to_s]
+        - if item['_source'][property.to_s]
+          span.space-right = item['_source'][property.to_s]
   - if type
-    li.new (
+    li.new.redirect (
       data-id = 0
       data-name = ''
       data-select-path = new_item_path

@@ -1,0 +1,22 @@
+.search-container {
+  position: relative;
+  input {
+    padding: 3px 20px 3px 10px;
+    box-sizing: border-box;
+    @include style-placeholder {
+      font-weight: lighter;
+      color: #CCC;
+    }
+  }
+  a.glyphicon.glyphicon-search {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 9px;
+    color: #AAA;
+    &:hover {
+      text-decoration: none;
+      color: $text-blue;
+    }
+  }
+}

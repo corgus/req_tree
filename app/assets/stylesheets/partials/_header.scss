@@ -22,27 +22,12 @@ header.navbar {
     }
   }
   .navbar-search-container {
-    padding-right: 15px;
-    position: relative;
+    margin-right: 15px;
+    margin-top: 10px;
     input {
-      margin: 12px 0 0;
-      background: rgba(#FFF,0.5);
+      background: rgba(#FFF, 0.5);
       border: 1px solid #BBB;
-      padding: 3px 20px 3px 10px;
       width: 300px;
-      @include style-placeholder {
-        font-weight: lighter;
-        color: #CCC;
-      }
-    }
-    .glyphicon-search {
-      position: absolute;
-      right: 20px;
-      top: 19px;
-      color: #AAA;
-      &:hover {
-        text-decoration:none;
-      }
     }
   }
   ul.dropdown-menu {

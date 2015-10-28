@@ -45,10 +45,17 @@ Rails.application.routes.draw do
     resources :test_case_test_records, only: :destroy
 
     # Autocompletes
-    get 'autocomplete_anything',       to: 'autocomplete#anything'
+    get 'autocomplete_anything',     to: 'autocomplete#anything'
     get 'autocomplete_features',     to: 'autocomplete#features'
     get 'autocomplete_requirements', to: 'autocomplete#requirements'
     get 'autocomplete_test_cases',   to: 'autocomplete#test_cases'
+
+    # Searches
+    get 'search_anything',     to: 'search#anything'
+    get 'search_features',     to: 'search#features'
+    get 'search_requirements', to: 'search#requirements'
+    get 'search_test_cases',   to: 'search#test_cases'
+
 
     get 'dashboard', to: 'dashboard#show'
 

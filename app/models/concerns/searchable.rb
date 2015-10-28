@@ -27,6 +27,20 @@ module Searchable
       )
     end
 
+    def self.autocomplete(terms)
+      __elasticsearch__.search(
+        query: {
+          match: {
+            title: {
+              query: terms,
+              fuzziness: 2,
+              prefix_length: 1
+            }
+          }
+        }
+      )
+    end
+
     def self.reindex
       # Delete the previous features index in Elasticsearch
       __elasticsearch__.client.indices.delete index: index_name # rescue nil

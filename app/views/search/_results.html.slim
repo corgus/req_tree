@@ -1,0 +1,29 @@
+// locals:
+// * items
+// * display_properties
+// select_path
+// type (enables 'new' link)
+// new_item_path
+// no_new
+
+- select_path = ""  unless local_assigns[:select_path]
+- type = nil        unless local_assigns[:type]
+
+ul
+  - items.each_with_index do |item, index|
+    li (
+      data-id= item["_source"]["id"]
+      data-display= item["_source"]["display"]
+      data-select-path= (item["_source"][select_path] || '#')
+    )
+      - display_properties.each do |property|
+        - if item['_source'][property.to_s]
+          span.space-right = item['_source'][property.to_s]
+  - if type
+    li.new.redirect (
+      data-id = 0
+      data-name = ''
+      data-select-path = new_item_path
+      class = (items.length == 0 ? 'hovering' : '')
+    )
+      span = "New #{type.to_s.titleize}"

@@ -12,9 +12,10 @@
           td Ancestry
           td = render partial: 'breadcrumbs',
                       locals: { feature: @feature }
-      tr
-        td Summary
-        td.raw = raw sanitized @feature.summary
+      - if @feature.summary.present?
+        tr
+          td Summary
+          td.raw = raw sanitized @feature.summary
       tr
         td Status
         td

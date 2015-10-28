@@ -10,7 +10,7 @@ ul
       data-display= item["_source"]["display"]
       data-select-path= feature_path(item["_source"]["id"])
     )
-      span.label.space-right Feature:
+      span.result-type.space-right Feature:
       span = item['_source']['breadcrumbs']
 
   - results_requirements.each_with_index do |item, index|
@@ -19,7 +19,7 @@ ul
       data-display= item["_source"]["display"]
       data-select-path= requirement_path(item["_source"]["id"])
     )
-      span.label.space-right Requirement:
+      span.result-type.space-right Requirement:
       span = item['_source']['title']
 
   - results_test_cases.each_with_index do |item, index|
@@ -28,5 +28,5 @@ ul
       data-display= item["_source"]["display"]
       data-select-path= test_case_path(item["_source"]["id"])
     )
-      span.label.space-right Test Case:
+      span.result-type.space-right Test Case:
       span = item['_source']['title']

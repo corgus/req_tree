@@ -1,4 +1,4 @@
-.autocomplete-container {
+.autocomplete-container, .search-container {
   position: relative;
   .results {
     display: none;
@@ -37,24 +37,22 @@
   }
 }
 
-.autocomplete-container .results span {
-  &.label {
+.autocomplete-container,
+.search-container {
+  .results span.result-type {
     font-size: 11px;
     color: #999;
     font-weight: $f-lighter;
-    padding-right: 5px;
   }
-}
-
-.autocomplete-container.bold-last-field {
-  .results > ul > li > span:last-of-type {
-    font-weight: $f-semibold;
+  &.bold-last-field {
+    .results > ul > li > span:last-of-type {
+      font-weight: $f-semibold;
+    }
   }
-}
-
-.autocomplete-container.bold-first-field {
-  .results > ul > li > span:first-of-type {
-    font-weight: $f-semibold;
+  &.bold-first-field {
+    .results > ul > li > span:first-of-type {
+      font-weight: $f-semibold;
+    }
   }
 }
 

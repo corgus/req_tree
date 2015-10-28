@@ -1,5 +1,5 @@
 / locals:
-/ * autocomplete_path
+/ * search_path
 / name
 / placeholder
 / select_path
@@ -8,7 +8,7 @@
 
 - name ||= ""
 
-.autocomplete-container (
+.search-container (
   name = name
   class = (klass ||= '')
 )
@@ -19,8 +19,9 @@
     autocomplete = 'off'
     value = (default_value ||= nil)
     placeholder = (placeholder ||= 'Search')
-    data-source-path = autocomplete_path
+    data-source-path = search_path
     data-select-path = (select_path ||= '#')
     data-new-params = (new_params ||= nil)
   )
+  a.glyphicon.glyphicon-search
   .results.close-on-blur
