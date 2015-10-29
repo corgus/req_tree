@@ -23,6 +23,14 @@ module Searchable
               prefix_length: 1
             }
           }
+        },
+        highlight: {
+          fields: {
+            title: {
+              term_vector: "with_positions_offsets",
+              force_source: true
+            }
+          }
         }
       )
     end
@@ -35,6 +43,14 @@ module Searchable
               query: terms,
               fuzziness: 2,
               prefix_length: 1
+            }
+          }
+        },
+        highlight: {
+          fields: {
+            title: {
+              term_vector: "with_positions_offsets",
+              force_source: true
             }
           }
         }

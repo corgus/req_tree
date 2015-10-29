@@ -11,7 +11,7 @@ ul
       data-select-path= feature_path(item["_source"]["id"])
     )
       span.result-type.space-right Feature:
-      span = item['_source']['breadcrumbs']
+      span = raw item["highlight"]["breadcrumbs"][0]
 
   - results_requirements.each_with_index do |item, index|
     li (

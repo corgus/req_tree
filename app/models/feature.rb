@@ -87,6 +87,13 @@ class Feature < ReqTree::Base
             prefix_length: 1
           }
         }
+      },
+      highlight: {
+        fields: {
+          breadcrumbs: {
+            term_vector: "with_positions_offsets"
+          }
+        }
       }
     )
   end

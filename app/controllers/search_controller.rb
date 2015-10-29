@@ -6,7 +6,8 @@ class SearchController < ApplicationController
     results_features = Feature.search(params[:query]).collect(&:as_json)
     results_requirements = Requirement.search(params[:query]).collect(&:as_json)
     results_test_cases = TestCase.search(params[:query]).collect(&:as_json)
-    log "#{results_features} \n\n #{results_requirements} \n\n #{results_test_cases}"
+    log "#{results_features}"
+     # " \n\n #{results_requirements} \n\n #{results_test_cases}"
     render partial: 'anything',
            locals: { results_features: results_features,
                      results_requirements: results_requirements,

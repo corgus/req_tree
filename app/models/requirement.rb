@@ -31,6 +31,7 @@ class Requirement < ReqTree::Base
 
   # scope :without_features, -> { includes(:feature_requirements).where(feature_requirements: {feature_id: nil}) }
   # scope :with_features, -> { includes(:feature_requirements).where.not(feature_requirements: {feature_id: nil}) }
+  default_scope { where(feature_root: [false, nil]) }
   scope :root, -> { where(feature_root: true) }
 
   def self.default_scope

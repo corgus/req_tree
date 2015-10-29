@@ -14,6 +14,12 @@
       li {
         @include border-radius(4px);
         padding: 5px 10px;
+        color: #333;
+        font-weight: $f-lighter;
+        em {
+          color: black;
+          font-weight: $f-bold;
+        }
         &.hovering {
           background: rgba($highlight-blue, 0.6);
           cursor: pointer;
