@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   before_action :pp_params if Rails.env.development?
 
+  # def page
+  #   params[:page] || 1
+  # end
+
   protected
 
     def pp_params

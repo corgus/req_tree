@@ -3,6 +3,10 @@
 $(document).ready ->
   $(document).on 'input', '.search-container > input', ->
     results = $(@).siblings('.results')
+    root_path = $(@).data('search-path')
+    name = $(@).attr('name')
+    search_path = encodeURI("#{root_path}?#{name}=#{$(@).val()}")
+    $(@).siblings('a').attr('href', search_path)
     $.ajax(
       url: $(@).data('source-path')
       data:
@@ -13,20 +17,20 @@ $(document).ready ->
 
   # Key press: Up/Down hovers item, Enter selects it
   $(document).on 'keydown', '.search-container > input', (e) ->
-    input_name = $(@).parent().attr('name')
-    $("input[name='#{input_name}']").val ''
+    # input_name = $(@).parent().attr('name')
+    # $("input[name='#{input_name}']").val ''
     return unless e.which in [38, 40, 13]
     e.preventDefault()
-    options = $(@).parents('.search-container').find('.results li')
-    current_hover = $(options).filter('.hovering')
+    results = $(@).siblings('.results').find('li')
+    current_hover = $(results).filter('.hovering')
 
     if e.which in [13, 9] # enter / tab
       if current_hover.length > 0
         current_hover.click()
       else
-        $(options[0]).click()
+        document.location = $(@).siblings('a').attr('href')
     else if current_hover.length == 0
-      $(options[0]).addClass('hovering')
+      $(results[0]).addClass('hovering')
     else if e.which == 38 # up
       prev = current_hover.prev('li')
       if prev.length > 0

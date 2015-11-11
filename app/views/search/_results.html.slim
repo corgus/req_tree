@@ -19,11 +19,11 @@ ul
       - display_properties.each do |property|
         - if item['_source'][property.to_s]
           span.space-right = item['_source'][property.to_s]
-  - if type
-    li.new.redirect (
-      data-id = 0
-      data-name = ''
-      data-select-path = new_item_path
-      class = (items.length == 0 ? 'hovering' : '')
-    )
-      span = "New #{type.to_s.titleize}"
+  / - if type
+  /   li.new.redirect (
+  /     data-id = 0
+  /     data-name = ''
+  /     data-select-path = new_item_path
+  /     class = (items.length == 0 ? 'hovering' : '')
+  /   )
+  /     span = "New #{type.to_s.titleize}"

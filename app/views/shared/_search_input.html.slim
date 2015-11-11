@@ -1,27 +1,30 @@
 / locals:
-/ * search_path
+/ * source_path (for results)
+/ * search_path (for displaying paginated results)
 / name
 / placeholder
 / select_path
 / new_params
 / klass
 
-- name ||= ""
+- name ||= "query"
+- select_path ||= "#"
+- search_path ||= "#"
 
 .search-container (
-  name = name
   class = (klass ||= '')
 )
   input(
-    name = 'query'
-    id = 'query'
+    name = name
+    id = name
     type = 'text'
     autocomplete = 'off'
     value = (default_value ||= nil)
     placeholder = (placeholder ||= 'Search')
-    data-source-path = search_path
-    data-select-path = (select_path ||= '#')
+    data-source-path = source_path
+    data-search-path = search_path
+    data-select-path = select_path
     data-new-params = (new_params ||= nil)
   )
-  a.glyphicon.glyphicon-search
+  a.glyphicon.glyphicon-search href=search_path
   .results.close-on-blur

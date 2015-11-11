@@ -77,8 +77,14 @@ class Feature < ReqTree::Base
     requirements.unscoped.find_by(feature_root: true)
   end
 
-  def self.search(terms)
+  def self.search(terms, opts={})
+    per_page = opts['per_page'] || 25
+    page     = opts['page'] || 1
+    from     = per_page * (page - 1)
+
     __elasticsearch__.search(
+      from: from,
+      size: per_page,
       query: {
         match: {
           breadcrumbs: {

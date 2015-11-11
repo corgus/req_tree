@@ -4,8 +4,18 @@ class FeaturesController < ApplicationController
   after_action :create_root_requirement, only: [:create]
 
   def index
-    @features = Feature.all.paginate(:page => params[:page])
-    @query = params[:query]
+    @features = if @query = params[:feature].try(:[],:query)
+      es_results = Feature.search( @query,
+                                   page: params[:page],
+                                   per_page: 20
+                                  )
+      Feature.find(es_results.map(&:_id))
+             .paginate( page: params[:page],
+                        per_page: 20,
+                        total_entries: es_results.response.hits.total )
+    else
+      Feature.all.paginate(page: params[:page])
+    end
   end
 
   def show
@@ -81,6 +91,7 @@ class FeaturesController < ApplicationController
                       :status,
                       :parent_id,
                       :position,
+                      :query,
                       feature_requirements_attributes: [
                         :requirement_id, :feature_id
                       ]

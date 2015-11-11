@@ -5,11 +5,16 @@
       span.type List
   .col-md-6
     = render partial: 'shared/search_input',
-             locals: {  search_path: search_features_path,
+             locals: {  search_path: features_path,
+                        source_path: search_features_path,
+                        name: 'feature[query]',
                         placeholder: 'Search Features',
                         default_value: @query,
                         klass: 'bold-last-field redirect' }
 hr
+
+/ - if @query
+/   em = "Search results for \"#{@query}\""
 
 table
   thead
