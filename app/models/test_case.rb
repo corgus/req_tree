@@ -23,6 +23,12 @@ class TestCase < ReqTree::Base
     end
   end
 
+  def self.paginated_search_results(query, opts)
+    es_results = TestCase.search(query, opts)
+    opts = opts.merge(total_entries: es_results.response.hits.total)
+    TestCase.find(es_results.map(&:_id)).paginate(opts)
+  end
+
 end
 
 TestCase.load_index

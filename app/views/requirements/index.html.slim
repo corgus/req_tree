@@ -5,7 +5,9 @@
       span.type List
   .col-md-6
     = render partial: 'shared/search_input',
-             locals: {  search_path: search_requirements_path,
+             locals: {  search_path: requirements_path,
+                        source_path: search_requirements_path,
+                        name: 'requirement[query]',
                         placeholder: 'Search Requirements',
                         default_value: @query,
                         klass: 'bold-last-field redirect' }
@@ -18,6 +20,7 @@ table
       th Summary
       th Feature
       th Status
+      th Test Cases
       th
       th
 
@@ -33,9 +36,8 @@ table
         td
           .status class=requirement.status
             = requirement.status
+        td = requirement.test_cases.count
         td = link_to 'Show', requirement
-        / td = link_to 'Edit', edit_requirement_path(requirement)
-        / td = link_to 'Destroy', requirement, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 

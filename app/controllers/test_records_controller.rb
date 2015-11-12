@@ -9,8 +9,10 @@ class TestRecordsController < ApplicationController
   end
 
   def new
-    @test_record = TestRecord.new
-    @test_record.test_case_test_records.build(test_case_id: params[:test_case_id])
+    @test_record = TestRecord.new(timestamp: Time.now)
+    if params[:test_case_id]
+      @test_record.test_case_test_records.build(test_case_id: params[:test_case_id])
+    end
   end
 
   def edit

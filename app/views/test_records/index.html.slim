@@ -3,9 +3,11 @@ h1 Listing Test Records
 table
   thead
     tr
+      th User
       th Status
       th Timestamp
       th Server
+      th Test Cases
       th
       th
       th
@@ -13,14 +15,16 @@ table
   tbody
     - @test_records.each do |test_record|
       tr
+        td = test_record.user.try(:name)
         td
           .status class=test_record.status
             = test_record.status
         td = test_record.timestamp_display
         td = test_record.server
+        td = test_record.test_cases.count
         td = link_to 'Show', test_record
-        td = link_to 'Edit', edit_test_record_path(test_record)
-        td = link_to 'Destroy', test_record, data: {:confirm => 'Are you sure?'}, :method => :delete
+        / td = link_to 'Edit', edit_test_record_path(test_record)
+        / td = link_to 'Destroy', test_record, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 

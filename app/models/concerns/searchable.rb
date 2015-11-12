@@ -13,7 +13,12 @@ module Searchable
 
     index_name "reqtree_#{to_s.downcase.pluralize}"
 
-    def self.search(terms)
+
+    def self.search(terms, opts={})
+      per_page = opts['per_page'] || 25
+      page     = opts['page'] || 1
+      from     = per_page * (page - 1)
+
       __elasticsearch__.search(
         query: {
           match: {

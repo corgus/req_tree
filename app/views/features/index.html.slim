@@ -30,7 +30,6 @@ table
           - if feature.ancestors_string
             span.f-lighter.space-right = feature.ancestors_string
           span.f-semibold = feature.title
-        / td = raw sanitized feature.summary
         td = feature.requirements.try(:length)
         td
           .status class=feature.status

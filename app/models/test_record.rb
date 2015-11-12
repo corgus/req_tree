@@ -25,6 +25,10 @@ class TestRecord < ReqTree::Base
     status == :fail
   end
 
+  def <=>(other)
+    timestamp < other.timestamp ? 1 : -1
+  end
+
 end
 
 TestRecord.load_index

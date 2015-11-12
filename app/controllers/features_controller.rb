@@ -4,7 +4,8 @@ class FeaturesController < ApplicationController
   after_action :create_root_requirement, only: [:create]
 
   def index
-    @features = if @query = params[:feature].try(:[],:query)
+    @query = params[:feature].try(:[],:query)
+    @features = if @query.present?
       Feature.paginated_search_results(@query, pagination_options)
     else
       Feature.all.paginate(page: params[:page])
@@ -89,10 +90,5 @@ class FeaturesController < ApplicationController
                         :requirement_id, :feature_id
                       ]
                     )
-    end
-
-    def pagination_options
-      { page: params[:page],
-        per_page: 20 }
     end
 end

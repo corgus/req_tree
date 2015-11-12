@@ -14,9 +14,10 @@
       tr
         td Server
         td = @test_record.server
-      tr
-        td Summary
-        td = @test_record.summary
+      - if summary = @test_record.summary
+        tr
+          td Summary
+          td = raw sanitized @test_record.summary
 
   .actions.main.col-sm-3
     a.btn.btn-default href=edit_test_record_path(@test_record)

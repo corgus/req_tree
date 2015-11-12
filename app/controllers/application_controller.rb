@@ -27,6 +27,11 @@ class ApplicationController < ActionController::Base
       Rails.application.routes.url_helpers.send(query)
     end
 
+    def pagination_options
+      { page: params[:page],
+        per_page: 20 }
+    end
+
     # def redirect_back(opts={})
     #   redirect_to(:back, opts)
     # rescue ActionController::RedirectBackError => e

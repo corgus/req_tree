@@ -4,8 +4,12 @@ class RequirementsController < ApplicationController
   after_action :update_position, only: [:create, :update, :reorder]
 
   def index
-    @requirements = Requirement.all.paginate(:page => params[:page])
-    @query = params[:query]
+    @query = params[:requirement].try(:[],:query)
+    @requirements = if @query.present?
+      Requirement.paginated_search_results(@query, pagination_options)
+    else
+      Requirement.all.paginate(page: params[:page])
+    end
   end
 
   def show
@@ -83,6 +87,7 @@ class RequirementsController < ApplicationController
                       :feature_id,
                       :position,
                       :parent_id,
+                      :query,
                       # feature_requirements_attributes: [
                       #   :feature_id, :requirement_id
                       # ],

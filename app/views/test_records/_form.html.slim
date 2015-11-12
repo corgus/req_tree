@@ -25,16 +25,16 @@
                          attribute: :summary,
                          input_name: 'test_record[summary]' }
 
-  - tcs = @test_record.test_cases
-  - if tcs.present? && tcs[0].test_case_id && @test_record.new?
+  - tctr = @test_record.test_case_test_records
+  - if tctr.present? && tctr[0].test_case_id && @test_record.new?
     .form-group
       label.control-label.col-sm-3 First Test Case
       .col-sm-9
         input.hidden (
-          name = 'test_record[test_case_test_records][0][test_case_id]'
-          value = tcs[0].test_case_id
+          name = 'test_record[test_case_test_records_attributes][0][test_case_id]'
+          value = tctr[0].test_case_id
         )
-        span.input.disabled= tcs[0].test_case.title
+        span.input.disabled= tctr[0].test_case.title
 
   .actions
     = f.submit class: 'btn btn-primary'

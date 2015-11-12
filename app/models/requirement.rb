@@ -74,6 +74,13 @@ class Requirement < ReqTree::Base
   def breadcrumbs
     "#{feature.ancestry_path.join(' > ')} >> #{title}"
   end
+
+  def self.paginated_search_results(query, opts)
+    es_results = Requirement.search(query, opts)
+    opts = opts.merge(total_entries: es_results.response.hits.total)
+    Requirement.find(es_results.map(&:_id)).paginate(opts)
+  end
+
 end
 
 Requirement.load_index

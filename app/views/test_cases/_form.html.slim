@@ -24,6 +24,17 @@
         )
         span.input.disabled= reqs[0].requirement.breadcrumbs
 
+  - tctr = @test_case.test_case_test_records
+  - if tctr.present? && tctr[0].test_record_id && @test_case.new?
+    .form-group
+      label.control-label.col-sm-3 First Test Record
+      .col-sm-9
+        input.hidden (
+          name = 'test_case[test_case_test_records_attributes][0][test_record_id]'
+          value = tctr[0].test_record_id
+        )
+        span.input.disabled= tctr[0].test_record_id
+
   .actions
     = f.submit class:'btn btn-primary'
     = link_to "Cancel", :back, class: 'btn btn-default'

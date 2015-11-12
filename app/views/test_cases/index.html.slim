@@ -1,12 +1,26 @@
-h1 Listing test_cases
+.row
+  .col-md-6
+    h2
+      | Test Cases
+      span.type List
+  .col-md-6
+    = render partial: 'shared/search_input',
+             locals: {  search_path: test_cases_path,
+                        source_path: search_test_cases_path,
+                        name: 'test_case[query]',
+                        placeholder: 'Search Test Cases',
+                        default_value: @query,
+                        klass: 'bold-last-field redirect' }
+hr
 
 table
   thead
     tr
       th Title
       th Summary
-      th Manual process
-      th Automated test path
+      th Type
+      / th Manual process
+      / th Automated test path
       th
       th
       th
@@ -16,11 +30,12 @@ table
       tr
         td = test_case.title
         td = test_case.summary
-        td = test_case.manual_process
-        td = test_case.automated_test_path
+        td = test_case.test_case_type
+        / td = test_case.manual_process
+        / td = test_case.automated_test_path
         td = link_to 'Show', test_case
-        td = link_to 'Edit', edit_test_case_path(test_case)
-        td = link_to 'Destroy', test_case, data: {:confirm => 'Are you sure?'}, :method => :delete
+        / td = link_to 'Edit', edit_test_case_path(test_case)
+        / td = link_to 'Destroy', test_case, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
