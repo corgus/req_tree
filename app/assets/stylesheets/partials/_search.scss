@@ -8,11 +8,9 @@
       color: #CCC;
     }
   }
-  a.glyphicon.glyphicon-search {
+  a {
     cursor: pointer;
-    position: absolute;
-    right: 10px;
-    top: 9px;
+    margin-left: -20px;
     color: #AAA;
     &:hover {
       text-decoration: none;

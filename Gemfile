@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.1'
+ruby '2.2.3'
 RAILS_VERSION = '~> 4.2.1'
 gem 'rails',            RAILS_VERSION
 gem 'activesupport',    RAILS_VERSION, require: 'active_support'
@@ -17,6 +17,7 @@ gem 'will_paginate',    '3.0.7'
 gem 'will_paginate-bootstrap'
 gem 'simple_form'
 gem 'sanitize'
+gem 'font-awesome-rails'
 
 gem 'elasticsearch-persistence'
 gem 'elasticsearch-rails'

@@ -18,6 +18,7 @@
 @import "utilities/variables";
 @import "utilities/colors";
 @import "utilities/mixins";
+@import "utilities/icons";
 @import "utilities/placeholders";
 
 @import "vendor/bootstrap";
@@ -101,9 +102,9 @@ body, .modal {
 .bootstrap-datetimepicker-widget {
 }
 
-span.glyphicon.glyphicon-remove {
+i.fa.fa-times {
   color: rgba(#999, 0.5);
-  font-size: 12px;
+  font-size: 14px;
   &:hover {
     color: red;
   }

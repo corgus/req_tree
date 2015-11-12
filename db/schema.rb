@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022212801) do
+ActiveRecord::Schema.define(version: 20151111221444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 20151022212801) do
     t.string   "url"
     t.integer  "resource_id"
     t.string   "resource_type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.string   "type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "attachment_type"
   end
 
   add_index "attachments", ["resource_id"], name: "index_attachments_on_resource_id", using: :btree
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 20151022212801) do
     t.string   "automated_test_path"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.string   "type"
+    t.string   "test_case_type"
   end
 
   create_table "test_records", force: :cascade do |t|

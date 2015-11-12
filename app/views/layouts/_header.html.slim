@@ -36,7 +36,7 @@ header.navbar.navbar-default
               li= link_to "Log out", destroy_user_session_path, method: :delete
 
 
-        .navbar-search-container.navbar-right.search-container.redirect
+        .search-container.navbar-right.search-container.redirect
           input(
             name = 'query'
             id = 'query'
@@ -47,7 +47,8 @@ header.navbar.navbar-default
             data-select-path = (select_path ||= '#')
             data-new-params = (new_params ||= nil)
           )
-          a.glyphicon.glyphicon-search
+          a href=search_anything_path
+            i.fa.fa-search
           .results.close-on-blur
 
 

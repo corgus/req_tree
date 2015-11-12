@@ -5,14 +5,7 @@ class FeaturesController < ApplicationController
 
   def index
     @features = if @query = params[:feature].try(:[],:query)
-      es_results = Feature.search( @query,
-                                   page: params[:page],
-                                   per_page: 20
-                                  )
-      Feature.find(es_results.map(&:_id))
-             .paginate( page: params[:page],
-                        per_page: 20,
-                        total_entries: es_results.response.hits.total )
+      Feature.paginated_search_results(@query, pagination_options)
     else
       Feature.all.paginate(page: params[:page])
     end
@@ -96,5 +89,10 @@ class FeaturesController < ApplicationController
                         :requirement_id, :feature_id
                       ]
                     )
+    end
+
+    def pagination_options
+      { page: params[:page],
+        per_page: 20 }
     end
 end

@@ -10,6 +10,11 @@
 - name ||= "query"
 - select_path ||= "#"
 - search_path ||= "#"
+- default_value ||= nil
+- placeholder ||= 'Search'
+- new_params ||= nil
+- default_search_path = search_path
+- default_search_path += "?#{CGI.escape(name)}=#{CGI.escape(default_value)}" if default_value
 
 .search-container (
   class = (klass ||= '')
@@ -19,12 +24,13 @@
     id = name
     type = 'text'
     autocomplete = 'off'
-    value = (default_value ||= nil)
-    placeholder = (placeholder ||= 'Search')
+    value = default_value
+    placeholder = placeholder
     data-source-path = source_path
     data-search-path = search_path
     data-select-path = select_path
-    data-new-params = (new_params ||= nil)
+    data-new-params = new_params
   )
-  a.glyphicon.glyphicon-search href=search_path
+  a href=default_search_path
+    i.fa.fa-search
   .results.close-on-blur

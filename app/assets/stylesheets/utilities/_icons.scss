@@ -1,14 +1,16 @@
-@import "compass";
-$icons: sprite-map("icons/*.png");
+@import "font-awesome";
 
-i {
-  background: $icons;
-  display: inline-block;
-}
+// @import "compass";
+// $icons: sprite-map("icons/*.png");
 
-@each $i in sprite_names($icons) {
-  .icon-#{$i} {
-    background-position: sprite-position($icons, $i);
-    @include sprite-dimensions($icons, $i);
-  }
-}
+// i {
+//   background: $icons;
+//   display: inline-block;
+// }
+
+// @each $i in sprite_names($icons) {
+//   .icon-#{$i} {
+//     background-position: sprite-position($icons, $i);
+//     @include sprite-dimensions($icons, $i);
+//   }
+// }

@@ -34,7 +34,8 @@ hr
     h3 Associated Requirements
     table.associated.features
       tbody
-        - @test_case.requirements.sort.each do |requirement|
+        - @test_case.requirement_test_cases.sort.each do |requirement_test_case|
+          - requirement = requirement_test_case.requirement
           tr
             td= requirement.title
             td
@@ -44,8 +45,8 @@ hr
               a href=requirement_path(requirement)
                 | Show
             td
-              a href=requirement_test_case_path data-method='delete'
-                span.glyphicon.glyphicon-remove
+              a href=requirement_test_case_path(requirement_test_case) data-method='delete'
+                i.fa.fa-times
     .actions
       = render partial: 'shared/add_association_autocomplete',
                locals: { target: @test_case,

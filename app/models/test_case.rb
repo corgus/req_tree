@@ -3,7 +3,7 @@ class TestCase < ReqTree::Base
   include Attachable
   include Searchable
 
-  enumerize :type, in: [ :manual, :automated ], default: :manual
+  enumerize :test_case_type, in: [ :manual, :automated ], default: :manual
 
   has_many :test_case_test_records
   has_many :test_records, through: :test_case_test_records
