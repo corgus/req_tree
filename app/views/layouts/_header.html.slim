@@ -25,6 +25,19 @@ header.navbar.navbar-default
           /       li.with_new
           /         a href=entries_path Entries
           /         a href=new_entry_path new
+          li.dropdown
+            a.dropdown-tobble data-target="#" data-toggle="dropdown"
+              | List
+              i.caret
+            ul.dropdown-menu
+              li
+                a href=features_path Features
+              li
+                a href=requirements_path Requirements
+              li
+                a href=test_cases_path Test Cases
+              li
+                a href=test_records_path Test Records
           li.dropdown.navbar-right
             a.dropdown-toggle data-target="#" data-toggle="dropdown"
               = current_user.first_name
