@@ -55,7 +55,7 @@ Rails.application.routes.draw do
     get 'search_features',     to: 'search#features'
     get 'search_requirements', to: 'search#requirements'
     get 'search_test_cases',   to: 'search#test_cases'
-
+    get 'search_results',      to: 'search#index'
 
     get 'dashboard', to: 'dashboard#show'
 

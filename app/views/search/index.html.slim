@@ -1,0 +1,107 @@
+- if @query
+  .u-textHelptext = "Search results for \"#{@query}\""
+hr
+
+section
+  - if @features.total_entries == 0
+    .u-textHelptext= "No Features Found"
+  - else
+    .row
+      .col-md-12
+        h3
+          | Features
+    table
+      thead
+        tr
+          th Feature
+          th Requirements
+          th Status
+      tbody
+        - @features.each do |feature|
+          tr
+            td
+              - if feature.ancestors_string
+                span.f-lighter.space-right = feature.ancestors_string
+              span.f-semibold = feature.title
+            td = feature.requirements.try(:length)
+            td
+              .status class=feature.status
+                = feature.status
+            td = link_to 'Show', feature
+    / = will_paginate @features, renderer: BootstrapPagination::Rails
+    - if @features.total_entries > 5
+      p
+        span.u-textHelptext = "Showing 5 of #{@features.total_entries} Features."
+        a.u-marginLeft10 href=features_path(query: @query)
+          |See All
+hr
+section
+  - if @requirements.total_entries == 0
+    .u-textHelptext= "No Requirements Found"
+  - else
+    .row
+      .col-md-12
+        h3
+          | Requirements
+    table
+      thead
+        tr
+          th Title
+          th Summary
+          th Feature
+          th Status
+          th Test Cases
+          th
+          th
+
+      tbody
+        - @requirements.each do |requirement|
+          tr
+            td = requirement.title
+            td = raw sanitized requirement.summary
+            td
+              - if requirement.feature
+                a href=feature_path(requirement.feature)
+                  = requirement.feature.breadcrumbs
+            td
+              .status class=requirement.status
+                = requirement.status
+            td = requirement.test_cases.count
+            td = link_to 'Show', requirement
+    - if @requirements.total_entries > 5
+      p
+        span.u-textHelptext = "Showing 5 of #{@requirements.total_entries} Requirements."
+        a.u-marginLeft10 href=requirements_path(query: @query)
+          |See All
+
+hr
+section
+  - if @test_cases.total_entries == 0
+    .u-textHelptext= "No Test Cases Found"
+  - else
+    .row
+      .col-md-12
+        h3
+          | Test Cases
+    table
+      thead
+        tr
+          th Title
+          th Summary
+          th Type
+          th
+          th
+          th
+
+      tbody
+        - @test_cases.each do |test_case|
+          tr
+            td = test_case.title
+            td = test_case.summary
+            td = test_case.test_case_type
+            td = link_to 'Show', test_case
+    - if @test_cases.total_entries > 5
+      p
+        span.u-textHelptext = "Showing 5 of #{@test_cases.total_entries} Test Cases."
+        a.u-marginLeft10 href=test_cases_path(query: @query)
+          |See All

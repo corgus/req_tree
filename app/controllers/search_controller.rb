@@ -2,17 +2,24 @@ class SearchController < ApplicationController
 
   before_action :ensure_query
 
+  def index
+    @query = params[:query]
+    # @features = Feature.search(params[:query]).collect(&:as_json)
+    # @requirements = Requirement.search(params[:query]).collect(&:as_json)
+    # @test_cases = TestCase.search(params[:query]).collect(&:as_json)
+    @features = Feature.paginated_search_results(@query, index_pagination_options)
+    @requirements = Requirement.paginated_search_results(@query, index_pagination_options)
+    @test_cases = TestCase.paginated_search_results(@query, index_pagination_options)
+  end
+
   def anything
     results_features = Feature.search(params[:query]).collect(&:as_json)
     results_requirements = Requirement.search(params[:query]).collect(&:as_json)
     results_test_cases = TestCase.search(params[:query]).collect(&:as_json)
-    log "#{results_features}"
-     # " \n\n #{results_requirements} \n\n #{results_test_cases}"
     render partial: 'anything',
            locals: { results_features: results_features,
                      results_requirements: results_requirements,
                      results_test_cases: results_test_cases}
-
   end
 
   def features
@@ -61,6 +68,11 @@ class SearchController < ApplicationController
 
     def render_results(es_results, locals)
       render partial: 'results', locals: locals
+    end
+
+    def index_pagination_options
+      { page: 1,
+        per_page: 10 }
     end
 
 end

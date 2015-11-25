@@ -105,6 +105,7 @@ class Feature < ReqTree::Base
   end
 
   def self.paginated_search_results(query, opts)
+    return [] unless query
     es_results = Feature.search(query, opts)
     opts = opts.merge(total_entries: es_results.response.hits.total)
     Feature.find(es_results.map(&:_id)).paginate(opts)
