@@ -13,32 +13,35 @@
                         klass: 'bold-last-field redirect' }
 hr
 
-table
-  thead
-    tr
-      th Title
-      th Summary
-      th Feature
-      th Status
-      th Test Cases
-      th
-      th
-
-  tbody
-    - @requirements.each do |requirement|
+- if @requirements.total_entries == 0 && @query
+  p.u-textHelptext = "No Requirements found matching \"#{@query}\""
+- else
+  table
+    thead
       tr
-        td = requirement.title
-        td = raw sanitized requirement.summary
-        td
-          - if requirement.feature
-            a href=feature_path(requirement.feature)
-              = requirement.feature.breadcrumbs
-        td
-          .status class=requirement.status
-            = requirement.status
-        td = requirement.test_cases.count
-        td = link_to 'Show', requirement
+        th Title
+        th Summary
+        th Feature
+        th Status
+        th Test Cases
+        th
+        th
 
-br
+    tbody
+      - @requirements.each do |requirement|
+        tr
+          td = requirement.title
+          td = raw sanitized requirement.summary
+          td
+            - if requirement.feature
+              a href=feature_path(requirement.feature)
+                = requirement.feature.breadcrumbs
+          td
+            .status class=requirement.status
+              = requirement.status
+          td = requirement.test_cases.count
+          td = link_to 'Show', requirement
 
-= link_to 'New Requirement', new_requirement_path
+  br
+
+  = link_to 'New Requirement', new_requirement_path

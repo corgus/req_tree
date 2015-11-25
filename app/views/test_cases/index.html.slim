@@ -13,30 +13,33 @@
                         klass: 'bold-last-field redirect' }
 hr
 
-table
-  thead
-    tr
-      th Title
-      th Summary
-      th Type
-      / th Manual process
-      / th Automated test path
-      th
-      th
-      th
-
-  tbody
-    - @test_cases.each do |test_case|
+- if @test_cases.total_entries == 0 && @query
+  p.u-textHelptext = "No Test Cases found matching \"#{@query}\""
+- else
+  table
+    thead
       tr
-        td = test_case.title
-        td = test_case.summary
-        td = test_case.test_case_type
-        / td = test_case.manual_process
-        / td = test_case.automated_test_path
-        td = link_to 'Show', test_case
-        / td = link_to 'Edit', edit_test_case_path(test_case)
-        / td = link_to 'Destroy', test_case, data: {:confirm => 'Are you sure?'}, :method => :delete
+        th Title
+        th Summary
+        th Type
+        / th Manual process
+        / th Automated test path
+        th
+        th
+        th
 
-br
+    tbody
+      - @test_cases.each do |test_case|
+        tr
+          td = test_case.title
+          td = test_case.summary
+          td = test_case.test_case_type
+          / td = test_case.manual_process
+          / td = test_case.automated_test_path
+          td = link_to 'Show', test_case
+          / td = link_to 'Edit', edit_test_case_path(test_case)
+          / td = link_to 'Destroy', test_case, data: {:confirm => 'Are you sure?'}, :method => :delete
 
-= link_to 'New Test case', new_test_case_path
+  br
+
+  = link_to 'New Test case', new_test_case_path

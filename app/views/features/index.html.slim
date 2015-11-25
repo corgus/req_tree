@@ -15,30 +15,32 @@ hr
 
 / - if @query
 /   em = "Search results for \"#{@query}\""
-
-table
-  thead
-    tr
-      th Feature
-      th Requirements
-      th Status
-
-  tbody
-    - @features.each do |feature|
+- if @features.total_entries == 0 && @query
+  p.u-textHelptext = "No Features found matching \"#{@query}\""
+- else
+  table
+    thead
       tr
-        td
-          - if feature.ancestors_string
-            span.f-lighter.space-right = feature.ancestors_string
-          span.f-semibold = feature.title
-        td = feature.requirements.try(:length)
-        td
-          .status class=feature.status
-            = feature.status
-        td = link_to 'Show', feature
-        / td = link_to 'Edit', edit_feature_path(feature)
-        / td = link_to 'Destroy', feature, data: {:confirm => 'Are you sure?'}, :method => :delete
+        th Feature
+        th Requirements
+        th Status
 
-br
-= will_paginate @features, renderer: BootstrapPagination::Rails
-br
-= link_to 'New Feature', new_feature_path
+    tbody
+      - @features.each do |feature|
+        tr
+          td
+            - if feature.ancestors_string
+              span.f-lighter.space-right = feature.ancestors_string
+            span.f-semibold = feature.title
+          td = feature.requirements.try(:length)
+          td
+            .status class=feature.status
+              = feature.status
+          td = link_to 'Show', feature
+          / td = link_to 'Edit', edit_feature_path(feature)
+          / td = link_to 'Destroy', feature, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+  br
+  = will_paginate @features, renderer: BootstrapPagination::Rails
+  br
+  = link_to 'New Feature', new_feature_path
